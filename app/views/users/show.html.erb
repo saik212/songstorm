@@ -1,0 +1,11 @@
+<h1>Welcome <%= @user.username %> </h1>
+<br>
+<h3>Your Playlists</h3>
+<ul>
+  <% @playlists.each do |playlist| %>
+    <li> <%= link_to playlist.name, user_playlist_url(@user, playlist) %> </li>
+  <% end %>
+</ul>
+
+
+<%= link_to "Create Playlist", new_playlist_url %>

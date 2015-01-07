@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  root to: "sessions#new"
+
+  resources :users, only: [:new, :create, :show] do
+    resources :playlists, only: [:show]
+  end
+  resource :session, only: [:new, :create, :destroy]
+  resources :playlists, only: [:new, :create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
