@@ -1,7 +1,17 @@
-<h1><%= @song.uploader.username %>'s song</h1>
+<h1><%= link_to @song.uploader.username, user_url(@song.uploader) %>'s song</h1>
 
 <h3> <%= @song.title %> </h3>
 <ul>
   <li> Artist: <%= @song.artist %> </li>
   <li> Album: <%= @song.album %> </li>
+</ul>
+
+<br>
+<h4>Belongs to the following playlists:</h4>
+<ul>
+  <% @song.playlists.each do |playlist| %>
+    <li>
+      <%= link_to playlist.name, user_playlist_url(User.find(playlist.user_id), playlist) %>
+    </li>
+  <% end %>
 </ul>

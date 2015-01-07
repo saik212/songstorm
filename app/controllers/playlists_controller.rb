@@ -1,4 +1,5 @@
 class PlaylistsController < ApplicationController
+  before_action :prevent_delete, only: [:destroy]
   def new
     @playlist = Playlist.new
     render :new
@@ -17,7 +18,6 @@ class PlaylistsController < ApplicationController
 
   def show
     @playlist = Playlist.find(params[:id])
-    @user = @playlist.user
     render :show
   end
 
@@ -30,5 +30,13 @@ class PlaylistsController < ApplicationController
   private
   def playlist_params
     params.require(:playlist).permit(:name)
+  end
+
+  def prevent_delete
+    playlist = Playlist.find(params[:id])
+    if current_user.id != playlist.user_id
+      redirect_to user_url(User.find(playlist.user_id))
+      flash[:errors] = ["You can't do that"]
+    end
   end
 end

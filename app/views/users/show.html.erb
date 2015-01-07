@@ -1,4 +1,4 @@
-<h1>Welcome <%= @user.username %> </h1>
+<h1><%= @user.username %>'s Profile</h1>
 <br>
 <h3>Your Playlists</h3>
 <ul>
@@ -19,3 +19,6 @@
 
 <%= link_to "Create Playlist", new_playlist_url %>
 <%= link_to "Create Song", new_song_url %>
+
+<br>
+<%=render "layouts/errors"%>

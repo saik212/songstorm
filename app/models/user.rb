@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   has_many :playlists
   has_many :songs, class_name: "Song", foreign_key: :uploader_id
 
+
   attr_reader :password
+  after_initialize :ensure_session_token
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
