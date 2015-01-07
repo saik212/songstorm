@@ -2,10 +2,20 @@
 <br>
 <h3>Your Playlists</h3>
 <ul>
-  <% @playlists.each do |playlist| %>
-    <li> <%= link_to playlist.name, user_playlist_url(@user, playlist) %> </li>
+  <% @user.playlists.each do |playlist| %>
+    <li>
+      <%= link_to playlist.name, user_playlist_url(@user, playlist) %> <%= button_to "Delete Playlist", playlist_url(playlist), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Your Songs</h3>
+<ul>
+  <% @user.songs.each do |song| %>
+    <li><%= link_to song.title, user_song_url(song.uploader, song) %>  <%= button_to "Delete Song", song_url(song), method: :delete %></li>
   <% end %>
 </ul>
 
 
 <%= link_to "Create Playlist", new_playlist_url %>
+<%= link_to "Create Song", new_song_url %>

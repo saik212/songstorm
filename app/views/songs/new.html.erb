@@ -1,0 +1,22 @@
+<h2>Create a Song</h2>
+
+<%= render "layouts/errors" %>
+
+<form action="<%= songs_url %>" method="post">
+  <%= auth_token_input %>
+  <label>
+    Title
+    <input type="text" name="song[title]" value="">
+  </label>
+  <label>
+    Artist
+    <input type="text" name="song[artist]" value="">
+  </label>
+  <label>
+    Album
+    <input type="text" name="song[album]" value="">
+  </label>
+
+
+  <input type="submit" value="Create">
+</form>

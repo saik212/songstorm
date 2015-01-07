@@ -21,6 +21,12 @@ class PlaylistsController < ApplicationController
     render :show
   end
 
+  def destroy
+    @playlist = Playlist.find(params[:id])
+    @playlist.destroy
+    redirect_to user_url(current_user)
+  end
+
   private
   def playlist_params
     params.require(:playlist).permit(:name)

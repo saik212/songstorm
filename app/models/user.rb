@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
 
   has_many :playlists
-
+  has_many :songs, class_name: "Song", foreign_key: :uploader_id
 
   attr_reader :password
 
