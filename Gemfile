@@ -60,6 +60,8 @@ group :development do
   gem 'byebug'
 end
 
-gem 'bcrypt', require: 'BCrypt'
+gem 'bcrypt', require: 'bcrypt'
 
 gem 'backbone-on-rails'
+
+gem 'rails_12factor'
