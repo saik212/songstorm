@@ -5,13 +5,24 @@
   <li> Artist: <%= @song.artist %> </li>
   <li> Album: <%= @song.album %> </li>
 </ul>
+<h1>Add to a playlist</h1>
 
 <br>
 <h4>Belongs to the following playlists:</h4>
 <ul>
   <% @song.playlists.each do |playlist| %>
     <li>
-      <%= link_to playlist.name, user_playlist_url(User.find(playlist.user_id), playlist) %>
+      <%= link_to playlist.name, playlist_url(playlist) %>
     </li>
   <% end %>
 </ul>
+
+<h4>Comments</h4>
+<ul>
+  <% @song.comments.each do |comment| %>
+    <% user = User.find(comment.user_id) %>
+    <li> <%= comment.body %> - <%= link_to user.username, user_url(user) %> </li>
+  <% end %>
+</ul>
+
+<%= render "comments/form", {commentable_type: "Song"}%>

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :playlists
   has_many :songs, class_name: "Song", foreign_key: :uploader_id
+  has_many :comments
 
 
   attr_reader :password

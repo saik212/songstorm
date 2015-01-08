@@ -2,11 +2,18 @@
 <br>
 <h3> <%= @playlist.name %> </h3>
 
-<h4>Belongs to the following playlists:</h4>
+<h4>Has the following songs:</h4>
 <ul>
   <% @playlist.songs.each do |song| %>
     <li>
-      <%= link_to song.title, user_song_url(User.find(song.uploader_id), song) %>
+      <%= link_to song.title, song_url(song) %>
     </li>
   <% end %>
 </ul>
+
+<h3>Comments</h3>
+<% @playlist.comments.each do |comment| %>
+  <% user = User.find(comment.user_id) %>
+  <li><%= comment.body %> - <%= link_to user.username, user_url(user) %></li>
+<% end %>
+<%= render "comments/form", {commentable_type: "Playlist"} %>

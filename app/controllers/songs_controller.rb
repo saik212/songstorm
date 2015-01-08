@@ -9,7 +9,7 @@ class SongsController < ApplicationController
     @song.uploader_id = current_user.id
 
     if @song.save
-      redirect_to user_song_url(current_user, @song)
+      redirect_to song_url(@song)
     else
       flash.now[:errors] = @playlist.errors.full_messages
       render :new

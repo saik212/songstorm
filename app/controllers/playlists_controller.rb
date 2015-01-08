@@ -9,7 +9,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new(playlist_params)
     @playlist.user_id = current_user.id
     if @playlist.save
-      redirect_to user_playlist_url(current_user, @playlist)
+      redirect_to playlist_url(@playlist)
     else
       flash.now[:errors] = @playlist.errors.full_messages
       render :new

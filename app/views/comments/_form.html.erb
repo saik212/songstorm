@@ -1,0 +1,16 @@
+<h2>Post a Comment</h2>
+
+<%= render "layouts/errors" %>
+
+<form action="<%= comments_url %>" method="post">
+  <%= auth_token_input %>
+  <label>
+    Comment Body
+    <input type="textarea" name="comment[body]" value="">
+  </label>
+
+  <input type="hidden" name="comment[commentable_id]" value="<%= params[:id] %>">
+  <input type="hidden" name="comment[commentable_type]" value="<%= commentable_type %>">
+
+  <input type="submit" value="Post Comment">
+</form>

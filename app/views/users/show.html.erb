@@ -4,7 +4,7 @@
 <ul>
   <% @user.playlists.each do |playlist| %>
     <li>
-      <%= link_to playlist.name, user_playlist_url(@user, playlist) %> <%= button_to "Delete Playlist", playlist_url(playlist), method: :delete %>
+      <%= link_to playlist.name, playlist_url(playlist) %> <%= button_to "Delete Playlist", playlist_url(playlist), method: :delete %>
     </li>
   <% end %>
 </ul>
@@ -12,7 +12,7 @@
 <h3>Your Songs</h3>
 <ul>
   <% @user.songs.each do |song| %>
-    <li><%= link_to song.title, user_song_url(song.uploader, song) %>  <%= button_to "Delete Song", song_url(song), method: :delete %></li>
+    <li><%= link_to song.title, song_url(song) %>  <%= button_to "Delete Song", song_url(song), method: :delete %></li>
   <% end %>
 </ul>
 
