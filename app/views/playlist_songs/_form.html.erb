@@ -1,0 +1,15 @@
+<form action="<%= playlist_songs_url %>" method="post">
+  <%= auth_token_input %>
+  <input type="hidden" name="playlist_song[song_id]" value="<%= song.id %>">
+
+  <label>Playlist
+    <select id="playlist_song_playlist_id" name="playlist_song[playlist_id]">
+      <% playlists = Playlist.all.select{|playlist| playlist.user_id == current_user.id} %>
+      <% playlists.each do |playlist| %>
+        <option value="<%= playlist.id %>"><%= playlist.name %></option>
+      <% end %>
+    </select>
+  </label>
+
+  <input type="submit" value="Add to playlist">
+</form>

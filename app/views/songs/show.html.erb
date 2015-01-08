@@ -5,7 +5,9 @@
   <li> Artist: <%= @song.artist %> </li>
   <li> Album: <%= @song.album %> </li>
 </ul>
-<h1>Add to a playlist</h1>
+
+<br>
+<%= render "playlist_songs/form", {song: @song}%>
 
 <br>
 <h4>Belongs to the following playlists:</h4>
