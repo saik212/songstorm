@@ -6,7 +6,8 @@
 <ul>
   <% @playlist.songs.each do |song| %>
     <li>
-      <%= link_to song.title, song_url(song) %>
+      <% p_song = PlaylistSong.find_by({song_id:song.id, playlist_id:@playlist.id}) %>
+      <%= link_to song.title, song_url(song) %> - <%= button_to "Remove from list", playlist_song_url(p_song), method: :delete%>
     </li>
   <% end %>
 </ul>

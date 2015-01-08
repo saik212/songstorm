@@ -15,6 +15,12 @@ class PlaylistSongsController < ApplicationController
     end
   end
 
+  def destroy
+    playlist_song = PlaylistSong.find(params[:id])
+    playlist_song.destroy
+    redirect_to playlist_url(Playlist.find(playlist_song.playlist_id))
+  end
+
   private
   def playlist_song_params
     params.require(:playlist_song).permit(:song_id, :playlist_id)
