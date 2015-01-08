@@ -1,13 +1,14 @@
 <h1> <%= link_to @playlist.user.username, user_url(@playlist.user_id) %>'s Playlist Show Page</h1>
 <br>
-<h3> <%= @playlist.name %> </h3>
+<h3> <%= @playlist.name %> </h3> <%= link_to "Edit playlist", edit_playlist_url(@playlist) %>
 
 <h4>Has the following songs:</h4>
 <ul>
   <% @playlist.songs.each do |song| %>
     <li>
       <% p_song = PlaylistSong.find_by({song_id:song.id, playlist_id:@playlist.id}) %>
-      <%= link_to song.title, song_url(song) %> - <%= button_to "Remove from list", playlist_song_url(p_song), method: :delete%>
+      <%= link_to song.title, song_url(song) %> - <%= button_to "Remove from list",
+                                                  playlist_song_url(p_song), method: :delete%>
     </li>
   <% end %>
 </ul>

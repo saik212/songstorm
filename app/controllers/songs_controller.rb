@@ -1,12 +1,11 @@
 class SongsController < ApplicationController
-  before_action :prevent_delete, only: [:destroy]
+  before_action :prevent_delete, only: [:destroy, :edit, :update]
   def new
     @song = Song.new
   end
 
   def create
-    @song = Song.new(song_params)
-    @song.uploader_id = current_user.id
+    @song = current_user.songs.new(song_params)
 
     if @song.save
       redirect_to song_url(@song)
@@ -25,6 +24,20 @@ class SongsController < ApplicationController
     song = Song.find(params[:id])
     song.destroy
     redirect_to user_url(current_user)
+  end
+
+  def edit
+    @song = Song.find(params[:id])
+  end
+
+  def update
+    @song = Song.find(params[:id])
+    if @song.update_attributes(song_params)
+      redirect_to song_url(@song)
+    else
+      flash.now[:errors] = @song.errors.full_messages
+      render :edit
+    end
   end
 
   private

@@ -1,0 +1,25 @@
+<h2>Edit Song</h2>
+
+<%= render "layouts/errors" %>
+
+<form action="<%= song_url(@song) %>" method="post">
+  <%= auth_token_input %>
+  <input type="hidden" name="_method" value="patch">
+
+  <label>
+    Title
+    <input type="text" name="song[title]" value="<%= @song.title %>">
+  </label>
+
+  <label>
+    Artist
+    <input type="text" name="song[artist]" value="<%= @song.artist %>">
+  </label>
+
+  <label>
+    Album
+    <input type="text" name="song[album]" value="<%= @song.album %>">
+  </label>
+
+  <input type="submit" value="Update Song">
+</form>

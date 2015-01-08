@@ -1,6 +1,6 @@
 <h1><%= link_to @song.uploader.username, user_url(@song.uploader) %>'s song</h1>
 
-<h3> <%= @song.title %> </h3>
+<h3> <%= @song.title %> </h3> <%= link_to "Edit song", edit_song_url(@song) %>
 <ul>
   <li> Artist: <%= @song.artist %> </li>
   <li> Album: <%= @song.album %> </li>

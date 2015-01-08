@@ -1,0 +1,15 @@
+<h2>Edit Playlist</h2>
+
+<%= render "layouts/errors" %>
+
+<form action="<%= playlist_url(@playlist) %>" method="post">
+  <%= auth_token_input %>
+  <input type="hidden" name="_method" value="patch">
+
+  <label>
+    Playlist Name
+    <input type="text" name="playlist[name]" value="<%= @playlist.name %>">
+  </label>
+
+  <input type="submit" value="Update Playlist">
+</form>
