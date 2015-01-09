@@ -7,9 +7,19 @@ window.Songstorm = {
     Songstorm.users = new Songstorm.Collections.Users();
     Songstorm.users.fetch();
     Songstorm.playlists = new Songstorm.Collections.Playlists();
-    Songstorm.playlists.fetch();
+    Songstorm.playlists.fetch({
+      success: function () {
+      },
+      error: function (resp, data) {
+      }
+    });
     Songstorm.songs = new Songstorm.Collections.Songs();
-    Songstorm.songs.fetch();
+    Songstorm.songs.fetch({
+      success: function () {
+      },
+      error: function (resp, data) {
+      }
+    });
     new Songstorm.Routers.Router({
       $rootEl: $("#content")
     });

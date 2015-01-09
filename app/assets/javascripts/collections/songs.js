@@ -1,5 +1,6 @@
 Songstorm.Collections.Songs = Backbone.Collection.extend({
   url:"api/songs",
+  model: Songstorm.Models.Song,
 
   getOrFetch: function (id) {
     var song = this.get(id);

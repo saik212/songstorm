@@ -5,6 +5,11 @@ class Api::PlaylistsController < ApplicationController
     render :new
   end
 
+  def index
+    @playlists = Playlist.all
+    render json: @playlists
+  end
+
   def create
     @playlist = current_user.playlists.new(playlist_params)
     @playlist.user_id = current_user.id

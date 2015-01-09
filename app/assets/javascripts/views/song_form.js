@@ -1,14 +1,17 @@
-Songstorm.Views.PlaylistForm = Backbone.View.extend({
+Songstorm.Views.SongForm = Backbone.View.extend({
   tagName: 'form',
 
-  template: JST["playlists/form"],
+  template: JST["songs/form"],
+
+  initialize: function () {
+  },
 
   events: {
     "click .submit_form": "submit"
   },
 
   render: function () {
-    var content = this.template({playlist: this.model});
+    var content = this.template({song: this.model});
     this.$el.html(content);
     return this;
   },
@@ -21,7 +24,9 @@ Songstorm.Views.PlaylistForm = Backbone.View.extend({
     this.model.save(dataInfo, {
       success: function () {
         that.collection.add(that.model, {merge: true});
-        Backbone.history.navigate("playlists/"+that.model.id, {trigger: true});
+        Backbone.history.navigate("songs/"+that.model.id, {trigger: true});
+      },
+      error: function () {
       }
     })
   }
