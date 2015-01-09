@@ -9,18 +9,18 @@ class UsersController < ApplicationController
     if @user.save
       sign_in(@user)
       # render json: "welcome new dood"
-      redirect_to "/api/users/#{@user.id}"
+      redirect_to "/#/users/#{@user.id}"
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new
     end
   end
-  #
-  # def show
-  #   @user = User.find(params[:id])
-  #   # @playlists = @user.playlists
-  #   render :show
-  # end
+
+  def show
+    @user = User.find(params[:id])
+    # @playlists = @user.playlists
+    render :show
+  end
 
   private
   def user_params
