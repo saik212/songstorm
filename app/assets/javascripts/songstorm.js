@@ -6,6 +6,10 @@ window.Songstorm = {
   initialize: function() {
     Songstorm.users = new Songstorm.Collections.Users();
     Songstorm.users.fetch();
+    Songstorm.playlists = new Songstorm.Collections.Playlists();
+    Songstorm.playlists.fetch();
+    Songstorm.songs = new Songstorm.Collections.Songs();
+    Songstorm.songs.fetch();
     new Songstorm.Routers.Router({
       $rootEl: $("#content")
     });
