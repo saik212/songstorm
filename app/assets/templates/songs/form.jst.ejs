@@ -1,0 +1,15 @@
+<h1>Create/Edit A Song!</h1>
+<br>
+<label>Title
+<input type="text" name="title" value="<%= song.escape("title") %>"><br>
+</label>
+
+<label>Artist
+<input type="text" name="artist" value="<%= song.escape("artist") %>"><br>
+</label>
+
+<label>Album
+<input type="text" name="album" value="<%= song.escape("album") %>"><br>
+</label>
+
+<button class="submit_form">Submit</button>
