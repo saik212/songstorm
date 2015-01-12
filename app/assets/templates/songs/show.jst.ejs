@@ -6,7 +6,7 @@
 <br>
 <h2>Belongs to the following playlists:</h2>
 <% song.playlists().each(function (playlist) { %>
-	<p><strong>Playlist: <%= playlist.escape("name") %></strong></p>
+	<p><strong>Playlist: <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %></a></strong></p>
 <% }) %>
 
 <br>

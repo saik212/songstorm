@@ -1,6 +1,7 @@
 json.extract! @song, :id, :title, :artist, :album, :created_at, :updated_at
 
 json.playlists @song.playlists do |playlist|
+	json.id playlist.id
 	json.name  playlist.name
 	json.user_id playlist.user_id
 
