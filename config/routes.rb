@@ -11,8 +11,16 @@ Rails.application.routes.draw do
   root to:"root#root"
 
   namespace :api, defaults: {format: :json} do
-    resources :users, only: [:show]
-    resources :playlists
+    resources :users, only: [:show] do
+      resources :songs, only: [:index]
+      resources :playlists, only: [:index]
+    end
+
+    resources :playlists do
+      resources :songs, only: [:index]
+    end
     resources :songs
+
+    resources :playlist_songs
   end
 end

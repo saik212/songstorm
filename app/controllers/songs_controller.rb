@@ -4,6 +4,11 @@ class SongsController < ApplicationController
     @song = Song.new
   end
 
+  def index
+    @songs = params[:user_id] ? User.find(params[:user_id]).songs : Song.all
+    render json: @songs 
+  end
+
   def create
     @song = current_user.songs.new(song_params)
 

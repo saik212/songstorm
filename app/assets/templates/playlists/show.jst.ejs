@@ -2,4 +2,11 @@
 <br>
 <h1><%= playlist.escape("name") %></h1>
 <br>
+
+<h2>Playlist songs:</h2>
+<ul>
+	<% playlist.songs().each(function (song) { %>
+		<li> <%=song.escape("title")  %> </li>
+	<% }) %>  
+</ul>
 <a href="#/playlists/<%= playlist.id %>/edit">Edit Playlist</a>

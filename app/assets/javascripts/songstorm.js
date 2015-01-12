@@ -13,6 +13,13 @@ window.Songstorm = {
       error: function (resp, data) {
       }
     });
+    Songstorm.playlistSongs = new Songstorm.Collections.PlaylistSongs();
+    Songstorm.playlistSongs.fetch({
+      success: function () {
+      },
+      error: function (resp, data) {
+      }
+    });
     Songstorm.songs = new Songstorm.Collections.Songs();
     Songstorm.songs.fetch({
       success: function () {

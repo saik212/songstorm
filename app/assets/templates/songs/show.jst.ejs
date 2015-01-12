@@ -1,7 +1,32 @@
 <h3>This is a <strong>SONG</strong> show page test</h1>
 <br>
-<h3><%= song.escape("title") %></h3>
-<h3><%= song.escape("artist") %></h3>
-<h3><%= song.escape("album") %></h3>
+<h3>Title: <%= song.escape("title") %></h3>
+<h3>Artist: <%= song.escape("artist") %></h3>
+<h3>Song: <%= song.escape("album") %></h3>
 <br>
+<h2>Belongs to the following playlists:</h2>
+<% song.playlists().each(function (playlist) { %>
+	<p><strong>Playlist: <%= playlist.escape("name") %></strong></p>
+<% }) %>
+
+<br>
+<h2>Add to a playlist:</h2>
+
+<form>
+  
+  <input type="hidden" name="" value="">
+
+  <label>Playlist
+    <select id="playlist_song_playlist_id" name="">
+      <% playlists = Songstorm.playlists %>
+      <% playlists.each(function (playlist){ %>
+        <option value="<%= playlist.id %>"><%= playlist.escape("name") %></option>
+      <% }) %>
+    </select>
+  </label>
+
+  <input class="add_playlist" type="submit" value="Add to playlist">
+</form>
+
+
 <a href="#/songs/<%= song.id %>/edit">Edit Song</a>

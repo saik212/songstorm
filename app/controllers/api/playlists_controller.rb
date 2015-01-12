@@ -6,7 +6,8 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def index
-    @playlists = Playlist.all
+    @playlists = params[:user_id] ? Playlist.where(user_id: params[:user_id]) : Playlist.all
+
     render json: @playlists
   end
 
@@ -21,13 +22,14 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def show
-    @playlist = Playlist.find(params[:id])
-    render json: @playlist
+    @playlist = Playlist.includes(:songs).find(params[:id])
+    render :show
   end
 
   def destroy
     @playlist = Playlist.find(params[:id])
     @playlist.destroy
+    render json: @playlist
     #redirect_to "/#/users/#{current_user.id}"
     # redirect_to user_url(current_user)
   end

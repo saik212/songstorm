@@ -6,8 +6,8 @@ class Api::SongsController < ApplicationController
   end
 
   def index
-    @songs = Song.all
-    render json: @songs
+    @songs = params[:user_id] ? Song.where(uploader_id: params[:user_id]) : Song.all
+    render json: @songs 
   end
 
   def create
@@ -21,12 +21,13 @@ class Api::SongsController < ApplicationController
 
   def show
     @song = Song.find(params[:id])
-    render json: @song
+    render :show
   end
 
   def destroy
     @song = Song.find(params[:id])
     @song.destroy
+    render json: @song
     #redirect_to "/#/users/#{current_user.id}"
     # redirect_to user_url(current_user)
   end
