@@ -16,11 +16,7 @@ Songstorm.Routers.Router = Backbone.Router.extend({
 
   userShow: function (id) {
     var user = Songstorm.users.getOrFetch(id);
-    user.songs().fetch({
-      success: function () {
-        // debugger
-      }
-    });
+    // user.songs().fetch();
     user.playlists().fetch();
     var userShowView = new Songstorm.Views.UserShow({model: user});
     this._swapView(userShowView);

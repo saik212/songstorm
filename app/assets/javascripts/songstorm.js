@@ -5,28 +5,13 @@ window.Songstorm = {
   Routers: {},
   initialize: function() {
     Songstorm.users = new Songstorm.Collections.Users();
-    Songstorm.users.fetch();
+    // Songstorm.users.fetch();
     Songstorm.playlists = new Songstorm.Collections.Playlists();
-    Songstorm.playlists.fetch({
-      success: function () {
-      },
-      error: function (resp, data) {
-      }
-    });
+    // Songstorm.playlists.fetch();
     Songstorm.playlistSongs = new Songstorm.Collections.PlaylistSongs();
-    Songstorm.playlistSongs.fetch({
-      success: function () {
-      },
-      error: function (resp, data) {
-      }
-    });
+    // Songstorm.playlistSongs.fetch();
     Songstorm.songs = new Songstorm.Collections.Songs();
-    Songstorm.songs.fetch({
-      success: function () {
-      },
-      error: function (resp, data) {
-      }
-    });
+    // Songstorm.songs.fetch();
     new Songstorm.Routers.Router({
       $rootEl: $("#content")
     });

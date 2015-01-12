@@ -8,7 +8,7 @@ Songstorm.Views.UserShow = Backbone.View.extend({
   },
 
   events: {
-    "click .delete": "delete", 
+    "click .delete": "delete",
   },
 
   render: function () {
@@ -25,11 +25,11 @@ Songstorm.Views.UserShow = Backbone.View.extend({
     var targetCollection = target.data('collection');
 
     if (targetCollection === "playlists") {
-      var model = Songstorm.playlists.getOrFetch(targetId);
-      Songstorm.playlists.remove(targetId);
+      var model = this.model.playlists().get(targetId);
+      // Songstorm.playlists.remove(targetId);
     } else {
-      var model = Songstorm.songs.getOrFetch(targetId);
-      Songstorm.songs.remove(targetId);
+      var model = this.model.songs.get(targetId);
+      // Songstorm.songs.remove(targetId);
     }
     model.destroy();
   }

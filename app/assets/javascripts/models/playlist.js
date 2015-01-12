@@ -5,7 +5,7 @@ Songstorm.Models.Playlist = Backbone.Model.extend({
   	if (!this._songs) {
   		this._songs = new Songstorm.Collections.Songs([], {
   			user: this,
-  			url: "/api/playlists/" + this.id +"/songs"
+  			urlRoot: "/api/playlists/" + this.id +"/songs"
   		});
   	}
   	return this._songs;
