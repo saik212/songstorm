@@ -27,10 +27,13 @@ Songstorm.Views.UserShow = Backbone.View.extend({
     if (targetCollection === "playlists") {
       var model = this.model.playlists().get(targetId);
       // Songstorm.playlists.remove(targetId);
+      Songstorm.playlists.remove(model);
+      model.destroy();
     } else {
       var model = this.model.songs().get(targetId);
+      Songstorm.songs.remove(model);
+      model.destroy();
       // Songstorm.songs.remove(targetId);
     }
-    model.destroy();
   }
 })

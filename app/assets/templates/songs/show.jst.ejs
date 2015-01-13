@@ -6,7 +6,8 @@
 <br>
 <h2>Belongs to the following playlists:</h2>
 <% song.playlists().each(function (playlist) { %>
-	<p><strong>Playlist: <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %></a></strong></p>
+	<h4><strong>Playlist: <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %></a></strong></h4>	<button class="remove_playlist" data-id="<%= playlist.id %>">Remove from playlist</button>
+
 <% }) %>
 
 <br>

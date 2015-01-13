@@ -25,6 +25,17 @@ class Api::PlaylistSongsController < ApplicationController
     end
   end
 
+  def update
+    @playlist_song = PlaylistSong.find(params[:id])
+    if @playlist_song.update(playlist_song_params)
+      render json: @playlist_song
+    else
+      flash.now[:errors] = @playlist_song.errors.full_messages
+      render json: flash[:errors]
+    end
+  end
+
+
   def destroy
     playlist_song = PlaylistSong.find(params[:id])
     playlist_song.destroy

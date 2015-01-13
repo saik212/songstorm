@@ -3,12 +3,13 @@ Songstorm.Views.SongShow = Backbone.View.extend({
 
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.model.playlists(), 'sync add change', this.render);
-    this.listenTo(this.model.playlistSongs(), 'add change', this.render);
+    this.listenTo(this.model.playlists(), 'sync add change remove', this.render);
+    this.listenTo(Songstorm.playlistSongs, 'add change remove', this.render);
   },
 
   events: {
-    "click .add_playlist": "addPlaylist"
+    "click .add_playlist": "addPlaylist",
+    "click .remove_playlist": "removePlaylist"
   },
 
 
@@ -27,21 +28,23 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     var playlistSong = new Songstorm.Models.PlaylistSong({song_id: this.model.id, playlist_id: optionId});
     playlistSong.save({}, {
       success: function (model) {
-        that.model.playlistSongs().add(playlistSong);
+        that.model.playlists().add(playlist);
       }
     })
-    // debugger
-    // this.model.set(this.model._playlists);
-    // console.log('stuff1');
-    // this.model.save({playlists: playlist}, {
-    //   success: function (req, resp) {
-    //     that.model._playlists.add(playlist);
-    //     console.log('success');
-    //   },
-    //   error: function (req, resp) {
-    //     console.log("failure");
-    //   }
-    // });
-    // console.log('stuff2');
+  },
+
+  removePlaylist: function (event) {
+    event.preventDefault();
+    var that = this;
+
+    var optionId = $(event.target).data("id");
+    var playlist = this.model.playlists().get(optionId);
+    var playlistSong = Songstorm.playlistSongs.findWhere({"song_id":this.model.id, "playlist_id":optionId});
+
+    playlistSong.destroy({
+        success: function () {
+          that.model.playlists().remove(playlist);
+        }
+    });
   }
 })

@@ -12,7 +12,6 @@ Songstorm.Models.Song = Backbone.Model.extend({
 
   playlistSongs: function () {
     if (!this._playlistSongs) {
-      console.log('got here again')
       this._playlistSongs = new Songstorm.Collections.PlaylistSongs({
         song: this
       });

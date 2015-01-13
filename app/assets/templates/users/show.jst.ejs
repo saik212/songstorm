@@ -6,7 +6,8 @@
 <h3> <%= username %>'s Songs: </h3>
 <ul>
 	<% user.songs().each(function (song) { %>
-		<li> <a href="#/songs/<%= song.id %>"> <%=song.escape("title")  %></a> <button class="delete" data-id="<%= song.id %>" data-collection="songs">Delete</button></li>
+		<li> <a href="#/songs/<%= song.id %>"> <%=song.escape("title")  %>
+		</a> <button class="delete" data-id="<%= song.id %>" data-collection="songs">Delete</button></li>
 	<% }) %>
 </ul>
 
@@ -17,7 +18,8 @@
 <h3> <%= username %>'s Playlists: </h3>
 <ul>
   <% user.playlists().each(function (playlist) { %>
-		<li> <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %></a><button class="delete" data-id="<%= playlist.id %>" data-collection="playlists">Delete</button> </li>
+		<li> <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
+		</a><button class="delete" data-id="<%= playlist.id %>" data-collection="playlists">Delete</button> </li>
 	<% }) %>
 </ul>
 
