@@ -1,10 +1,18 @@
 Songstorm.Collections.Playlists = Backbone.Collection.extend({
-  url: "/api/playlists",
+  // url: "/api/playlists",
+  url: function () {
+    if (this.user) {
+      return "api/users/"+this.user.id+"/playlists";
+    } else {
+      return "/api/playlists";
+    }
+  },
   model: Songstorm.Models.Playlist,
 
   initialize: function (options) {
     if (options){
       this.url = options.url || this.url;
+      this.user = options.user;
     }
   },
 

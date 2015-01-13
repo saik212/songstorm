@@ -16,6 +16,11 @@ class Api::UsersController < ApplicationController
   #   end
   # end
 
+  def index
+    @users = User.all
+    render json: @users
+  end
+
   def show
     @user = User.includes(:songs, :playlists).find(params[:id])
     # @songs = @user.songs

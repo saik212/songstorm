@@ -19,3 +19,5 @@ json.playlists @user.playlists do |playlist|
 	json.created_at playlist.created_at
 	json.updated_at playlist.updated_at
 end
+
+json.is_current_user(@user.id === current_user.id)

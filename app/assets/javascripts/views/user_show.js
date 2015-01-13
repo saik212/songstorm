@@ -28,7 +28,7 @@ Songstorm.Views.UserShow = Backbone.View.extend({
       var model = this.model.playlists().get(targetId);
       // Songstorm.playlists.remove(targetId);
     } else {
-      var model = this.model.songs.get(targetId);
+      var model = this.model.songs().get(targetId);
       // Songstorm.songs.remove(targetId);
     }
     model.destroy();

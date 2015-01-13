@@ -3,20 +3,34 @@ Songstorm.Models.Song = Backbone.Model.extend({
 
   playlists: function () {
   	if (!this._playlists) {
-  		this._playlists = new Songstorm.Collections.Playlists([], {
+  		this._playlists = new Songstorm.Collections.Playlists({
   			song: this
   		});
   	}
   	return this._playlists;
   },
 
-  parse: function (resp) {
-  	if (resp.playlists) {
-  		this.playlists().set(resp.playlists);
-  		delete resp.playlists;
-  	}
+  playlistSongs: function () {
+    if (!this._playlistSongs) {
+      console.log('got here again')
+      this._playlistSongs = new Songstorm.Collections.PlaylistSongs({
+        song: this
+      });
+    }
+    return this._playlistSongs;
+  },
 
-  	return resp;
+  parse: function (response) {
+  	if (response.playlists) {
+  		this.playlists().set(response.playlists);
+  		delete response.playlists;
+  	}
+    if (response.playlistSongs) {
+      this.playlistSongs().set(response.playlistSongs, { parse: true });
+      delete response.playlistSongs;
+    }
+
+  	return response;
   },
 
 

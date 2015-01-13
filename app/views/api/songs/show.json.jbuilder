@@ -8,3 +8,12 @@ json.playlists @song.playlists do |playlist|
 	json.created_at playlist.created_at
 	json.updated_at playlist.updated_at
 end
+
+json.playlist_songs @song.playlist_songs do |playlist_song|
+	json.id playlist_song.id
+	json.song_id playlist_song.song_id
+	json.playlist_id playlist_song.playlist_id
+
+	json.created_at playlist_song.created_at
+	json.updated_at playlist_song.updated_at
+end

@@ -13,11 +13,11 @@
 <h2>Add to a playlist:</h2>
 
 <form>
-  
+
   <input type="hidden" name="" value="">
 
   <label>Playlist
-    <select id="playlist_song_playlist_id" name="">
+    <select id="playlist_song_playlist_id">
       <% playlists = Songstorm.playlists %>
       <% playlists.each(function (playlist){ %>
         <option value="<%= playlist.id %>"><%= playlist.escape("name") %></option>
