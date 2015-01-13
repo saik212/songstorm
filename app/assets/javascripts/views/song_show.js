@@ -29,6 +29,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     playlistSong.save({}, {
       success: function (model) {
         that.model.playlists().add(playlist);
+        Songstorm.playlistSongs.add(playlistSong);
       }
     })
   },
