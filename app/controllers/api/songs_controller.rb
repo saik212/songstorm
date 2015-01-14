@@ -20,7 +20,7 @@ class Api::SongsController < ApplicationController
   end
 
   def show
-    @song = Song.find(params[:id])
+    @song = Song.includes(:comments).find(params[:id])
     render :show
   end
 

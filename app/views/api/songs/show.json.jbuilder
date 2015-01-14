@@ -17,3 +17,10 @@ json.playlist_songs @song.playlist_songs do |playlist_song|
 	json.created_at playlist_song.created_at
 	json.updated_at playlist_song.updated_at
 end
+
+json.comments @song.comments do |comment|
+	json.id comment.id
+	json.song_id comment.commentable_id
+	json.body comment.body
+	json.user_id comment.user_id
+end

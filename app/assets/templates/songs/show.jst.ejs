@@ -30,4 +30,21 @@
 </form>
 
 
+<h2>Comments:</h2>
+<% song.comments().each(function (comment) { %>
+  <li><%= comment.body %></li>
+<% }) %>
+
+<h2>Add a comment:</h2>
+<form>
+
+  <input type="hidden" name="song_id" value="<%= song.id %>">
+
+  <label>Body
+    <input type="textarea" name="body" value="">
+  </label>
+
+  <input class="add_comment" type="submit" value="Submit Comment">
+</form>
+
 <a href="#/songs/<%= song.id %>/edit">Edit Song</a>

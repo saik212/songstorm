@@ -19,6 +19,15 @@ Songstorm.Models.Song = Backbone.Model.extend({
     return this._playlistSongs;
   },
 
+  comments: function () {
+    if (!this._comments) {
+      this._comments = new Songstorm.Collections.Comments({
+        song: this
+      });
+    }
+    return this._comments
+  },
+
   parse: function (response) {
   	if (response.playlists) {
   		this.playlists().set(response.playlists);
@@ -27,6 +36,11 @@ Songstorm.Models.Song = Backbone.Model.extend({
     if (response.playlistSongs) {
       this.playlistSongs().set(response.playlistSongs, { parse: true });
       delete response.playlistSongs;
+    }
+
+    if (response.comments) {
+      this.comments().set(response.comments, { parse: true });
+      delete response.comments;
     }
 
   	return response;
