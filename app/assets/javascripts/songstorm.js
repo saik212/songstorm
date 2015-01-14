@@ -12,6 +12,8 @@ window.Songstorm = {
     Songstorm.playlistSongs.fetch();
     Songstorm.songs = new Songstorm.Collections.Songs();
     // Songstorm.songs.fetch();
+    Songstorm.comments = new Songstorm.Collections.Comments();
+    Songstorm.comments.fetch();
     new Songstorm.Routers.Router({
       $rootEl: $("#content")
     });

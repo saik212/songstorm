@@ -20,7 +20,9 @@ end
 
 json.comments @song.comments do |comment|
 	json.id comment.id
-	json.song_id comment.commentable_id
+	json.commentable_id comment.commentable_id
+	json.commentable_type comment.commentable_type
 	json.body comment.body
 	json.user_id comment.user_id
+	json.author comment.user.username
 end

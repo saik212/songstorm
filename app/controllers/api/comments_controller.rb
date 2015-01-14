@@ -10,16 +10,18 @@ class Api::CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
+    render :show
   end
 
   def create
     @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
 
     if @comment.save
-      render json: @comment
-    else
-      flash.now[:errors] = @comment.errors.full_messages
-      render json: flash[:errors]
+      render :show
+    # else
+    #   flash.now[:errors] = @comment.errors.full_messages
+    #   render json: flash[:errors]
     end
   end
 
@@ -27,9 +29,9 @@ class Api::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       render json: @comment
-    else
-      flash.now[:errors] = @comment.errors.full_messages
-      render json: flash[:errors]
+    # else
+    #   flash.now[:errors] = @comment.errors.full_messages
+    #   render json: flash[:errors]
     end
   end
 
@@ -42,6 +44,6 @@ class Api::CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, :commentable_id, :commentable_type)
   end
 end

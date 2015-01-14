@@ -32,16 +32,20 @@
 
 <h2>Comments:</h2>
 <% song.comments().each(function (comment) { %>
-  <li><%= comment.body %></li>
+	<li>
+		<%= comment.escape("body") %> - <a href="#users/<%= comment.escape('user_id') %>"><%= comment.escape("author") %></a>
+		<button class="delete_comment" data-id="<%= comment.id %>">Delete Comment</button>
+	</li>
+
 <% }) %>
 
 <h2>Add a comment:</h2>
 <form>
 
-  <input type="hidden" name="song_id" value="<%= song.id %>">
+  <input type="hidden" class="song_id" name="song_id" value="<%= song.id %>">
 
   <label>Body
-    <input type="textarea" name="body" value="">
+    <input class="comment_body" type="textarea" name="body" value="">
   </label>
 
   <input class="add_comment" type="submit" value="Submit Comment">
