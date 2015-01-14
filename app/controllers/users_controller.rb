@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_signed_in!, only: [:new, :create]
+
+  wrap_parameters :user, include: [:password, :username, :image]
   def new
     @user = User.new
   end
@@ -24,6 +26,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:password, :username)
+    params.require(:user).permit(:password, :username, :image)
   end
 end

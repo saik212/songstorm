@@ -1,1 +1,13 @@
-blabla
+{
+  "Statement": [
+    {
+      "Sid": "Stmt1421267366498",
+      "Action": "s3:*",
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:s3:::songstorm-pics",
+        "arn:aws:s3:::songstorm-pics/*"
+      ]
+    }
+  ]
+}
