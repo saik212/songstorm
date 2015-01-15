@@ -10,11 +10,18 @@ html, body, header, h1, h2, nav, ul, li, a, footer, small {
   color: inherit;
   background: transparent;
   list-style: none;
-  height: inherit;
   // border-radius: inherit;
 }
 
 html  {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#content {
   height: 100%;
 }
 
