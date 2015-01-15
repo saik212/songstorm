@@ -1,13 +1,18 @@
 Songstorm.Views.SongForm = Backbone.View.extend({
   tagName: 'form',
 
+  attributes: {
+    "enctype": "multipart/form-data"
+  },
+
   template: JST["songs/form"],
 
   initialize: function () {
   },
 
   events: {
-    "click .submit_form": "submit"
+    "click .submit_form": "submit",
+    "change #add_audio_file": "fileInputChange"
   },
 
   render: function () {
@@ -29,5 +34,19 @@ Songstorm.Views.SongForm = Backbone.View.extend({
       error: function () {
       }
     })
-  }
+  },
+
+  fileInputChange: function(event){
+    var that = this;
+    var file = event.currentTarget.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function(){
+      that.model._audio = reader.result;
+    }
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      delete this.model._audio;
+    }
+  },
 })

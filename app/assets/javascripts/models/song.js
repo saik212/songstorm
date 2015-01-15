@@ -1,6 +1,16 @@
 Songstorm.Models.Song = Backbone.Model.extend({
   urlRoot:"api/songs",
 
+  toJSON: function () {
+    var json = {song: _.clone(this.attributes)};
+
+    if (this._audio) {
+      json.song.audio = this._audio;
+    }
+
+    return json;
+  },
+
   playlists: function () {
   	if (!this._playlists) {
   		this._playlists = new Songstorm.Collections.Playlists({
@@ -25,7 +35,7 @@ Songstorm.Models.Song = Backbone.Model.extend({
         song: this
       });
     }
-    return this._comments
+    return this._comments;
   },
 
   parse: function (response) {

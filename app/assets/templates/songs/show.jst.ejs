@@ -1,5 +1,8 @@
 <h3>This is a <strong>SONG</strong> show page test</h1>
 <br>
+<audio src="<%= song.escape('audio_url') %>" controls>
+</audio>
+<br>
 <h3>Title: <%= song.escape("title") %></h3>
 <h3>Artist: <%= song.escape("artist") %></h3>
 <h3>Song: <%= song.escape("album") %></h3>

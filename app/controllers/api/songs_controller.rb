@@ -1,5 +1,7 @@
 class Api::SongsController < ApplicationController
   # before_action :prevent_delete, only: [:destroy, :edit, :update]
+  # wrap_parameters false
+
   def new
     @song = Song.new
     render :new
@@ -49,7 +51,7 @@ class Api::SongsController < ApplicationController
 
   private
   def song_params
-    params.require(:song).permit(:title, :artist, :album, :playlists)
+    params.require(:song).permit(:title, :artist, :album, :playlists, :audio)
   end
 
   # def prevent_delete
