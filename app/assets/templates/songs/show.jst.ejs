@@ -1,18 +1,19 @@
 <h3>This is a <strong>SONG</strong> show page test</h1>
-<br>
-<audio src="<%= song.escape('audio_url') %>" controls>
-</audio>
-<br>
-<h3>Title: <%= song.escape("title") %></h3>
-<h3>Artist: <%= song.escape("artist") %></h3>
-<h3>Song: <%= song.escape("album") %></h3>
-<br>
-<h2>Belongs to the following playlists:</h2>
+	<div class="content-main songs">
+		<h3 id="song-title"><%= song.escape("title") %></h3>
+		<h1>SONG IMG HERE</h1>
+		<h3>Artist: <%= song.escape("artist") %></h3>
+		<h3>Song: <%= song.escape("album") %></h3>
+
+		<audio src="<%= song.escape('audio_url') %>" controls></audio>
+
+	</div>
+
+	<h2>Belongs to the following playlists:</h2>
 <% song.playlists().each(function (playlist) { %>
 	<h4><strong>Playlist: <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %></a></strong></h4>	<button class="remove_playlist" data-id="<%= playlist.id %>">Remove from playlist</button>
 
 <% }) %>
-
 <br>
 <h2>Add to a playlist:</h2>
 

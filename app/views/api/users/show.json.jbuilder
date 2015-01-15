@@ -2,6 +2,7 @@ json.extract! @user, :id, :username, :created_at, :updated_at
 json.image_url asset_path(@user.image.url)
 
 json.songs @user.songs do |song|
+	json.audio_url asset_path(song.audio.url)
 	json.id song.id
 	json.title song.title
 	json.album song.album

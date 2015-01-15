@@ -11,6 +11,8 @@ Songstorm.Views.UserShow = Backbone.View.extend({
     "click .delete": "delete",
   },
 
+  className: "profile_box group",
+
   render: function () {
     var content = this.template({user: this.model});
     this.$el.html(content);
