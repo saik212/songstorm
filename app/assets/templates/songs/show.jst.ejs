@@ -11,10 +11,16 @@
 
 	<h2>Belongs to the following playlists:</h2>
 <% song.playlists().each(function (playlist) { %>
-	<h4><strong>Playlist: <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %></a></strong></h4>	<button class="remove_playlist" data-id="<%= playlist.id %>">Remove from playlist</button>
+	<h4>
+   <strong>Playlist: 
+    <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
+    </a>
+   </strong>
+ </h4>	
+ <button class="remove_playlist" data-id="<%= playlist.id %>">Remove from playlist</button>
 
 <% }) %>
-<br>
+
 <h2>Add to a playlist:</h2>
 
 <form>
@@ -43,13 +49,15 @@
 
 <% }) %>
 
+<form class="comments-form">
 <h2>Add a comment:</h2>
-<form>
 
   <input type="hidden" class="song_id" name="song_id" value="<%= song.id %>">
 
-  <label>Body
-    <input class="comment_body" type="textarea" name="body" value="">
+  <label>
+   <span>Body</span>
+    <!-- <input class="comment_body" type="textarea" name="body" value="" placeholder="your comment here"> -->
+    <textarea class="comment_body" name="body" placeholder="comment here"></textarea>
   </label>
 
   <input class="add_comment" type="submit" value="Submit Comment">
