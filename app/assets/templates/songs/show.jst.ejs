@@ -1,4 +1,4 @@
-<h3>This is a <strong>SONG</strong> show page test</h1>
+<h3 style="text-align: center">This is a <strong>SONG</strong> show page test</h1>
 	<div class="content-main songs">
 		<h3 id="song-title"><%= song.escape("title") %></h3>
 		<h1>SONG IMG HERE</h1>
@@ -8,17 +8,19 @@
 		<audio src="<%= song.escape('audio_url') %>" controls></audio>
 
 	</div>
+<div class="content-main songs">
 
 	<ul class="songs-playlists">
-		Belongs to the following playlists:
+		<h5>Belongs to the following playlists:</h5>
 		<% song.playlists().each(function (playlist) { %>
-			<li>
+			<li class="song-playlist">
 		    <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
 		    </a>
 			 <button class="remove_playlist" data-id="<%= playlist.id %>">Remove from playlist</button>
 			</li>
 		<% }) %>
 	</ul>
+</div>
 	<!-- <h4>
    <strong>Playlist:
    </strong>
@@ -27,7 +29,7 @@
 
 <h2>Add to a playlist:</h2>
 
-<form>
+<form class="users-form playlist-form">
 
   <input type="hidden" name="" value="">
 
@@ -67,4 +69,4 @@
   <input class="add_comment" type="submit" value="Submit Comment">
 </form>
 
-<a href="#/songs/<%= song.id %>/edit">Edit Song</a>
+<!-- <a href="#/songs/<%= song.id %>/edit">Edit Song</a> -->
