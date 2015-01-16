@@ -1,0 +1,75 @@
+.users-form {
+  max-width: 400px;
+  background: #F7F7F7;
+  padding: 15px 15px 15px 10px;
+  color: #888;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+  margin-bottom: 25%;
+  text-shadow: 1px 1px 1px #FFF;
+  border: 1px solid #E4E4E4;
+  border-radius: 5px;
+}
+.users-form span, .users-form input {
+  display: block;
+  margin: auto;
+  margin-bottom: 5px;
+  text-align: center
+}
+
+#input-post-image{
+  // color: transparent;
+  // margin-right: 5%;
+  margin-left: 40%;
+  margin-bottom: 40px;
+}
+
+.sign-up-button {
+}
+
+// .comments-form h2 {
+//   text-align: center;
+//   font-weight: bold;
+//   margin-bottom: 10px;
+// }
+//
+// .comments-form span {
+//   display: block;
+//   margin: 0px;
+//   margin-bottom: 5px
+// }
+//
+// .comment_body {
+//   height: 100px;
+//   width: 100%;
+//   display: block;
+// }
+//
+.users-form > button{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  border: none;
+  padding: 10px 25px;
+  color: #FFF;
+  box-shadow: 1px 1px 5px #B6B6B6;
+  border-radius: 3px;
+  text-shadow: 1px 1px 1px #9E3FEF;
+  cursor: pointer;
+}
+
+.users-form > h1 {
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sign-in-button {
+  margin-top: 20px;
+}
+
+#add_audio_file {
+  margin-bottom: 20px;
+}

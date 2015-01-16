@@ -53,8 +53,19 @@
 
   <%= yield %>
 
-  <footer>
-    Footer Here
+  <footer class="footer group">
+    <small class="footer-copy">
+      &copy; 20X6 Sai K. Inc...I Have Laywers
+    </small>
+    <ul class="footer-links group">
+      <% if signed_in? %>
+        <li><a href="/#/users/<%= current_user.id %>">Home</a></li>
+      <% else %>
+        <li><%= link_to "Home", new_session_url %></li>
+      <% end %>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Privacy(jk it's a myth)</a></li>
+    </ul>
   </footer>
 </body>
 </html>

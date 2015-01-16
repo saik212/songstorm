@@ -1,12 +1,15 @@
-<h2>This is a <strong>PLAYLIST</strong> show page test</h2>
-<br>
-<h1><%= playlist.escape("name") %></h1>
-<br>
+<h1 class="playlist-title"><%= playlist.escape("name") %></h1>
 
-<h2>Playlist songs:</h2>
-<ul>
+<div class="content-main playlists">
+
+<h2>Songs:</h2>
+<ul class="playlists-songs">
 	<% playlist.songs().each(function (song) { %>
-		<li> <a href="#/songs/<%= song.id %>"><%=song.escape("title")  %></a> </li>
-	<% }) %>  
+		<li>
+			<a href="#/songs/<%= song.id %>"><%=song.escape("title")  %></a>
+			<audio src="<%= song.escape('audio_url') %>" controls></audio>
+		</li>
+	<% }) %>
 </ul>
+</div>
 <a href="#/playlists/<%= playlist.id %>/edit">Edit Playlist</a>

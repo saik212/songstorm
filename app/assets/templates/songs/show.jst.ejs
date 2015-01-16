@@ -9,17 +9,21 @@
 
 	</div>
 
-	<h2>Belongs to the following playlists:</h2>
-<% song.playlists().each(function (playlist) { %>
-	<h4>
-   <strong>Playlist: 
-    <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
-    </a>
+	<ul class="songs-playlists">
+		Belongs to the following playlists:
+		<% song.playlists().each(function (playlist) { %>
+			<li>
+		    <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
+		    </a>
+			 <button class="remove_playlist" data-id="<%= playlist.id %>">Remove from playlist</button>
+			</li>
+		<% }) %>
+	</ul>
+	<!-- <h4>
+   <strong>Playlist:
    </strong>
- </h4>	
- <button class="remove_playlist" data-id="<%= playlist.id %>">Remove from playlist</button>
+ </h4>	 -->
 
-<% }) %>
 
 <h2>Add to a playlist:</h2>
 
