@@ -1,28 +1,41 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+TODO:
+	- Design
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+		- Landing Page
+			- make toolbar wider
+			- pick custom font
+			- pick colors from flatuicolors.com
+			- add bootstrap/flat ui colors
+			- make sign-up modal
+			- add fancy search bar (disabled functionality)
+			- header shows "Home" only when signed in
+
+		- Media-player
+			- fixed position relative to bottom right corner on every page
+
+		- User Show
+			-	add placeholder sidebars
+			- user avatar is properly bordered
+			- implement user feed (do this last)
+
+
+		- Song Show
+			- All forms on page (playlist-add, comments) must be subviews
+			- upload song should be modal
+			- validations for upload song
+
+		- Playlist show
+			- basically same as song show
+
+
+	- User auth through backbone
+		- read/review Jonathan's user-auth demo
+	
+	- Add about page
+	- disable hover pointer on things you can't click
+
+	-  API usage:
+		- send uploaded songs to friend via SMS
+			- SendHub
+			- Twilio
