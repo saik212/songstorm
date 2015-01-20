@@ -42,7 +42,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
 
     comment.save({}, {
       success: function () {
-        console.log("in success");
+        // console.log("in success");
         that.model.comments().add(comment);
         Songstorm.comments.add(comment);
         // debugger
@@ -59,7 +59,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
 
     comment.destroy({
       success: function () {
-        console.log('in comment destroy')
+        // console.log('in comment destroy')
         that.model.comments().remove(comment);
       }
     })

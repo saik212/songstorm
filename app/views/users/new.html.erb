@@ -1,22 +1,22 @@
 <%= render "layouts/errors" %>
 
-<form action="<%= users_url %>" method="post" enctype="multipart/form-data">
+<form class="users-form" action="<%= users_url %>" method="post" enctype="multipart/form-data">
   <%= auth_token_input %>
-  <label>
-    Username
+  <label class="user-label">
+    <span>Username</span>
     <input type="text" name="user[username]" value="">
   </label>
 
-  <label>
-    Password
+  <label class="user-label">
+    <span>Password</span>
     <input type="password" name="user[password]" value="">
   </label>
 
-  <label>
-  Image
+  <label class="image-label">
+  <span>Image</span>
   <input type="file" name="user[image]" id="input-post-image">
 </label>
 
 
-  <input type="submit" value="Sign Up">
+  <input class="sign-up-button" type="submit" value="Sign Up">
 </form>

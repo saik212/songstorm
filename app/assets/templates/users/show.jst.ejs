@@ -36,7 +36,7 @@
 		<ul class="user-playlist-list">
 		  <% user.playlists().each(function (playlist) { %>
 				<li> <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
-				</a><button class="delete" data-id="<%= playlist.id %>" data-collection="playlists">&trash</button> </li>
+				</a><button class="delete" data-id="<%= playlist.id %>" data-collection="playlists">Delete</button> </li>
 			<% }) %>
 		</ul>
 

@@ -1,5 +1,6 @@
 Songstorm.Views.PlaylistForm = Backbone.View.extend({
   tagName: 'form',
+  className: 'users-form',
 
   template: JST["playlists/form"],
 

@@ -17,7 +17,8 @@ class Api::SongsController < ApplicationController
     if @song.save
       render json: @song
     else
-      render json: @songs.errors.full_messages
+      render json: @song.errors.full_messages, status: 422
+      # puts @song.errors.full_messages
     end
   end
 
