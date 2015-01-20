@@ -41,7 +41,7 @@ TODO:
 		- Playlist show
 			- basically same as song show
 
-		-- FINISH BY SATURDAY NIGHT --
+		-- FINISH BY SATURDAY NIGHT! --
 
 
 		- Guest Login

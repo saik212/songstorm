@@ -19,7 +19,7 @@ html  {
 
 body {
   height: 100%;
-  background: #ccc;
+  background: #2c3e50;
   margin-bottom: 50px;
 }
 
@@ -27,15 +27,15 @@ body {
   height: 100%
 }
 
-// a:hover {
-//   cursor: pointer;
-// }
+/*a:hover {
+  cursor: pointer;
+}*/
 
 .header {
-  // position: fixed;
-  // width: 100%;
-  // margin-bottom: 20px;
-  background: #0c6;
+  position: fixed;
+  width: 100%;
+  margin-bottom: 20px;
+  background: #8e44ad;
   font-weight: bold;
   font-size: 18px;
   height: 5%;
@@ -48,7 +48,7 @@ body {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  // outline: 0;
+  outline: 0;
 }
 
 .header-nav {
