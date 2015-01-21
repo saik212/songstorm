@@ -3,9 +3,9 @@ TODO:
 
 
 		- Landing Page  
-			- make toolbar wider
-			- pick custom font
-			- pick colors from flatuicolors.com
+			DONE - make toolbar wider
+			DONE - pick custom font
+			DONE - pick colors from flatuicolors.com
 			- add bootstrap/flat ui colors
 
 			-- FINISH ABOVE BY WEDNESDAY MORNING --
@@ -13,7 +13,10 @@ TODO:
 
 			- make sign-up modal
 			- add fancy search bar (disabled functionality)
-			- header shows "Home" only when signed in
+			DONE - header shows "Home" only when signed in
+			
+			- User auth through backbone
+				- read/review Jonathan's user-auth demo
 
 			-- FINISH ABOVE BY FRIDAY NIGHT --
 
@@ -48,8 +51,6 @@ TODO:
 
 		-- FINISH BY SUNDAY NIGHT --
 
-	- User auth through backbone
-		- read/review Jonathan's user-auth demo
 
 	-- FINISH BY TUESDAY NIGHT --
 

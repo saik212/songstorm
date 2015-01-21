@@ -1,24 +1,24 @@
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  /*background: #8e44ad;*/
+  background: #000000;
   width: 100%;
-  margin: auto;
-  background: #0c6;
-  color: #000;
-  border: 1px solid #0c6;
+  color: #fff;
+  /*position: fixed;*/
+  display: block;
+  bottom: 0px;
 }
 
 .footer-copy {
-  padding: 10px;
+  padding: 15px 20px;
   float: left;
 }
 
 .footer-links {
+  padding: 15px 20px;
   float: right;
 }
 
 .footer-links > li {
   float: left;
-  padding: 10px;
+  padding: 0 0 0 20px;
 }
