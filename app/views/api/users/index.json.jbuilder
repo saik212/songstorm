@@ -1,5 +1,7 @@
 json.array! @users do |user|
   json.extract! user, :id, :username, :created_at, :updated_at
+  json.image_url asset_path(user.image.url)
+
 
   json.songs user.songs do |song|
     json.id song.id

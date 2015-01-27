@@ -1,0 +1,42 @@
+
+    <nav class="header-nav group">
+      <% if (Songstorm.currentUser.isSignedIn()) {%>
+        <% user_home = "/#/users/"+Songstorm.currentUser.id %>
+        <h1 class="header-logo">
+          <a href=<%= user_home %>>Songstorm</a>
+        </h1>
+      <%} else {%>
+        <% non_user_home = "/#/session/new" %>
+        <h1 class="header-logo">
+          <a href=<%= non_user_home %>>Songstorm</a>
+        </h1>
+      <% } %>
+
+      <form class="search-bar">
+      <input type="text" class="query" placeholder="Search songs, artists, albums" value="">
+      <input type="submit" class="search">
+      </form>
+
+      <ul class="header-list group">
+        <% if (Songstorm.currentUser.isSignedIn()) {%>
+          <li>
+            <a href="#/songs/new">Upload</a>
+          </li>
+          <li>
+             <% user_home = "/#/users/"+ Songstorm.currentUser.id %>
+            <a href=<% user_home %>>Home</a>
+          </li>
+          <li>
+            <a id="sign-out-link">Sign Out</a>
+          </li>
+        <%} else {%>
+          <li>
+            <a href="#/session/new">Sign In</a>
+          </li>
+          <li>
+            <a href="#/users/new">Sign Up</a>
+          </li>
+        <% } %>
+
+      </ul>
+    </nav>

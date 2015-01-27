@@ -4,7 +4,9 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    "": "main",
+    "": "signIn",
+    "users/new": "userNew",
+    "session/new": "signIn",
     "users/:id": "userShow",
     "playlists/new": "playlistNew",
     "playlists/:id": "playlistShow",
@@ -14,7 +16,60 @@ Songstorm.Routers.Router = Backbone.Router.extend({
     "songs/:id/edit": "songEdit"
   },
 
+  userNew: function () {
+    if (!this._requireSignedOut()) {return;}
+
+    var model = new Songstorm.users.model();
+    var formView = new  Songstorm.Views.UsersForm({
+      collection: Songstorm.users,
+      model: model
+    });
+    this._swapView(formView);
+  },
+
+  signIn: function (callback) {
+    if (!this._requireSignedOut(callback)) {return;};
+
+    var signView = new Songstorm.Views.SignIn({
+      callback: callback
+    });
+
+    this._swapView(signView);
+  },
+
+  _requireSignedIn: function (callback) {
+    if (!Songstorm.currentUser.isSignedIn()) {
+      callback = callback || this._goHome.bind(this);
+      this.signIn(callback);
+      return false;
+    }
+    return true;
+  },
+
+  _requireSignedOut: function (callback) {
+    if (Songstorm.currentUser.isSignedIn()) {
+      callback = callback || this._goHome.bind(this);
+      callback();
+      return false;
+    }
+
+    return true;
+  },
+
+  _goHome: function () {
+    Backbone.history.navigate("", {trigger: true});
+    console.log("hello from go home");
+
+  },
+
   userShow: function (id) {
+    // var callback = this.userShow.bind(this, id);
+    // if (!this._requiredSignedIn(callback)) {return;};
+    if (!Songstorm.currentUser.isSignedIn()) {
+      this._goHome();
+      return ;
+    };
+
     var user = Songstorm.users.getOrFetch(id);
     // user.songs().fetch();
     // user.playlists().fetch();
