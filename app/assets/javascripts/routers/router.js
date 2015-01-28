@@ -13,7 +13,13 @@ Songstorm.Routers.Router = Backbone.Router.extend({
     "playlists/:id/edit": "playlistEdit",
     "songs/new": "songNew",
     "songs/:id": "songShow",
-    "songs/:id/edit": "songEdit"
+    "songs/:id/edit": "songEdit",
+    "search": "search"
+  },
+
+  search: function () {
+    var searchView = new Songstorm.Views.Search();
+    this._swapView(searchView);
   },
 
   userNew: function () {

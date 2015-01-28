@@ -47,6 +47,7 @@
 
 
 <h2>Comments:</h2>
+<ul class="song-comments">
 <% song.comments().each(function (comment) { %>
 	<li>
 		<%= comment.escape("body") %> - <a href="#users/<%= comment.escape('user_id') %>"><%= comment.escape("author") %></a>
@@ -54,6 +55,7 @@
 	</li>
 
 <% }) %>
+</ul>
 
 <form class="comments-form">
 <h2>Add a comment:</h2>

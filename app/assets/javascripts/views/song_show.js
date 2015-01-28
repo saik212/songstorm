@@ -27,17 +27,17 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     var that = this;
     commSongId = parseInt($(".song_id").val());
     commBody = $(".comment_body").val();
-    currUser = Songstorm.users.findWhere({
-      "is_current_user":true
-    });
-    commUserId = currUser.id;
+    // currUser = Songstorm.users.findWhere({
+    //   "is_current_user":true
+    // });
+    // commUserId = Songstorm.currentUser.id;
 
     comment = new Songstorm.Models.Comment({
-      user_id: commUserId,
+      user_id: Songstorm.currentUser.id,
       commentable_id: this.model.id,
       commentable_type: 'Song',
       body: commBody,
-      author: currUser.escape("username")
+      author: Songstorm.currentUser .escape("username")
     });
 
     comment.save({}, {
@@ -55,11 +55,9 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     event.preventDefault();
     var that = this;
     commId = $(event.target).data('id');
-    comment = Songstorm.comments.get(commId);
-
+    comment = this.model.comments().get(commId);
     comment.destroy({
       success: function () {
-        // console.log('in comment destroy')
         that.model.comments().remove(comment);
       }
     })
