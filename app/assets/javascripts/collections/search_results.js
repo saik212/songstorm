@@ -6,7 +6,7 @@ Songstorm.Collections.SearchResults = Backbone.Collection.extend({
 		delete attrs._type;
 
 		if (type === "Song") {
-			return Songstorm.Models.Song(attrs);
+			return new Songstorm.Models.Song(attrs);
 		} else {
 			console.log("didn't return song");
 			return ;

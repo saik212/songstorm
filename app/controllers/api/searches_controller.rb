@@ -1,7 +1,9 @@
 class Api::SearchesController < ApplicationController
 
 	def index
-		@search_results = PgSearch.multisearch(params[:query]).page(params[:page])
+		@search_results = Song.search_by_all(params[:query])
+
+		render :index
 	end
 
 end

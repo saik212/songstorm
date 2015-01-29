@@ -12,6 +12,7 @@ Songstorm.Views.Search = Backbone.View.extend({
 	template: JST["shared/search"],
 
 	render: function () {
+		console.log(this.searchResults);
 		var content = this.template ({
 			collection: this.searchResults
 		});
@@ -46,7 +47,7 @@ Songstorm.Views.Search = Backbone.View.extend({
 		console.log(this.searchResults._query);
 		this.searchResults.fetch({
 			data: {query: this.searchResults._query},
-			}
+			
 		});
 	},
 
