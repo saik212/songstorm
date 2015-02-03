@@ -10,6 +10,8 @@ class Song < ActiveRecord::Base
 
   has_many :playlists, through: :playlist_songs, source: :playlist
   has_many :comments, as: :commentable, dependent: :destroy
+  has_many :likes
+  has_many :likers, through: :likes, source: :user
 
 
   has_attached_file :audio

@@ -22,4 +22,11 @@ json.playlists @user.playlists do |playlist|
 	json.updated_at playlist.updated_at
 end
 
+json.liked_songs @user.liked_songs do |liked_song|
+	json.id liked_song.id
+	json.title liked_song.title
+	json.artist liked_song.artist
+	json.album liked_song.album
+end
+
 json.is_current_user(@user.id === current_user.id)

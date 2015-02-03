@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     resources :users do
       resources :songs, only: [:index]
+      resources :likes, only: [:index]
       resources :playlists, only: [:index]
     end
 
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
     resources :comments
 
     resources :playlist_songs
+    resources :likes
 
     get 'search', to: "searches#index"
   end

@@ -27,3 +27,7 @@ json.comments @song.comments do |comment|
 	json.user_id comment.user_id
 	json.author comment.user.username
 end
+
+json.likers @song.likers do |liker|
+	json.username liker.username
+end
