@@ -52,7 +52,7 @@ class Api::SongsController < ApplicationController
 
   private
   def song_params
-    params.require(:song).permit(:title, :artist, :album, :playlists, :audio)
+    params.require(:song).permit(:title, :artist, :album, :playlists, :audio, :likers)
   end
 
   # def prevent_delete

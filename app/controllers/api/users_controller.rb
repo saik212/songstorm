@@ -24,10 +24,16 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:songs, :playlists).find(params[:id])
+    @user = User.includes(:songs, :playlists, :liked_songs).find(params[:id])
     # @songs = @user.songs
     # @playlists = @user.playlists
     render :show
+  end
+
+  def show_likes
+    user = User.find(params[:id])
+    @liked_songs = user.liked_songs
+    render :show_likes
   end
 
   def create

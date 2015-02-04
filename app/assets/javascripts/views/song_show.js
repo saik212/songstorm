@@ -2,6 +2,15 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   template: JST["songs/show"],
 
   initialize: function () {
+    // Songstorm.users.fetch();
+    // Songstorm.likes.fetch();
+    Songstorm.currentUser.fetch({
+      success: function () {
+        // console.log('fetched curr user');
+    console.log(Songstorm.currentUser.id);
+      }
+    });
+    // console.log(Songstorm.users.getOrFetch(Songstorm.currentUser.id));
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model.playlists(), 'sync add change remove', this.render);
     this.listenTo(this.model.comments(), 'sync add change remove', this.render);
@@ -12,7 +21,9 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     "click .add_playlist": "addPlaylist",
     "click .remove_playlist": "removePlaylist",
     "click .add_comment": "addComment",
-    "click .delete_comment": "deleteComment"
+    "click .delete_comment": "deleteComment",
+    "click .add-like": "addLike",
+    "click .remove-like": "removeLike"
   },
 
 
@@ -61,6 +72,57 @@ Songstorm.Views.SongShow = Backbone.View.extend({
         that.model.comments().remove(comment);
       }
     })
+  },
+
+  addLike: function (event) {
+    event.preventDefault();
+    var that = this;
+
+    var song_id = this.model.id;
+    var user_id = Songstorm.currentUser.id;
+
+    var like = new Songstorm.Models.Like({song_id: song_id, user_id: user_id, song: this.model});
+    // debugger
+    like.save({}, {
+      success: function () {
+
+        console.log('saved like');
+      },
+      error: function () {
+        console.log("didn't save like");
+      }
+    });
+  },
+
+  removeLike: function (event) {
+    event.preventDefault();
+    var that = this;
+    var song_id = this.model.id;
+    var user_id = Songstorm.currentUser.id;
+    var user = Songstorm.users.getOrFetch(user_id);
+    var like;
+    // debugger
+    // like.destroy();
+    Songstorm.likes.fetch({
+      success: function () {
+        like = Songstorm.likes.findWhere({user_id: user_id, song_id: song_id});
+        like.destroy({
+          success: function () {
+            user.likedSongs().fetch({
+              success: function () {
+                console.log(like);
+                // console.log(user.likedSongs());
+                user.likedSongs().remove(like);
+                // console.log(user.likedSongs());
+                
+              }
+            });
+          }
+        })
+      }
+    })
+
+    
   },
 
   addPlaylist: function (event) {

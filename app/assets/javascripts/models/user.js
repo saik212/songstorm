@@ -29,7 +29,16 @@ Songstorm.Models.User = Backbone.Model.extend({
         // url: "/api/users/" + this.id + "/playlists"
       });
     }
-  	return this._playlists;
+    return this._playlists;
+  },
+
+  likedSongs: function () {
+    if (!this._likedSongs) {
+      this._likedSongs = new Songstorm.Collections.Likes({
+        user: this
+      });
+    }
+  	return this._likedSongs;
   },
 
   parse: function (response) {
@@ -41,6 +50,10 @@ Songstorm.Models.User = Backbone.Model.extend({
   		this.playlists().set(response.playlists, {parse: true});
   		delete response.playlists;
   	}
+    if (response.liked_songs) {
+      this.likedSongs().set(response.liked_songs, {parse: true});
+      delete response.liked_songs;
+    }
 
   	return response;
   }
@@ -58,10 +71,10 @@ Songstorm.Models.CurrentUser = Backbone.Model.extend({
   fireSessionEvent: function () {
     if (this.isSignedIn) {
       this.trigger('signIn');
-      console.log("CurrentUser is signed in!", this);
+      // console.log("CurrentUser is signed in!", this);
     } else {
       this.trigger("signOut");
-      console.log("CurrentUser is signed out!", this);
+      // console.log("CurrentUser is signed out!", this);
     }
   },
 

@@ -8,6 +8,7 @@ Songstorm.Routers.Router = Backbone.Router.extend({
     "users/new": "userNew",
     "session/new": "signIn",
     "users/:id": "userShow",
+    "users/:id/likes": "userFavorites",
     "playlists/new": "playlistNew",
     "playlists/:id": "playlistShow",
     "playlists/:id/edit": "playlistEdit",
@@ -64,7 +65,7 @@ Songstorm.Routers.Router = Backbone.Router.extend({
 
   _goHome: function () {
     Backbone.history.navigate("", {trigger: true});
-    console.log("hello from go home");
+    // console.log("hello from go home");
 
   },
 
@@ -77,10 +78,46 @@ Songstorm.Routers.Router = Backbone.Router.extend({
     };
 
     var user = Songstorm.users.getOrFetch(id);
+    // debugger
+    // console.log(user);
     // user.songs().fetch();
     // user.playlists().fetch();
     var userShowView = new Songstorm.Views.UserShow({model: user});
     this._swapView(userShowView);
+  },
+
+  userFavorites: function (id) {
+    var that = this;
+    // if (!Songstorm.currentUser.isSignedIn()) {
+    //   console.log('hey redirecting');
+    //   this._goHome()
+    //   return ;
+    // }
+    var user;
+    var faves;
+    var userFavView;
+    Songstorm.users.fetch({
+      success: function () {
+        user = Songstorm.users.getOrFetch(id);
+        // console.log('users fetched');
+        faves = new Songstorm.Collections.Likes({user: user})
+        // debugger
+        faves.fetch({
+          success: function () {
+            console.log(faves.toJSON());
+    userFavView = new Songstorm.Views.UserFavorites({collection: faves});
+    that._swapView(userFavView);
+          }
+        });
+        // console.log(faves);
+      }
+    });
+    // debugger
+    // console.log(Songstorm.likes); 
+    // faves.fetch();
+
+    // debugger
+    // console.log(user);
   },
 
   playlistNew: function () {
@@ -121,6 +158,7 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   songShow: function (id) {
+    console.log(Songstorm.currentUser);
     var song = Songstorm.songs.getOrFetch(id);
     var songShowView = new Songstorm.Views.SongShow({ model: song });
     this._swapView(songShowView);

@@ -1,0 +1,17 @@
+<div class="content-main">
+
+<p>Likes Test Page</p>
+
+<ul>
+<% likes.forEach(function(like) { %>
+	<li>
+		<a href="#/songs/<%= like.escape('song_id')%>">
+	<%= like.escape("songTitle") %>
+		</a>
+
+	</li>
+<% }) %>
+
+</ul>
+
+</div>
