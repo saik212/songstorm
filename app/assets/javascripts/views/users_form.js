@@ -15,7 +15,8 @@ Songstorm.Views.UsersForm = Backbone.View.extend({
 	},
 
 	events: {
-		"submit form": "submit"
+		"submit form": "submit",
+		"change #input-post-image": "fileInputChange"
 	},
 
 	submit: function (event) {
@@ -37,5 +38,19 @@ Songstorm.Views.UsersForm = Backbone.View.extend({
 				console.log(data);
 			}
 		})
-	}
+	},
+
+  fileInputChange: function(event){
+    var that = this;
+    var file = event.currentTarget.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function(){
+      that.model._image = reader.result;
+    }
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      delete this.model._image;
+    }
+  },
 });

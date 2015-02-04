@@ -15,7 +15,7 @@ class Api::SongsController < ApplicationController
   def create
     @song = current_user.songs.new(song_params)
     if @song.save
-      render json: @song
+      render :show
     else
       render json: @song.errors.full_messages, status: 422
       # puts @song.errors.full_messages
@@ -42,7 +42,7 @@ class Api::SongsController < ApplicationController
   def update
     @song = Song.find(params[:id])
     if @song.update_attributes(song_params)
-      render json: @song
+      render :show
       # redirect_to song_url(@song)
     else
       # flash.now[:errors] = @song.errors.full_messages
