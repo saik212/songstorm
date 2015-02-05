@@ -4,7 +4,7 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    "": "signIn",
+    "": "checkSignIn",
     "users/new": "userNew",
     "session/new": "signIn",
     "users/:id": "userShow",
@@ -16,6 +16,14 @@ Songstorm.Routers.Router = Backbone.Router.extend({
     "songs/:id": "songShow",
     "songs/:id/edit": "songEdit",
     "search": "search"
+  },
+
+  checkSignIn: function () {
+    if (Songstorm.currentUser.isSignedIn()) {
+      this.userShow();
+    } else {
+      this.signIn();
+    }
   },
 
   search: function () {

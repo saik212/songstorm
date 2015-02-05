@@ -13,7 +13,7 @@ Songstorm.Views.Header = Backbone.View.extend({
 
 	render: function () {
 		var content = this.template({
-			currentUser: Songstorm.currentUser
+			currentUserId: Songstorm.currentUser.id
 		});
 
 		this.$el.html(content);

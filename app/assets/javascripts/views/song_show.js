@@ -23,14 +23,23 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     "click .add_comment": "addComment",
     "click .delete_comment": "deleteComment",
     "click .add-like": "addLike",
-    "click .remove-like": "removeLike"
+    "click .remove-like": "removeLike",
+    "click .fa-play": "playSong"
   },
-
-
   render: function () {
     var content = this.template({song: this.model});
     this.$el.html(content);
     return this;
+  },
+
+  playSong: function (event) {
+    event.preventDefault();
+    var player = $("#global-player audio");
+    // console.log(this.model.escape("audio_url"));
+    player.attr("src", this.model.escape("audio_url"));
+    player = player[0];
+    player.play();
+    // console.log(player);
   },
 
   addComment: function (event) {

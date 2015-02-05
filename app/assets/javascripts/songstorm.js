@@ -20,7 +20,10 @@ window.Songstorm = {
     // console.log(this.header);
     new Songstorm.Views.Header({el: "#header"});
     new Songstorm.Views.Footer({el: "#footer"});
-    new Songstorm.Views.MusicPlayer({el: "#global-player"});
+    Songstorm.globalPlayer = new Songstorm.Views.MusicPlayer({
+      el: "#global-player",
+      rootEl: "#content"
+    });
     new Songstorm.Routers.Router({
       $rootEl: $("#content")
     });

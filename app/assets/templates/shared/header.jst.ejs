@@ -20,13 +20,13 @@
       <ul class="header-list group">
         <% if (Songstorm.currentUser.isSignedIn()) {%>
           <li>
-            <a href="#/users/<%= Songstorm.currentUser.id%>/likes">Favorites</a>
+            <a href="#/users/<%= currentUserId%>/likes">Favorites</a>
           </li>
           <li>
             <a href="#/songs/new">Upload</a>
           </li>
           <li>
-             <% user_home = "/#/users/"+ Songstorm.currentUser.id %>
+             <% user_home = "/#/users/<%= currentUserId%>"%>
             <a href=<% user_home %>>Home</a>
           </li>
           <li>
