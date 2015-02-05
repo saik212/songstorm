@@ -19,8 +19,8 @@
 }
 
 #input-post-image{
-  // color: transparent;
-  // margin-right: 5%;
+  /*// color: transparent;
+  // margin-right: 5%;*/
   margin-left: 40%;
   margin-bottom: 40px;
 }
@@ -28,7 +28,7 @@
 .sign-up-button {
 }
 
-// .comments-form h2 {
+/*// .comments-form h2 {
 //   text-align: center;
 //   font-weight: bold;
 //   margin-bottom: 10px;
@@ -45,7 +45,7 @@
 //   width: 100%;
 //   display: block;
 // }
-//
+//*/
 .users-form > button{
   display: block;
   margin-left: auto;
@@ -75,6 +75,15 @@
 }
 
 .playlist-form {
+  max-width: 400px;
+  background: transparent;
+  padding: 15px 15px 15px 10px;
+  color: #888;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 1px #FFF;
+  border: 1px solid #E4E4E4;
+  border-radius: 5px;
   margin-top: 0;
   margin-bottom: 0;
 }

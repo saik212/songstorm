@@ -1,0 +1,101 @@
+.music-player {
+  display: block;
+}
+#song-main {
+  padding-right: 70px;
+  padding-left: 70px;
+  padding-top: 70px;
+}
+.song-show {
+  border: 2px solid #fff;
+  display: block;
+  margin: auto;
+  text-align: left;
+  width: 600px;
+  margin-bottom: 20px;
+}
+
+.comments-section {
+  float: left;
+  border: 2px solid #fff;
+  width: 500px;
+}
+
+.comments-form {
+  margin-bottom: 20px;
+}
+
+.commenter {
+  margin-bottom: 5px;
+}
+
+.comment {
+  padding-left: 5px;
+}
+
+
+.comments-display {
+  border-top: 2px solid #fff;
+  padding: 10px 5px 0 5px;
+}
+
+.playlists-section {
+  float: right;
+  border: 2px solid #fff;
+  width: 400px;
+}
+
+#playlist-song-playlist-id {
+  margin-left: 25px;
+  display: inline;
+}
+
+.playlist-label {
+  display: inline;
+}
+
+#add-playlist {
+  display: inline;
+}
+
+#playlist-title {
+  margin: 0;
+  margin-bottom: 5px;
+}
+.playlists-display {
+  display: block;
+  padding-top: 5px;
+  text-align: center;
+  /*margin: auto;*/
+}
+
+
+#song-title {
+  /*font-size: 20px;*/
+}
+
+.songs h3 {
+  /*font-size: 10px;*/
+}
+
+.songs h5 {
+  /*text-align: center;*/
+  /*font-weight: normal;*/
+  /*font-size: 20px;*/
+  /*margin-bottom: 20px;*/
+  /*margin-top: 0;*/
+}
+
+
+.song-playlist a {
+  /*margin-right: 10px;*/
+  /*font-weight: bold;*/
+}
+
+.song-playlist {
+  /*margin-bottom: 20px;*/
+}
+
+.song-comments {
+  /*color: #fff*/
+}

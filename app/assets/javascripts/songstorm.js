@@ -9,9 +9,9 @@ window.Songstorm = {
     Songstorm.users = new Songstorm.Collections.Users();
     // Songstorm.users.fetch();
     Songstorm.playlists = new Songstorm.Collections.Playlists();
-    // Songstorm.playlists.fetch();
+    Songstorm.playlists.fetch();
     Songstorm.playlistSongs = new Songstorm.Collections.PlaylistSongs();
-    // Songstorm.playlistSongs.fetch();
+    Songstorm.playlistSongs.fetch();
     Songstorm.songs = new Songstorm.Collections.Songs();
     // Songstorm.songs.fetch();
     Songstorm.comments = new Songstorm.Collections.Comments();
@@ -20,6 +20,7 @@ window.Songstorm = {
     // console.log(this.header);
     new Songstorm.Views.Header({el: "#header"});
     new Songstorm.Views.Footer({el: "#footer"});
+    new Songstorm.Views.MusicPlayer({el: "#global-player"});
     new Songstorm.Routers.Router({
       $rootEl: $("#content")
     });

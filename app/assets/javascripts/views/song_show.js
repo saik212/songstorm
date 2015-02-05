@@ -18,7 +18,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   },
 
   events: {
-    "click .add_playlist": "addPlaylist",
+    "click #add-playlist": "addPlaylist",
     "click .remove_playlist": "removePlaylist",
     "click .add_comment": "addComment",
     "click .delete_comment": "deleteComment",
@@ -129,7 +129,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     event.preventDefault();
     var that = this;
 
-    var optionId = $("#playlist_song_playlist_id").val();
+    var optionId = $("#playlist-song-playlist-id").val();
     var playlist = Songstorm.playlists.get(optionId);
     var playlistSong = new Songstorm.Models.PlaylistSong({song_id: this.model.id, playlist_id: optionId});
     playlistSong.save({}, {
