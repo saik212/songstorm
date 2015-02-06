@@ -27,4 +27,10 @@ class Song < ActiveRecord::Base
   ]
 
 
+  def audio_url=(audio_url)
+    unless self.audio.exists?
+      self.audio = audio_url
+    end
+  end
+
 end

@@ -39,6 +39,12 @@ class User < ActiveRecord::Base
     self.session_token
   end
 
+  def image_url=(image_url)
+    unless self.image.exists?
+      self.image = image_url
+    end
+  end
+
   private
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)

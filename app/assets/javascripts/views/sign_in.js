@@ -7,7 +7,26 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 	},
 
 	events: {
-		"submit form": "submit"
+		"submit form": "submit",
+		"click .sign-in-guest": "guestSignIn"
+	},
+
+	guestSignIn: function(event) {
+		var guestNames = ['Pikachu', "Squirtle", "Guy Pearce", "Bulbasaur", "Charmander" ];
+		var guestIndex = Math.floor(Math.random() * guestNames.length);
+		var userInfo = {username: guestNames[guestIndex], password: "123456"};
+		var that = this;
+
+		var newUser = new Songstorm.Models.User();
+		newUser.set(userInfo);
+		debugger
+		newUser.save({}, {
+			success: function () {
+				Songstorm.currentUser.fetch();
+				Songstorm.users.add(newUser);
+				Backbone.history.navigate("users/"+newUser.id, {trigger:true});
+			}
+		});
 	},
 
 	render: function () {
