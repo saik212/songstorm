@@ -14,6 +14,7 @@ Songstorm.Views.UserShow = Backbone.View.extend({
   className: "profile_box group",
 
   render: function () {
+    // debugger
     var content = this.template({user: this.model});
     this.$el.html(content);
     return this;

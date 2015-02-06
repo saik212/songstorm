@@ -1,29 +1,56 @@
 <% username = user.escape("username") %>
 
+<div class="content-main group">
+	<section class="page-left">
+
+
+		<section class="user-blurb">
+			<img class="user-propic" src="<%= user.get("image_url") %>" width="100" alt="">
+			<h1 class="hello_user"> <%= username %>'s Show page </h1>
+		</section>
+
+
+		<section class="user-playlists">
+			<h3> <%= username %>'s Playlists: </h3>
+			<ul class="user-playlist-list">
+			  <% user.playlists().each(function (playlist) { %>
+					<li> <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
+					</a><button class="delete" data-id="<%= playlist.id %>" data-collection="playlists">Delete</button> </li>
+				<% }) %>
+			</ul>
+		</section>
+	</section>
+
+	<section class="page-right">
+		<section class="user-songs">
+			<h3> <%= username %>'s Songs: </h3>
+			<ul class="user-song-list">
+				<% var i = 1 %>
+				<% user.songs().each(function (song) { %>
+					<li>
+						<a href="#/songs/<%= song.id %>"><%=i+". "+song.escape("title")  %></a>
+						<i class="fa fa-play" data-song="<%= song.escape("id") %>"></i>
+						<button class="delete" data-id="<%= song.id %>" data-collection="songs">Delete</i></button>
+						<audio class="users_player" src="<%= song.escape('audio_url') %>" controls>
+					</li>
+						<% i++ %>
+				<% }) %>
+			</ul>
+		</section>
+
+	</section>
+</div>
 
 
 
-	<div class="content-main">
+<!-- <div class="content-main">
 
-	<h1 class="hello_user"> <%= username %>'s Show page </h1>
-	<img class="user_propic" src="<%= user.get("image_url") %>" width="100" alt="">
+	
 
 	<div class="user_songs">
 
 
-		<h3> <%= username %>'s Songs: </h3>
-		<ul class="user-song-list">
-			<% var i = 1 %>
-			<% user.songs().each(function (song) { %>
-				<li>
-					<a href="#/songs/<%= song.id %>"><%=i+". "+song.escape("title")  %></a>
-					<i class="fa fa-play"></i>
-					<button class="delete" data-id="<%= song.id %>" data-collection="songs">Delete</i></button>
-				<audio class="users_player" src="<%= song.escape('audio_url') %>" controls>
-				</li>
-					<% i++ %>
-			<% }) %>
-		</ul>
+		
 
 	</div>
 
@@ -32,16 +59,7 @@
 
 	<div class="user-playlists">
 
-		<h3> <%= username %>'s Playlists: </h3>
-		<ul class="user-playlist-list">
-		  <% user.playlists().each(function (playlist) { %>
-				<li> <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
-				</a><button class="delete" data-id="<%= playlist.id %>" data-collection="playlists">Delete</button> </li>
-			<% }) %>
-		</ul>
-
 	</div>
+</div> -->
 
-
-<a href="/#/playlists/new">Create Playlist</a>
-<!-- <a href="/#/songs/new">Create Song</a> -->
+<!-- <a href="/#/playlists/new">Create Playlist</a> -->

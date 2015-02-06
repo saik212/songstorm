@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # wrap_parameters false
 
   helper_method :current_user, :signed_in?
-  before_action :require_signed_in!
+  # before_action :require_signed_in!
 
   private
   def current_user
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     session[:session_token] = nil
   end
 
-  def require_signed_in!
-    redirect_to new_session_url unless signed_in?
-  end
+  # def require_signed_in!
+  #   redirect_to new_session_url unless signed_in?
+  # end
 end

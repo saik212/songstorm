@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
 
   has_many :playlists, dependent: :destroy
   has_many :songs, class_name: "Song", foreign_key: :uploader_id, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :comments, class_name: "Comment", foreign_key: :user_id, dependent: :destroy
+  has_many :likes, class_name: "Like", foreign_key: :user_id, dependent: :destroy
+  has_many :liked_songs, through: :likes, source: :song
 
   has_attached_file :image,
     :styles => { :medium => "300x300>", :thumb => "100x100>" },

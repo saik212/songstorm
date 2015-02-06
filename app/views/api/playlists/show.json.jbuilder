@@ -1,4 +1,4 @@
-json.extract! @playlist, :id, :name, :created_at, :updated_at
+json.extract! @playlist, :id, :name, :user_id, :created_at, :updated_at
 
 json.songs @playlist.songs do |song|
 	json.audio_url asset_path(song.audio.url)

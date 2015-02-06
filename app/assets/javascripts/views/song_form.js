@@ -1,6 +1,7 @@
 Songstorm.Views.SongForm = Backbone.View.extend({
   tagName: 'form',
   className: 'users-form',
+  id: 'song-form',
 
   attributes: {
     "enctype": "multipart/form-data"
