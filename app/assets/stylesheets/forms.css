@@ -28,6 +28,14 @@
 .sign-up-button {
 }
 
+#song-form {
+  background: #8e44ad;
+  border: 3px solid #8e44ad;
+  box-shadow: 2px 2px 2px;
+  font: #000;
+  text-shadow: 1px 1px 1px #000;
+}
+
 /*// .comments-form h2 {
 //   text-align: center;
 //   font-weight: bold;

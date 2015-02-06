@@ -1,0 +1,9 @@
+#global-player {
+	display: block;
+	text-align: right;
+	top: 0;
+}
+
+#global-player > audio {
+	/*position: fixed;*/
+}

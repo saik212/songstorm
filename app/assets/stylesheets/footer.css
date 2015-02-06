@@ -1,11 +1,13 @@
 .footer {
   /*background: #8e44ad;*/
   background: #000000;
+  height: 80px;
   width: 100%;
   color: #fff;
   /*position: fixed;*/
   display: block;
   bottom: 0px;
+  padding-top: 10px;
 }
 
 .footer-copy {

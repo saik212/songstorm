@@ -1,6 +1,9 @@
 Songstorm.Views.UsersForm = Backbone.View.extend({
 	template: JST["users/form"],
 
+	tagName: "form",
+	className: "users-form",
+
 	initialize: function (options) {
 		this.listenTo(this.model, "sync change", this.render);;
 	},

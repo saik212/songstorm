@@ -4,12 +4,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   initialize: function () {
     // Songstorm.users.fetch();
     // Songstorm.likes.fetch();
-    Songstorm.currentUser.fetch({
-      success: function () {
-        // console.log('fetched curr user');
-    console.log(Songstorm.currentUser.id);
-      }
-    });
+    Songstorm.currentUser.fetch();
     // console.log(Songstorm.users.getOrFetch(Songstorm.currentUser.id));
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model.playlists(), 'sync add change remove', this.render);

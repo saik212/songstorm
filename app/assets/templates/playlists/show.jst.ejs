@@ -1,15 +1,26 @@
-<h1 class="playlist-title"><%= playlist.escape("name") %></h1>
+<div id="playlist-header">
+	<h1 class="playlist-title"><%= playlist.escape("name") %></h1>
+</div>
 
 <div class="content-main playlists">
 
-<h2>Songs:</h2>
-<ul class="playlists-songs">
-	<% playlist.songs().each(function (song) { %>
-		<li>
-			<a href="#/songs/<%= song.id %>"><%=song.escape("title")  %></a>
-			<audio src="<%= song.escape('audio_url') %>" controls></audio>
-		</li>
-	<% }) %>
-</ul>
+	<h2>Songs:</h2>
+
+	<section id="playlist-songs">
+<%if (playlist.songs().length === 0) {%>
+	<h2>No Songs =[</h2>
+<% } else{ %>
+		<ul class="playlists-songs">
+			<% playlist.songs().each(function (song) { %>
+				<li>
+					<a class="list-song" href="#/songs/<%= song.id %>"><%=song.escape("title")  %></a>
+					<i class="fa fa-play" data-song="<%= song.escape("id") %>"></i>
+					<!-- <audio src="<%= song.escape() %>" controls></audio> -->
+				</li>
+			<% }) %>
+		</ul>
+<% } %>
+	</section>
+	
 </div>
 <a href="#/playlists/<%= playlist.id %>/edit">Edit Playlist</a>
