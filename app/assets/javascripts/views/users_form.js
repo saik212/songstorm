@@ -18,15 +18,14 @@ Songstorm.Views.UsersForm = Backbone.View.extend({
 	},
 
 	events: {
-		"submit form": "submit",
+		"click .sign-up": "submit",
 		"change #input-post-image": "fileInputChange"
 	},
 
 	submit: function (event) {
 		event.preventDefault();
 
-		var $form = $(event.currentTarget);
-		var dataInfo = $form.serializeJSON().user;
+		var dataInfo = this.$el.serializeJSON().user;
 		var that = this;
 
 		this.model.set(dataInfo);
@@ -38,7 +37,7 @@ Songstorm.Views.UsersForm = Backbone.View.extend({
 			},
 			error: function (data) {
 				alert("Invalid Form Data");
-				console.log(data);
+				console.log(dataInfo);
 			}
 		})
 	},
