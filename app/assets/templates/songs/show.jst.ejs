@@ -1,87 +1,125 @@
 <div class="content-main group" id="song-main">
+
+	<section class="page-left" id="song-page-left">
 	
-	<section class="song-show">
-		<h3 id="song-title"><%= song.escape("title") %></h3>
-		<i class="fa fa-play" data-song="<%= song.escape("id") %>"></i>
-		<h1>SONG IMG HERE</h1>
-		<h3>Artist: <%= song.escape("artist") %></h3>
-		<h3>Song: <%= song.escape("album") %></h3>
+		<section class="song-show">
+			<div class="song-stuff group">
+				<div class="song-img"></div>
+					<ul class="song-info">
+						<li id="song-title">Song Title</li>
+						<li>Artist</li>
+						<li>Album</li>
+					</ul>
+					<span class="waveform" id="show-waveform">BLAHBLAH WAVEFORM</span>
+			</div>
 
-		<audio class="music-player" src="<%= song.escape('audio_url') %>" controls></audio>
-		<button class="add-like"> Like </button>
-		<button class="remove-like"> Unlike </button>
+			<div class="song-widgets-tab">
+				<ul class="song-widgets">
+					<li>Like</li>
+					<li>Edit</li>
+					<li>Delete</li>
+				</ul>
+			</div>
+			
+		</section>
+
+
+		<section class="comments-section">
+
+				<form class="comments-form group">
+				  <input type="hidden" class="song_id" name="song_id" value="<%= song.id %>">
+			    <textarea class="comment-body" name="body" placeholder="comment here"></textarea>
+				  <!-- <input class="add-comment" type="submit" value="Submit Comment"> -->
+				  <span class="comment-submit">Submit</span>
+				</form>
+
+				<ul class="comments-display">
+					<li class="comment">
+						<div class="song-thumb"></div>
+						<h1>
+							<a href="#">Username</a>
+						</h1>
+						<h2>
+							Lorem Ipsum Commentum
+						</h2>
+						<span class="delete-comment">DELETE</span>
+					</li>
+
+	<!-- 				<li class="comment">
+						<div class="song-thumb"></div>
+						<h1>
+							<a href="#">Username</a>
+						</h1>
+						<h2>
+							PearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPear
+						</h2>
+						<span class="delete-comment">DELETE</span>
+					</li> -->
+
+					<li class="comment">
+						<div class="song-thumb"></div>
+						<h1>
+							<a href="#">Username</a>
+						</h1>
+						<h2>
+							Lorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum Commentum
+						</h2>
+						<span class="delete-comment">DELETE</span>
+					</li>
+				</ul>
+
+		</section>
 	</section>
 
+	<section class="page-right" id="song-page-left">
 
-	<section class="comments-section">
-		<div class="comments-form-div">
-			<form class="comments-form">
-				<h2>Add a comment:</h2>
-
-			  <input type="hidden" class="song_id" name="song_id" value="<%= song.id %>">
-
-			  <label>
-			   <span>Body</span>
-			    <!-- <input class="comment_body" type="textarea" name="body" value="" placeholder="your comment here"> -->
-			    <textarea class="comment_body" name="body" placeholder="comment here"></textarea>
-			  </label>
-
-			  <input class="add_comment" type="submit" value="Submit Comment">
-			</form>
-		</div>
-
-		<div class="comments-display">
-			<ul class="song-comments">
-			<% song.comments().each(function (comment) { %>
-				<li>
-					 <a class="commenter" href="#users/<%= comment.escape('user_id') %>"><%= comment.escape("author") %></a> <br>
-					 <span class="comment">
-					 	- <%= comment.escape("body") %>
-					 </span>
-					<button class="delete_comment" data-id="<%= comment.id %>">Delete Comment</button>
-				</li>
-
-			<% }) %>
-			</ul>
-		</div>
-
-	</section>
-
-	<section class="playlists-section">
-		
-
-		<div class="add-playlist-display">
-			<h2>Add to a playlist:</h2>
-
-
+		<section class="playlists-section">
 			<form class="playlist-form">
 				<input type="hidden" name="" value="">
-				<label class="playlist-label">Playlists
+				<span>Add To Playlist</span>
 					<select id="playlist-song-playlist-id">
-						<% playlists = Songstorm.playlists %>
-						<% playlists.each(function (playlist){ %>
-							<option value="<%= playlist.id %>"><%= playlist.escape("name") %></option>
-						<% }) %>
+							<option>Playlist</option>
+							<option>Playlist</option>
+							<option>Playlist</option>
+							<option>Playlist</option>
+							<option>Playlist</option>
+							<option>Playlist</option>
 					</select>
-				</label>
-				<input id="add-playlist" type="submit" value="Add to playlist">
 			</form>
+		</section>
 
-		</div>
-
-		<div class="playlists-display">
-			<h6 id="playlist-title">Belongs to the following playlists:</h6>
+		<section class="playlists-section">
+			<h2>Playlists With This Song</h2>
 			<ul class="songs-playlists">
-				<% song.playlists().each(function (playlist) { %>
-					<li class="song-playlist">
-				    <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
-				    </a>
-					 <button class="remove_playlist" data-id="<%= playlist.id %>">Remove from playlist</button>
-					</li>
-				<% }) %>
+				<li class="playlist-li">
+					<div class="song-thumb"></div>
+					<h1>
+				    <a href="#">Playlist</a>
+					</h1>
+					<h2>
+				    By: <a href="#">Playlist Uploader</a>
+					</h2>
+				</li>
+				<li class="playlist-li">
+					<div class="song-thumb"></div>
+					<h1>
+				    <a href="#">Playlist</a>
+					</h1>
+					<h2>
+				    By: <a href="#">Playlist Uploader</a>
+					</h2>
+				</li>
+				<li class="playlist-li">
+					<div class="song-thumb"></div>
+					<h1>
+				    <a href="#">Playlist</a>
+					</h1>
+					<h2>
+				    By: <a href="#">Playlist Uploader</a>
+					</h2>
+				</li>
 			</ul>
-		</div>
-
+		</section>
 	</section>
 
 </div>

@@ -1,4 +1,4 @@
-.comments-form {
+/*.comments-form {
 	max-width: 500px;
 	background: #F7F7F7;
 	padding: 15px 15px 25px 10px;
@@ -9,18 +9,7 @@
 	border: 1px solid #E4E4E4;
 	border-radius: 5px;
 	margin-bottom: 2px;
-}
-.comments-form h2 {
-	text-align: center;
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-
-.comments-form span {
-	display: block;
-	margin: 0px;
-	margin-bottom: 5px
-}
+}*/
 
 .comment_body {
 	height: 25px;

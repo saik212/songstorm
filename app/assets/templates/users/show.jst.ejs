@@ -13,31 +13,73 @@
 		<section class="user-playlists">
 			<h3> <%= username %>'s Playlists: </h3>
 			<ul class="user-playlist-list">
-			  <% user.playlists().each(function (playlist) { %>
-					<li> <a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
-					</a><button class="delete" data-id="<%= playlist.id %>" data-collection="playlists">Delete</button> </li>
-				<% }) %>
+			 	<li>
+			 		<div class="song-thumb"></div>
+			 		<a href="#">Playlist</a>
+			 		<span class="delete-playlist">Delete Playlist</span>
+			 	</li>
+			 	<li>
+			 		<div class="song-thumb"></div>
+			 		<a href="#">Playlist</a>
+			 		<span class="delete-playlist">Delete Playlist</span>
+			 	</li>
+			 	<li>
+			 		<div class="song-thumb"></div>
+			 		<a href="#">Playlist</a>
+			 		<span class="delete-playlist">Delete Playlist</span>
+			 	</li>
 			</ul>
 		</section>
 	</section>
 
-	<section class="page-right">
+	<section class="page-center">
 		<section class="user-songs">
 			<h3> <%= username %>'s Songs: </h3>
 			<ul class="user-song-list">
-				<% var i = 1 %>
-				<% user.songs().each(function (song) { %>
 					<li>
-						<a href="#/songs/<%= song.id %>"><%=i+". "+song.escape("title")  %></a>
-						<i class="fa fa-play" data-song="<%= song.escape("id") %>"></i>
-						<button class="delete" data-id="<%= song.id %>" data-collection="songs">Delete</i></button>
-						<audio class="users_player" src="<%= song.escape('audio_url') %>" controls>
+						<div class="song-thumb"></div>
+						<i class="fa fa-play"></i>
+						<a href="#">Song</a>
+						<span class="waveform">BLAHBLAHBLAH Waveform</span>
+						<span class="delete-button">Delete Song</span>
 					</li>
-						<% i++ %>
-				<% }) %>
+					<li>
+						<div class="song-thumb"></div>
+						<i class="fa fa-play"></i>
+						<a href="#">Song</a>
+						<span class="waveform">BLAHBLAHBLAH Waveform</span>
+						<span class="delete-button">Delete Song</span>
+					</li>
+					<li>
+						<div class="song-thumb"></div>
+						<i class="fa fa-play"></i>
+						<a href="#">Song</a>
+						<span class="waveform">BLAHBLAHBLAH Waveform</span>
+						<span class="delete-button">Delete Song</span>
+					</li>
 			</ul>
 		</section>
 
+	</section>
+
+	<section class="page-right">
+		<section>
+			<h3>Followers</h3>
+			<ul class="followers">
+				<li class="follower">Follower A</li>
+				<li class="follower">Follower A</li>
+				<li class="follower">Follower A</li>
+				<li class="follower">Follower A</li>
+			</ul>
+		</section>
+		<section>
+			<h3>Totals</h3>
+			<ul class="totals">
+				<li class="total">Total A</li>
+				<li class="total">Total A</li>
+				<li class="total">Total A</li>
+			</ul>
+		</section>
 	</section>
 </div>
 

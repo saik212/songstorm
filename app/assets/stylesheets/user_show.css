@@ -2,36 +2,40 @@
   width: 100%;
   height: 1000px;
   padding-top: 80px;
-  /*margin: auto;*/
 }
 
 .page-left {
   float: left;
   width: 200px;
   margin-top: 20px;
+  margin-right: 90px;
   background: #8e44ad;
   padding: 30px 25px 20px 25px;
   border: 3px solid #8e44ad;
   box-shadow: 2px 2px 2px;
-  /*border-radius: 10px;*/
   text-align: center;
+}
+
+.page-center {
+  display: inline-block;
+  width: 700px;
 }
 
 .page-right {
   float: right;
-  width: 700px;
+  width: 200px;
+  margin-top: 20px;
+  background: #8e44ad;
+  padding: 30px 25px 20px 25px;
+  border: 3px solid #8e44ad;
+  box-shadow: 2px 2px 2px;
+  text-align: center;
 }
 
 .content-main {
-  height: 900px;
-  padding-right: 25%;
+  height: 100%;
+  padding-right: 70px;
   padding-left: 70px;
- /* float: right;
-  border: 3px solid #f99;
-  border-radius: 5px;
-  text-align: center;
-  padding: 20px 0 0 0;
-  margin-top: 40px;*/
 }
 
 .user-songs {
@@ -39,8 +43,12 @@
   margin-top: 30px;
   border: 2px solid #8e44ad;
   box-shadow: 2px 2px 2px;
-  /*border-radius: 10px;*/
   padding: 20px;
+}
+
+.user-songs > h3 {
+  text-align: center;
+  font-size: 30px;
 }
 
 .user-blurb {
@@ -59,34 +67,41 @@
   text-align: left;
 }
 
-.content-main > h1 {
-/*  display: block;
-  text-align: center;*/
-}
-
-.content-main .user_songs {
-  /*border: 1px solid blue;*/
-  /*text-align: left;*/
-}
-
-.content-main .user_songs > h3 {
-  /*text-align: center;*/
+.user-playlist-list > li > .delete-button {
+  text-align: left;
 }
 
 .user-song-list li {
   padding: 10px 0 10px 0;
+  border-bottom: 1px solid #000;
 }
 
-.user-song-list li a {
-  /*padding: 0 10px 0 10px;*/
+.user-song-list li > * {
+  margin-right: 20px;
 }
 
-.delete {
-  /*background: #fff;*/
-  /*font-size: 10px;*/
-  /*border-radius: 6px;*/
-  /*border: 1px solid #000;*/
-  /*box-shadow: 1px 0px;*/
-  /*text-shadow: 1px 0px;*/
-  /*letter-spacing: 1px;*/
+.delete-button {
+  text-align: left;
+  margin: 0;
+  padding-left: 90px;
+  padding-top: 10px;  
+  font-size: 10px;
+  width: 100%;
+  display: inline-block;
+}
+
+.delete-playlist {
+  text-align: left;
+  margin: 0 0 10px 0;
+  padding-left: 35px;
+  font-size: 10px;
+  width: 100%;
+  display: block;
+}
+
+.song-thumb {
+  height: 30px;
+  width: 30px;
+  background: #000;
+  display: inline-block;
 }

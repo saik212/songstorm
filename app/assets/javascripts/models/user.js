@@ -71,10 +71,10 @@ Songstorm.Models.CurrentUser = Backbone.Model.extend({
   fireSessionEvent: function () {
     if (this.isSignedIn) {
       this.trigger('signIn');
-      // console.log("CurrentUser is signed in!", this);
+      console.log("CurrentUser is signed in!", this);
     } else {
       this.trigger("signOut");
-      // console.log("CurrentUser is signed out!", this);
+      console.log("CurrentUser is signed out!", this);
     }
   },
 
@@ -106,6 +106,7 @@ Songstorm.Models.CurrentUser = Backbone.Model.extend({
 
   signOut: function (options) {
     var model = this;
+    var options = options || {}
 
     $.ajax({
       url:  this.url,

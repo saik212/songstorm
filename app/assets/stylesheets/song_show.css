@@ -1,11 +1,12 @@
-.music-player {
-  display: block;
+
+/*//// Song Stuff ////*/
+
+#song-page-left {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
-#song-main {
-  padding-right: 70px;
-  padding-left: 70px;
-  /*padding-top: 70px;*/
-}
+
 .song-show {
   background: #8e44ad;
   border: 3px solid #8e44ad;
@@ -13,96 +14,187 @@
   display: block;
   margin: auto;
   text-align: left;
-  width: 600px;
+  width: 800px;
   margin-bottom: 40px;
+  padding: 35px;
 }
+
+.song-stuff {
+  display: block;
+}
+
+.song-stuff > * {
+  display: inline;
+}
+.song-img {
+  height: 200px;
+  width: 200px;
+  background: #000;
+  float: left;
+  margin-right: 30px;
+}
+
+#show-waveform {
+  display: block;
+}
+
+.song-info {
+  text-align: left;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.song-widgets {
+  width: 200px;
+  padding: 5px;
+  text-align: center;
+}
+
+.song-widgets > li {
+  display: inline;
+  margin: 5px;
+}
+
+/*//// Playlist Stuff ////*/
+
+.playlists-section {
+  margin-bottom: 10px;
+  float: right;
+  background: #8e44ad;
+  border: 3px solid #8e44ad;
+  box-shadow: 2px 2px 2px;
+  width: 350px;
+  padding: 20px 10px 20px 10px;
+}
+
+.playlists-section > form {
+  text-align: left;
+}
+
+.playlists-section > h2 {
+  display: inline-block;
+  font-size: 17px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #000;
+}
+
+.songs-playlists {
+  text-align: left;
+  padding: 0 0 0 10px;
+}
+
+.songs-playlists > li > * {
+  margin-right: 5px;
+}
+
+.playlists-display {
+  float: right;
+  padding-top: 5px;
+  text-align: center;
+  width: 50%;
+}
+
+.playlist-form > span {
+  margin-right: 10px;
+}
+
+.playlist-form > select {
+  width: 60%;
+}
+
+.playlist-li:first-child {
+  margin-top: 15px;
+}
+
+.playlist-li {
+  margin: 30px 0 0 0;
+}
+
+.playlist-li > h2 {
+  display: block;
+  font-size: 10px;
+}
+
+.playlist-li > h1 {
+  display: block;
+  font-size: 20px;
+  padding-top: 10px;
+}
+
+
+.playlist-li > div, .comment > div {
+  float: left;
+  height: 50px;
+  width: 50px;
+}
+
+/*//// Comment Stuff ////*/
 
 .comments-section {
   float: left;
-  /*border: 2px solid #fff;*/
-  width: 500px;
+  width: 800px;
 }
-
-.comments-form {
-  margin-bottom: 20px;
-}
-
-.commenter {
-  margin-bottom: 5px;
-}
-
-.comment {
-  padding-left: 5px;
-}
-
 
 .comments-display {
   background: #8e44ad;
   border: 3px solid #8e44ad;
   box-shadow: 2px 2px 2px;
-  /*border-top: 2px solid #fff;*/
-  padding: 10px 5px 0 5px;
+  padding: 10px;
+  text-align: left;
 }
 
-.playlists-section {
-  float: right;
+.comment {
+  margin-bottom: 20px;
+}
+
+.comment:first-child {
+  margin-top: 15px;
+}
+
+.comment > * {
+  margin-right: 5px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.comment > h1 {
+  font-size: 10px;
+  padding-left: 55px;
+}
+
+.comment > h2 {
+  font-size: 16px;
+  padding-left: 55px;
+}
+
+.comment > span {
+  padding-left: 55px;
+}
+
+.delete-comment {
+  font-size: 10px;
+}
+
+
+/*Comment Form*/
+
+.comments-form {
   background: #8e44ad;
   border: 3px solid #8e44ad;
   box-shadow: 2px 2px 2px;
-  width: 400px;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
-#playlist-song-playlist-id {
-  margin-left: 25px;
+.comment-body {
+  width: 75%;
   display: inline;
 }
 
-.playlist-label {
-  display: inline;
-}
-
-#add-playlist {
-  display: inline;
-}
-
-#playlist-title {
-  margin: 0;
-  margin-bottom: 5px;
-}
-.playlists-display {
-  display: block;
-  padding-top: 5px;
-  text-align: center;
-  /*margin: auto;*/
-}
-
-
-#song-title {
-  /*font-size: 20px;*/
-}
-
-.songs h3 {
-  /*font-size: 10px;*/
-}
-
-.songs h5 {
-  /*text-align: center;*/
-  /*font-weight: normal;*/
-  /*font-size: 20px;*/
-  /*margin-bottom: 20px;*/
-  /*margin-top: 0;*/
-}
-
-
-.song-playlist a {
-  /*margin-right: 10px;*/
-  /*font-weight: bold;*/
-}
-
-.song-playlist {
-  /*margin-bottom: 20px;*/
-}
-
-.song-comments {
-  /*color: #fff*/
+.comment-submit {
+  float: right;
+  padding: 10px 55px 0 0;
+  font-size: 20px;
+  font-weight: bold;
 }
