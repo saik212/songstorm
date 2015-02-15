@@ -36,7 +36,16 @@
 		<section class="user-songs">
 			<h3> <%= username %>'s Songs: </h3>
 			<ul class="user-song-list">
+				<% user.songs().each(function (song) { %>
 					<li>
+						<div class="song-thumb"></div>
+						<i class="fa fa-play"></i>
+						<a href="#/songs/<%= song.id %>"><%= song.escape("title")%></a>
+						<span class="waveform">BLAHBLAHBLAH Waveform</span>
+						<span class="delete-button" data-id="<%= song.id %>" data-collection="songs">Delete Song</span>
+					</li>
+				<% }) %>
+					<!-- <li>
 						<div class="song-thumb"></div>
 						<i class="fa fa-play"></i>
 						<a href="#">Song</a>
@@ -49,14 +58,7 @@
 						<a href="#">Song</a>
 						<span class="waveform">BLAHBLAHBLAH Waveform</span>
 						<span class="delete-button">Delete Song</span>
-					</li>
-					<li>
-						<div class="song-thumb"></div>
-						<i class="fa fa-play"></i>
-						<a href="#">Song</a>
-						<span class="waveform">BLAHBLAHBLAH Waveform</span>
-						<span class="delete-button">Delete Song</span>
-					</li>
+					</li> -->
 			</ul>
 		</section>
 

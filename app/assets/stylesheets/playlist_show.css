@@ -1,37 +1,34 @@
-.playlists ul > li {
-  text-align: left;
-  margin-bottom: 20px;
+#song-list-display {
+  padding: 30px;
 }
 
-.content-main.playlists {
- 	padding: 0 30% 0 30%;
- 	text-align: center;
+#song-list-display > li:first-child {
+  margin: 0;
 }
 
-.content-main.playlists > h2 {
-	margin-bottom: 20px;
+#song-list-display > li {
+  height: 40px;
+  margin-top: 30px;
 }
 
-#playlist-header {
-	padding: 0 40% 20px 40%;
+#song-list-display > li > * {
+  margin-right: 10px;
 }
 
-#playlist-songs {
-	padding: 30px;
-	height: 300px;
-	background: #8e44ad;
-  border: 3px solid #8e44ad;
-  box-shadow: 2px 2px 2px;
+.remove-button {
+  padding-left: 76px;
+  font-size: 10px;
+  display: block;
 }
 
-.list-song {
-	margin-right: 10px;
+#playlist-thumb {
+  float: left;
+  height: 40px;
+  width: 40px;
 }
 
-.playlist-title {
-  text-align: center;
-  font-size: 32px;
-  font-weight: bold;
-  border-bottom: 1px solid #000;
-  /*padding-bottom: 20px;*/
+#playlist-owner > div {
+  margin-right: 10px;
+  height: 40px;
+  width: 40px;
 }

@@ -14,10 +14,7 @@ Songstorm.Models.User = Backbone.Model.extend({
 
   songs: function () {
   	if (!this._songs) {
-  		this._songs = new Songstorm.Collections.Songs({
-  			user: this
-  			// url: "/api/users/" + this.id +"/songs"
-  		});
+  		this._songs = new Songstorm.Collections.Songs();
   	}
     return this._songs;
   },

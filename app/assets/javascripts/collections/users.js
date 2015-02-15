@@ -2,12 +2,16 @@ Songstorm.Collections.Users = Backbone.Collection.extend({
   url: "/api/users",
   model: Songstorm.Models.User,
 
-  getOrFetch: function (id) {
+  getOrFetch: function (id, callback) {
     var user = this.get(id);
     var users = this;
 
     if (user) {
-      user.fetch()
+      user.fetch({
+        success: function () {
+          callback();
+        }
+      })
     } else {
       user = new Songstorm.Models.User({ id: id })
       user.fetch({

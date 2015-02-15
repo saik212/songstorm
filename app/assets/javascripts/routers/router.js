@@ -85,13 +85,12 @@ Songstorm.Routers.Router = Backbone.Router.extend({
       return ;
     };
 
-    var user = Songstorm.users.getOrFetch(id);
-    // debugger
-    // console.log(user);
-    // user.songs().fetch();
-    // user.playlists().fetch();
-    var userShowView = new Songstorm.Views.UserShow({model: user});
-    this._swapView(userShowView);
+    var that = this;
+
+    var user = Songstorm.users.getOrFetch(id, function() {
+      var userShowView = new Songstorm.Views.UserShow({model: user});
+      that._swapView(userShowView);
+    });
   },
 
   userFavorites: function (id) {

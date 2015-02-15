@@ -1,26 +1,84 @@
-<div id="playlist-header">
-	<h1 class="playlist-title"><%= playlist.escape("name") %></h1>
-</div>
+<div class="content-main group" id="song-main">
 
-<div class="content-main playlists">
-
-	<h2>Songs:</h2>
-
-	<section id="playlist-songs">
-<%if (playlist.songs().length === 0) {%>
-	<h2>No Songs =[</h2>
-<% } else{ %>
-		<ul class="playlists-songs">
-			<% playlist.songs().each(function (song) { %>
-				<li>
-					<a class="list-song" href="#/songs/<%= song.id %>"><%=song.escape("title")  %></a>
-					<i class="fa fa-play" data-song="<%= song.escape("id") %>"></i>
-					<!-- <audio src="<%= song.escape() %>" controls></audio> -->
-				</li>
-			<% }) %>
-		</ul>
-<% } %>
-	</section>
+	<section class="page-left" id="song-page-left">
 	
+		<section class="song-show">
+			<div class="song-stuff group">
+				<div class="song-img"></div>
+					<ul class="song-info">
+						<li id="song-title">Playlist Name</li>
+					</ul>
+					<span class="waveform" id="show-waveform">BLAHBLAH WAVEFORM</span>
+			</div>
+
+			<div class="song-widgets-tab">
+				<ul class="song-widgets">
+					<li>Like</li>
+					<li>Edit</li>
+					<li>Delete</li>
+				</ul>
+			</div>
+			
+		</section>
+
+
+		<section class="comments-section">
+
+				<ul class="comments-display" id="song-list-display">
+					<li>
+						<div class="song-thumb" id="playlist-thumb"></div>
+						<i class="fa fa-play"></i>
+						<a href="#">Song</a>
+						<span class="waveform">BLAHBLAHBLAH Waveform</span>
+						<span class="remove-button">Remove</span>
+					</li>
+					<li>
+						<div class="song-thumb" id="playlist-thumb"></div>
+						<i class="fa fa-play"></i>
+						<a href="#">Song</a>
+						<span class="waveform">BLAHBLAHBLAH Waveform</span>
+						<span class="remove-button">Remove</span>
+					</li>
+					<li>
+						<div class="song-thumb" id="playlist-thumb"></div>
+						<i class="fa fa-play"></i>
+						<a href="#">Song</a>
+						<span class="waveform">BLAHBLAHBLAH Waveform</span>
+						<span class="remove-button">Remove</span>
+					</li>
+				</ul>
+
+		</section>
+	</section>
+
+	<section class="page-right" id="song-page-left">
+
+
+		<section class="playlists-section">
+			<h2 id="playlist-owner"><div class="song-thumb"></div>More From This User</h2>
+			<ul class="songs-playlists">
+				<li class="playlist-li">
+					<div class="song-thumb"></div>
+					<h1>
+				    <a href="#">Playlist</a>
+					</h1>
+				</li>
+				<li class="playlist-li">
+					<div class="song-thumb"></div>
+					<h1>
+				    <a href="#">Playlist</a>
+					</h1>
+				</li>
+				<li class="playlist-li">
+					<div class="song-thumb"></div>
+					<h1>
+				    <a href="#">Playlist</a>
+					</h1>
+				</li>
+			</ul>
+		</section>
+	</section>
+
 </div>
-<a href="#/playlists/<%= playlist.id %>/edit">Edit Playlist</a>
+
+
