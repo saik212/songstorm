@@ -16,10 +16,17 @@
 				<% user.playlists().each(function (playlist) { %>
 				 	<li>
 				 		<div class="song-thumb"></div>
-				 		<a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
-				 		<span class="delete-playlist" data-id="<%= playlist.id %>" data-collection="playlists">Delete Playlist</span>
+				 		<a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %></a>
+				 		<%if (currUserId === userShowId) {%>
+					 		<span class="delete-playlist" data-id="<%= playlist.id %>" data-collection="playlists">Delete Playlist</span>
+					 	<%}%>
 				 	</li>
 			 	<% }) %>
+			 	<li>
+			 		<%if (currUserId === userShowId) {%>
+				 		<a href="#/playlists/new">Create Playlist</a>
+				 	<%}%>
+			 	</li>
 		</section>
 	</section>
 
@@ -30,10 +37,12 @@
 				<%user.songs().forEach(function(song){%>
 					<li>
 						<div class="song-thumb"></div>
-						<i class="fa fa-play"></i>
+						<i class="fa fa-play" data-song-url="<%=song.escape('audio_url')%>"></i>
 						<a href="#/songs/<%=song.id%>"><%=song.escape('title')%></a>
 						<span class="waveform">BLAHBLAHBLAH Waveform</span>
-						<span class="delete-button" data-id="<%= song.id %>" data-collection="songs">Delete Song</span>
+						<%if (currUserId === userShowId) {%>
+							<span class="delete-button" data-id="<%= song.id %>" data-collection="songs">Delete Song</span>
+					 	<%}%>
 					</li>
 				<%})%>
 			</ul>

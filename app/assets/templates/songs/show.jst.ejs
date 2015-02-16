@@ -16,8 +16,10 @@
 			<div class="song-widgets-tab">
 				<ul class="song-widgets">
 					<li>Like</li>
-					<li>Edit</li>
-					<li>Delete</li>
+					<% if (currUserId === uploader_id) { %>
+						<li><a href="#/songs/<%=song.id%>/edit">Edit</a></li>
+						<li>Delete</li>
+					<% } %>
 				</ul>
 			</div>
 			
@@ -29,7 +31,6 @@
 				<form class="comments-form group">
 				  <input type="hidden" class="song_id" name="song_id" value="<%= song.id %>">
 			    <textarea class="comment_body" name="body" placeholder="comment here"></textarea>
-				  <!-- <input class="add-comment" type="submit" value="Submit Comment"> -->
 				  <span class="comment-submit">Submit</span>
 				</form>
 
@@ -43,7 +44,9 @@
 							<h2>
 								<%= comment.escape('body') %>
 							</h2>
-							<span class="delete-comment" data-id="<%= comment.id %>">DELETE</span>
+							<% if (currUserId === parseInt(comment.escape('user_id'))) { %>
+								<span class="delete-comment" data-id="<%= comment.id %>">DELETE</span>
+							<% } %>
 						</li>
 					<%})%>
 

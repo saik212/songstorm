@@ -8,11 +8,19 @@ Songstorm.Views.UserShow = Backbone.View.extend({
   },
 
   events: {
-    "click .delete": "delete",
+    "click .delete-playlist": "delete",
+    "click .delete-button": "delete",
+    "click .fa-play": "playSong"
   },
 
   render: function () {
-    var content = this.template({user: this.model});
+    var currUserId = parseInt(Songstorm.currentUser.id);
+    var userShowId = parseInt(this.model.id);
+    var content = this.template({
+      user: this.model,
+      currUserId: currUserId,
+      userShowId: userShowId
+    });
     this.$el.html(content);
 
     return this;
@@ -27,14 +35,21 @@ Songstorm.Views.UserShow = Backbone.View.extend({
 
     if (targetCollection === "playlists") {
       var model = this.model.playlists().get(targetId);
-      // Songstorm.playlists.remove(targetId);
       Songstorm.playlists.remove(model);
       model.destroy();
     } else {
       var model = this.model.songs().get(targetId);
       Songstorm.songs.remove(model);
       model.destroy();
-      // Songstorm.songs.remove(targetId);
     }
-  }
+  },
+
+  playSong: function (event) {
+    event.preventDefault();
+    var player = $("#global-player audio");
+    var songUrl = $(event.currentTarget).data("song-url");
+    player.attr("src", songUrl);
+    player = player[0];
+    player.play();
+  },
 })

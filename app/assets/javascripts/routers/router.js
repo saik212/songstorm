@@ -73,13 +73,10 @@ Songstorm.Routers.Router = Backbone.Router.extend({
 
   _goHome: function () {
     Backbone.history.navigate("", {trigger: true});
-    // console.log("hello from go home");
 
   },
 
   userShow: function (id) {
-    // var callback = this.userShow.bind(this, id);
-    // if (!this._requiredSignedIn(callback)) {return;};
     if (!Songstorm.currentUser.isSignedIn()) {
       this._goHome();
       return ;
@@ -95,20 +92,13 @@ Songstorm.Routers.Router = Backbone.Router.extend({
 
   userFavorites: function (id) {
     var that = this;
-    // if (!Songstorm.currentUser.isSignedIn()) {
-    //   console.log('hey redirecting');
-    //   this._goHome()
-    //   return ;
-    // }
     var user;
     var faves;
     var userFavView;
     Songstorm.users.fetch({
       success: function () {
         user = Songstorm.users.getOrFetch(id);
-        // console.log('users fetched');
         faves = new Songstorm.Collections.Likes({user: user})
-        // debugger
         faves.fetch({
           success: function () {
             console.log(faves.toJSON());
@@ -116,15 +106,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
     that._swapView(userFavView);
           }
         });
-        // console.log(faves);
       }
     });
-    // debugger
-    // console.log(Songstorm.likes); 
-    // faves.fetch();
-
-    // debugger
-    // console.log(user);
   },
 
   playlistNew: function () {

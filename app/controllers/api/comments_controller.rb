@@ -19,9 +19,6 @@ class Api::CommentsController < ApplicationController
 
     if @comment.save
       render :show
-    # else
-    #   flash.now[:errors] = @comment.errors.full_messages
-    #   render json: flash[:errors]
     end
   end
 
@@ -29,9 +26,6 @@ class Api::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       render json: @comment
-    # else
-    #   flash.now[:errors] = @comment.errors.full_messages
-    #   render json: flash[:errors]
     end
   end
 

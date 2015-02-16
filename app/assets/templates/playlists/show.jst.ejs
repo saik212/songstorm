@@ -14,8 +14,11 @@
 			<div class="song-widgets-tab">
 				<ul class="song-widgets">
 					<li>Like</li>
-					<li>Edit</li>
-					<li>Delete</li>
+					<% if (currUserId === uploader_id) { %>
+						<li><a href="#/playlists/<%=playlist.id%>/edit">Edit</a></li>
+						<li>Delete</li>
+					<% } %>
+
 				</ul>
 			</div>
 			
@@ -28,10 +31,12 @@
 					<%playlist.songs().forEach(function(song){%>
 						<li>
 							<div class="song-thumb" id="playlist-thumb"></div>
-							<i class="fa fa-play"></i>
-							<a href="#/songs/<%=song.id%>"><%=song.escape('title')%></a>
+							<i class="fa fa-play" data-song-url="<%=song.escape('audio_url')%>"></i>
+							<a href="#/songs/<%=song.id%>"><%=song.escape('artist')+" - "+song.escape('title')%></a>
 							<span class="waveform">BLAHBLAHBLAH Waveform</span>
-							<span class="remove-button">Remove</span>
+							<% if (currUserId === uploader_id) { %>
+								<span class="remove-button" data-song-id=<%=song.id%>>Remove</span>
+							<% } %>
 						</li>
 					<%})%>
 

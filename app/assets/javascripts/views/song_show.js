@@ -19,7 +19,13 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     "click .fa-play": "playSong"
   },
   render: function () {
-    var content = this.template({song: this.model});
+    var currUserId = parseInt(Songstorm.currentUser.id);
+    var uploader_id = parseInt(this.model.escape('uploader_id'));
+    var content = this.template({
+      song: this.model,
+      currUserId: currUserId,
+      uploader_id: uploader_id
+    });
     this.$el.html(content);
     return this;
   },
@@ -27,11 +33,9 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   playSong: function (event) {
     event.preventDefault();
     var player = $("#global-player audio");
-    // console.log(this.model.escape("audio_url"));
     player.attr("src", this.model.escape("audio_url"));
     player = player[0];
     player.play();
-    // console.log(player);
   },
 
   addComment: function (event) {
@@ -41,10 +45,6 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     commBody = $(".comment_body").val();
     console.log($(".comment_body"));
     console.log(commBody);
-    // currUser = Songstorm.users.findWhere({
-    //   "is_current_user":true
-    // });
-    // commUserId = Songstorm.currentUser.id;
 
     comment = new Songstorm.Models.Comment({
       user_id: Songstorm.currentUser.id,
@@ -56,11 +56,8 @@ Songstorm.Views.SongShow = Backbone.View.extend({
 
     comment.save({}, {
       success: function () {
-        // console.log("in success");
         that.model.comments().add(comment);
         Songstorm.comments.add(comment);
-        // debugger
-        //currentUser.comments.add(comment);
       }
     });
   },
@@ -137,24 +134,11 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     var playlistSong = new Songstorm.Models.PlaylistSong({song_id: this.model.id, playlist_id: optionId});
     playlistSong.save({}, {
       success: function (model) {
+        console.log(playlist);
         that.model.playlists().add(playlist);
         Songstorm.playlistSongs.add(playlistSong);
       }
     });
-  },
-
-  removePlaylist: function (event) {
-    event.preventDefault();
-    var that = this;
-
-    var optionId = $(event.target).data("id");
-    var playlist = this.model.playlists().get(optionId);
-    var playlistSong = Songstorm.playlistSongs.findWhere({"song_id":this.model.id, "playlist_id":optionId});
-
-    playlistSong.destroy({
-        success: function () {
-          that.model.playlists().remove(playlist);
-        }
-    });
   }
+
 });
