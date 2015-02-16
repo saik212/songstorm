@@ -2,8 +2,8 @@
 	<section class="playlists-section" id="likes-section">
 		<%likes.forEach(function(like){ %>
 			<div class="liked-song">
-				<div class="song-thumb"></div>
-				<h1><a href="#/songs/<%=like.escape('song_id')%>"><%= like.escape('songTitle')%></a></h1>
+				<img class="song-thumb" src="<%= like.escape("song_image") %>" width="100" alt="">
+				<h1><a href="#/songs/<%=like.escape('song_id')%>"><%= like.escape('song_title')%></a></h1>
 			</div>
 		<%}) %>
 	</section>

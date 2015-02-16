@@ -1,11 +1,13 @@
 json.extract! @song, :id, :title, :artist, :uploader_id, :album, :created_at, :updated_at
 json.audio_url asset_path(@song.audio.url)
+json.image_url asset_path(@song.image.url)
 
 json.playlists @song.playlists do |playlist|
 	json.id playlist.id
 	json.name  playlist.name
 	json.user_id playlist.user_id
 	json.owner playlist.user.username
+	json.image_url asset_path(playlist.image.url)
 
 	json.created_at playlist.created_at
 	json.updated_at playlist.updated_at
@@ -27,6 +29,7 @@ json.comments @song.comments do |comment|
 	json.body comment.body
 	json.user_id comment.user_id
 	json.author comment.user.username
+	json.author_image comment.user.image.url
 end
 
 json.likers @song.likers do |liker|

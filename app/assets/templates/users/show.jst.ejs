@@ -15,7 +15,7 @@
 			<ul class="user-playlist-list">
 				<% user.playlists().each(function (playlist) { %>
 				 	<li>
-				 		<div class="song-thumb"></div>
+						<img class="song-thumb" src="<%= playlist.escape("image_url") %>" width="100" alt="">
 				 		<a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %></a>
 				 		<%if (currUserId === userShowId) {%>
 					 		<span class="delete-playlist" data-id="<%= playlist.id %>" data-collection="playlists">Delete Playlist</span>
@@ -36,7 +36,7 @@
 			<ul class="user-song-list">
 				<%user.songs().forEach(function(song){%>
 					<li>
-						<div class="song-thumb"></div>
+						<img class="song-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
 						<i class="fa fa-play" data-song-url="<%=song.escape('audio_url')%>"></i>
 						<a href="#/songs/<%=song.id%>"><%=song.escape('title')%></a>
 						<span class="waveform">BLAHBLAHBLAH Waveform</span>

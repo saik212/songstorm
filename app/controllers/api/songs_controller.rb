@@ -9,7 +9,7 @@ class Api::SongsController < ApplicationController
 
   def index
     @songs = params[:user_id] ? Song.where(uploader_id: params[:user_id]) : Song.all
-    render json: @songs
+    render :index
   end
 
   def create
@@ -52,7 +52,7 @@ class Api::SongsController < ApplicationController
 
   private
   def song_params
-    params.require(:song).permit(:title, :artist, :album, :playlists, :audio, :audio_url, :likers)
+    params.require(:song).permit(:title, :artist, :album, :playlists, :audio, :audio_url, :likers, :image, :image_url)
   end
 
   # def prevent_delete

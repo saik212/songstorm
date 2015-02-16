@@ -4,7 +4,7 @@
 	
 		<section class="song-show">
 			<div class="song-stuff group">
-				<div class="song-img"></div>
+				<img class="song-img" src="<%= song.escape("image_url") %>" width="100" alt="">
 					<ul class="song-info">
 						<li id="song-title"><%=song.escape('title')%></li>
 						<li><%=song.escape('artist')%></li>
@@ -37,7 +37,7 @@
 				<ul class="comments-display">
 					<%song.comments().forEach(function(comment){%>
 						<li class="comment">
-							<div class="song-thumb"></div>
+							<img class="song-thumb" src="<%= comment.escape("author_image") %>" width="100" alt="">
 							<h1>
 								<a href="#/users/<%= comment.escape('user_id') %>"><%= comment.escape('author')%></a>
 							</h1>
@@ -85,7 +85,7 @@
 			<ul class="songs-playlists">
 				<% song.playlists().forEach(function(playlist){ %>
 					<li class="playlist-li">
-						<div class="song-thumb"></div>
+						<img class="song-thumb" src="<%= playlist.escape("image_url") %>" width="100" alt="">
 						<h1>
 					    <a href="#/playlists/<%=playlist.id%>"><%=playlist.escape('name')%></a>
 						</h1>

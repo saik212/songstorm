@@ -1,10 +1,11 @@
 json.array! @playlists do |playlist|
 	json.extract! playlist, :id, :name, :user_id, :created_at, :updated_at
 	json.owner playlist.user.username
-
+	json.image_url asset_path(playlist.image.url)
 
 	json.songs playlist.songs do |song|
 		json.audio_url asset_path(song.audio.url)
+		json.image_url asset_path(song.image.url)
 		json.id song.id
 		json.title song.title
 		json.album song.album

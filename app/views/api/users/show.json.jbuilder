@@ -3,6 +3,7 @@ json.image_url asset_path(@user.image.url)
 
 json.songs @user.songs do |song|
 	json.audio_url asset_path(song.audio.url)
+	json.image_url asset_path(song.image.url)
 	json.id song.id
 	json.title song.title
 	json.album song.album
@@ -14,6 +15,7 @@ json.songs @user.songs do |song|
 end
 
 json.playlists @user.playlists do |playlist|
+	json.image_url asset_path(playlist.image.url)
 	json.id playlist.id
 	json.name playlist.name
 	json.user_id playlist.user_id

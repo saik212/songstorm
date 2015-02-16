@@ -4,7 +4,7 @@
 	
 		<section class="song-show">
 			<div class="song-stuff group">
-				<div class="song-img"></div>
+				<img class="song-img" src="<%= playlist.escape("image_url") %>" width="100" alt="">
 					<ul class="song-info">
 						<li id="song-title"><%=playlist.escape('name')%></li>
 					</ul>
@@ -30,7 +30,7 @@
 				<ul class="comments-display" id="song-list-display">
 					<%playlist.songs().forEach(function(song){%>
 						<li>
-							<div class="song-thumb" id="playlist-thumb"></div>
+							<img class="song-thumb" id="playlist-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
 							<i class="fa fa-play" data-song-url="<%=song.escape('audio_url')%>"></i>
 							<a href="#/songs/<%=song.id%>"><%=song.escape('artist')+" - "+song.escape('title')%></a>
 							<span class="waveform">BLAHBLAHBLAH Waveform</span>
@@ -52,12 +52,12 @@
 
 
 		<section class="playlists-section">
-			<h2 id="playlist-owner"><div class="song-thumb"></div>More From <a href="#/users/<%=uploader.id%>"><%= uploader.escape('username')%></a></h2>
+			<h2 id="playlist-owner"><img class="song-thumb" src="<%= playlist.escape("owner_image") %>" width="100" alt="">More From <a href="#/users/<%=uploader.id%>"><%= uploader.escape('username')%></a></h2>
 			<ul class="songs-playlists">
 			<%uploader.playlists().forEach(function(list){%>
 				<%if (playlist.escape('name') !== list.escape('name')) {%>
 					<li class="playlist-li">
-						<div class="song-thumb"></div>
+						<img class="song-thumb" src="<%= list.escape("image_url") %>" width="100" alt="">
 						<h1>
 					    <a href="#/playlists/<%=list.id%>"><%=list.escape('name')%></a>
 						</h1>

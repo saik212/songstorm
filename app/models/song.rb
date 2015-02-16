@@ -26,6 +26,13 @@ class Song < ActiveRecord::Base
     'audio/x-mpeg3',
   ]
 
+  has_attached_file :image,
+    :styles => { :medium => "300x300>", :thumb => "100x100>" },
+    :default_url => "missing-img.png"
+
+  validates_attachment_content_type :image,
+    :content_type => /\Aimage\/.*\Z/
+
 
   def audio_url=(audio_url)
     unless self.audio.exists?

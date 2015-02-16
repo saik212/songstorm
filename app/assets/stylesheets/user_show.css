@@ -100,8 +100,9 @@
 }
 
 .song-thumb {
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: 50px;
+  float: left;
   background: #000;
   display: inline-block;
 }

@@ -52,7 +52,7 @@ class Api::PlaylistsController < ApplicationController
 
   private
   def playlist_params
-    params.require(:playlist).permit(:name)
+    params.require(:playlist).permit(:name, :image, :image_url)
   end
 
   def prevent_delete
