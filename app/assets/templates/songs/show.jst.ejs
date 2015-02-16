@@ -6,9 +6,9 @@
 			<div class="song-stuff group">
 				<div class="song-img"></div>
 					<ul class="song-info">
-						<li id="song-title">Song Title</li>
-						<li>Artist</li>
-						<li>Album</li>
+						<li id="song-title"><%=song.escape('title')%></li>
+						<li><%=song.escape('artist')%></li>
+						<li><%=song.escape('album')%></li>
 					</ul>
 					<span class="waveform" id="show-waveform">BLAHBLAH WAVEFORM</span>
 			</div>
@@ -28,22 +28,24 @@
 
 				<form class="comments-form group">
 				  <input type="hidden" class="song_id" name="song_id" value="<%= song.id %>">
-			    <textarea class="comment-body" name="body" placeholder="comment here"></textarea>
+			    <textarea class="comment_body" name="body" placeholder="comment here"></textarea>
 				  <!-- <input class="add-comment" type="submit" value="Submit Comment"> -->
 				  <span class="comment-submit">Submit</span>
 				</form>
 
 				<ul class="comments-display">
-					<li class="comment">
-						<div class="song-thumb"></div>
-						<h1>
-							<a href="#">Username</a>
-						</h1>
-						<h2>
-							Lorem Ipsum Commentum
-						</h2>
-						<span class="delete-comment">DELETE</span>
-					</li>
+					<%song.comments().forEach(function(comment){%>
+						<li class="comment">
+							<div class="song-thumb"></div>
+							<h1>
+								<a href="#/users/<%= comment.escape('user_id') %>"><%= comment.escape('author')%></a>
+							</h1>
+							<h2>
+								<%= comment.escape('body') %>
+							</h2>
+							<span class="delete-comment" data-id="<%= comment.id %>">DELETE</span>
+						</li>
+					<%})%>
 
 	<!-- 				<li class="comment">
 						<div class="song-thumb"></div>
@@ -55,17 +57,6 @@
 						</h2>
 						<span class="delete-comment">DELETE</span>
 					</li> -->
-
-					<li class="comment">
-						<div class="song-thumb"></div>
-						<h1>
-							<a href="#">Username</a>
-						</h1>
-						<h2>
-							Lorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum CommentumLorem Ipsum Commentum
-						</h2>
-						<span class="delete-comment">DELETE</span>
-					</li>
 				</ul>
 
 		</section>
@@ -78,46 +69,28 @@
 				<input type="hidden" name="" value="">
 				<span>Add To Playlist</span>
 					<select id="playlist-song-playlist-id">
-							<option>Playlist</option>
-							<option>Playlist</option>
-							<option>Playlist</option>
-							<option>Playlist</option>
-							<option>Playlist</option>
-							<option>Playlist</option>
+							<%Songstorm.playlists.forEach(function(playlist){%>
+								<option value="<%=playlist.id%>"><%=playlist.escape('name')%></option>
+							<%})%>
 					</select>
+					<span id="add-playlist">Add</span>
 			</form>
 		</section>
 
 		<section class="playlists-section">
 			<h2>Playlists With This Song</h2>
 			<ul class="songs-playlists">
-				<li class="playlist-li">
-					<div class="song-thumb"></div>
-					<h1>
-				    <a href="#">Playlist</a>
-					</h1>
-					<h2>
-				    By: <a href="#">Playlist Uploader</a>
-					</h2>
-				</li>
-				<li class="playlist-li">
-					<div class="song-thumb"></div>
-					<h1>
-				    <a href="#">Playlist</a>
-					</h1>
-					<h2>
-				    By: <a href="#">Playlist Uploader</a>
-					</h2>
-				</li>
-				<li class="playlist-li">
-					<div class="song-thumb"></div>
-					<h1>
-				    <a href="#">Playlist</a>
-					</h1>
-					<h2>
-				    By: <a href="#">Playlist Uploader</a>
-					</h2>
-				</li>
+				<% song.playlists().forEach(function(playlist){ %>
+					<li class="playlist-li">
+						<div class="song-thumb"></div>
+						<h1>
+					    <a href="#/playlists/<%=playlist.id%>"><%=playlist.escape('name')%></a>
+						</h1>
+						<h2>
+					    By: <a href="#/users/<%=playlist.escape('user_id')%>"><%=playlist.escape('owner')%></a>
+						</h2>
+					</li>
+				<% }) %>
 			</ul>
 		</section>
 	</section>

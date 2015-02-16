@@ -1,6 +1,13 @@
 Songstorm.Models.Playlist = Backbone.Model.extend({
   urlRoot: "/api/playlists",
 
+  uploader: function () {
+    if (!this._uploader) {
+      this._uploader = new Songstorm.Models.User();
+    }
+    return this._uploader;
+  },
+
   songs: function () {
   	if (!this._songs) {
   		this._songs = new Songstorm.Collections.Songs([], {
@@ -30,6 +37,11 @@ Songstorm.Models.Playlist = Backbone.Model.extend({
     if (response.playlist_songs) {
       this.playlistSongs().set(response.playlist_songs, { parse: true });
       delete response.playlist_songs;
+    }
+
+    if (response.uploader) {
+      this.uploader().set(response.uploader, {parse: true});
+      delete response.uploader;
     }
 
   	return response;

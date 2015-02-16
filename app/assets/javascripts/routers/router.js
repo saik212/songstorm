@@ -140,9 +140,10 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   playlistShow: function (id) {
+    var that = this;
     var playlist = Songstorm.playlists.getOrFetch(id);
-    var playlistShowView = new Songstorm.Views.PlaylistShow({ model: playlist });
-    this._swapView(playlistShowView);
+      var playlistShowView = new Songstorm.Views.PlaylistShow({ model: playlist });
+      that._swapView(playlistShowView);
   },
 
   playlistEdit: function (id) {
@@ -165,8 +166,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   songShow: function (id) {
-    console.log(Songstorm.currentUser);
     var song = Songstorm.songs.getOrFetch(id);
+    Songstorm.playlists.fetch();
     var songShowView = new Songstorm.Views.SongShow({ model: song });
     this._swapView(songShowView);
   },

@@ -20,3 +20,4 @@ json.playlist_songs @playlist.playlist_songs do |playlist_song|
 	json.created_at playlist_song.created_at
 	json.updated_at playlist_song.updated_at
 end
+

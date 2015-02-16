@@ -1,22 +1,19 @@
 Songstorm.Views.SongShow = Backbone.View.extend({
   template: JST["songs/show"],
 
-  initialize: function () {
-    // Songstorm.users.fetch();
-    // Songstorm.likes.fetch();
-    Songstorm.currentUser.fetch();
-    // console.log(Songstorm.users.getOrFetch(Songstorm.currentUser.id));
+  initialize: function (options) {
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model.playlists(), 'sync add change remove', this.render);
     this.listenTo(this.model.comments(), 'sync add change remove', this.render);
     this.listenTo(Songstorm.playlistSongs, 'add change remove', this.render);
+    this.listenTo(Songstorm.playlists, 'sync', this.render);
   },
 
   events: {
     "click #add-playlist": "addPlaylist",
     "click .remove_playlist": "removePlaylist",
-    "click .add_comment": "addComment",
-    "click .delete_comment": "deleteComment",
+    "click .comment-submit": "addComment",
+    "click .delete-comment": "deleteComment",
     "click .add-like": "addLike",
     "click .remove-like": "removeLike",
     "click .fa-play": "playSong"
@@ -42,6 +39,8 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     var that = this;
     commSongId = parseInt($(".song_id").val());
     commBody = $(".comment_body").val();
+    console.log($(".comment_body"));
+    console.log(commBody);
     // currUser = Songstorm.users.findWhere({
     //   "is_current_user":true
     // });
@@ -52,7 +51,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
       commentable_id: this.model.id,
       commentable_type: 'Song',
       body: commBody,
-      author: Songstorm.currentUser .escape("username")
+      author: Songstorm.currentUser.escape("username")
     });
 
     comment.save({}, {

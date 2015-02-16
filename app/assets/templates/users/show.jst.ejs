@@ -13,56 +13,34 @@
 		<section class="user-playlists">
 			<h3> <%= username %>'s Playlists: </h3>
 			<ul class="user-playlist-list">
-			 	<li>
-			 		<div class="song-thumb"></div>
-			 		<a href="#">Playlist</a>
-			 		<span class="delete-playlist">Delete Playlist</span>
-			 	</li>
-			 	<li>
-			 		<div class="song-thumb"></div>
-			 		<a href="#">Playlist</a>
-			 		<span class="delete-playlist">Delete Playlist</span>
-			 	</li>
-			 	<li>
-			 		<div class="song-thumb"></div>
-			 		<a href="#">Playlist</a>
-			 		<span class="delete-playlist">Delete Playlist</span>
-			 	</li>
-			</ul>
+				<% user.playlists().each(function (playlist) { %>
+				 	<li>
+				 		<div class="song-thumb"></div>
+				 		<a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %>
+				 		<span class="delete-playlist" data-id="<%= playlist.id %>" data-collection="playlists">Delete Playlist</span>
+				 	</li>
+			 	<% }) %>
 		</section>
 	</section>
 
 	<section class="page-center">
 		<section class="user-songs">
-			<h3> <%= username %>'s Songs: </h3>
+			<h3> <%=username%>'s Songs: </h3>
 			<ul class="user-song-list">
-				<% user.songs().each(function (song) { %>
+				<%user.songs().forEach(function(song){%>
 					<li>
 						<div class="song-thumb"></div>
 						<i class="fa fa-play"></i>
-						<a href="#/songs/<%= song.id %>"><%= song.escape("title")%></a>
+						<a href="#/songs/<%=song.id%>"><%=song.escape('title')%></a>
 						<span class="waveform">BLAHBLAHBLAH Waveform</span>
 						<span class="delete-button" data-id="<%= song.id %>" data-collection="songs">Delete Song</span>
 					</li>
-				<% }) %>
-					<!-- <li>
-						<div class="song-thumb"></div>
-						<i class="fa fa-play"></i>
-						<a href="#">Song</a>
-						<span class="waveform">BLAHBLAHBLAH Waveform</span>
-						<span class="delete-button">Delete Song</span>
-					</li>
-					<li>
-						<div class="song-thumb"></div>
-						<i class="fa fa-play"></i>
-						<a href="#">Song</a>
-						<span class="waveform">BLAHBLAHBLAH Waveform</span>
-						<span class="delete-button">Delete Song</span>
-					</li> -->
+				<%})%>
 			</ul>
 		</section>
-
 	</section>
+
+	
 
 	<section class="page-right">
 		<section>
@@ -84,26 +62,3 @@
 		</section>
 	</section>
 </div>
-
-
-
-<!-- <div class="content-main">
-
-	
-
-	<div class="user_songs">
-
-
-		
-
-	</div>
-
-
-	<br>
-
-	<div class="user-playlists">
-
-	</div>
-</div> -->
-
-<!-- <a href="/#/playlists/new">Create Playlist</a> -->

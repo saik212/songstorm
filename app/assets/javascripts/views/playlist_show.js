@@ -2,7 +2,10 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
   template: JST["playlists/show"],
 
   initialize: function () {
-    this.listenTo(this.model, 'sync', this.render)
+    this.uploader = new Songstorm.Models.User();
+    // this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'sync', this.getUploader);
+    this.listenTo(this.uploader, 'sync', this.render);
   },
 
   events: {
@@ -11,9 +14,15 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
 
 
   render: function () {
-    var content = this.template({playlist: this.model});
+    var content = this.template({playlist: this.model, uploader: this.uploader});
     this.$el.html(content);
     return this;
+  },
+
+  getUploader: function () {
+    var that = this;
+    this.uploader.set({id: this.model.toJSON().user_id});
+    this.uploader.fetch();
   },
 
   playSong: function (event) {

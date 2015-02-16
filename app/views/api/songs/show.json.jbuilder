@@ -5,6 +5,7 @@ json.playlists @song.playlists do |playlist|
 	json.id playlist.id
 	json.name  playlist.name
 	json.user_id playlist.user_id
+	json.owner playlist.user.username
 
 	json.created_at playlist.created_at
 	json.updated_at playlist.updated_at

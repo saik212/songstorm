@@ -17,12 +17,18 @@ Songstorm.Collections.Playlists = Backbone.Collection.extend({
   },
 
 
-  getOrFetch: function (id) {
+  getOrFetch: function (id, callback) {
     var playlist = this.get(id);
     var playlists = this;
 
     if (playlist) {
-      playlist.fetch()
+      playlist.fetch({
+        success: function () {
+          if (callback) {
+            callback();
+          }
+        }
+      })
     } else {
       playlist = new Songstorm.Models.Playlist({ id: id })
       playlist.fetch({

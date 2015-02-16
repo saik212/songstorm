@@ -9,7 +9,9 @@ Songstorm.Collections.Users = Backbone.Collection.extend({
     if (user) {
       user.fetch({
         success: function () {
-          callback();
+          if (callback){
+            callback();
+          }
         }
       })
     } else {

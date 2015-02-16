@@ -6,7 +6,7 @@
 			<div class="song-stuff group">
 				<div class="song-img"></div>
 					<ul class="song-info">
-						<li id="song-title">Playlist Name</li>
+						<li id="song-title"><%=playlist.escape('name')%></li>
 					</ul>
 					<span class="waveform" id="show-waveform">BLAHBLAH WAVEFORM</span>
 			</div>
@@ -25,27 +25,19 @@
 		<section class="comments-section">
 
 				<ul class="comments-display" id="song-list-display">
-					<li>
-						<div class="song-thumb" id="playlist-thumb"></div>
-						<i class="fa fa-play"></i>
-						<a href="#">Song</a>
-						<span class="waveform">BLAHBLAHBLAH Waveform</span>
-						<span class="remove-button">Remove</span>
-					</li>
-					<li>
-						<div class="song-thumb" id="playlist-thumb"></div>
-						<i class="fa fa-play"></i>
-						<a href="#">Song</a>
-						<span class="waveform">BLAHBLAHBLAH Waveform</span>
-						<span class="remove-button">Remove</span>
-					</li>
-					<li>
-						<div class="song-thumb" id="playlist-thumb"></div>
-						<i class="fa fa-play"></i>
-						<a href="#">Song</a>
-						<span class="waveform">BLAHBLAHBLAH Waveform</span>
-						<span class="remove-button">Remove</span>
-					</li>
+					<%playlist.songs().forEach(function(song){%>
+						<li>
+							<div class="song-thumb" id="playlist-thumb"></div>
+							<i class="fa fa-play"></i>
+							<a href="#/songs/<%=song.id%>"><%=song.escape('title')%></a>
+							<span class="waveform">BLAHBLAHBLAH Waveform</span>
+							<span class="remove-button">Remove</span>
+						</li>
+					<%})%>
+
+					<%if (playlist.songs().length === 0) {%>
+						<li>You don't have any songs in this list!</li>
+					<%}%>
 				</ul>
 
 		</section>
@@ -55,26 +47,20 @@
 
 
 		<section class="playlists-section">
-			<h2 id="playlist-owner"><div class="song-thumb"></div>More From This User</h2>
+			<h2 id="playlist-owner"><div class="song-thumb"></div>More From <a href="#/users/<%=uploader.id%>"><%= uploader.escape('username')%></a></h2>
 			<ul class="songs-playlists">
-				<li class="playlist-li">
-					<div class="song-thumb"></div>
-					<h1>
-				    <a href="#">Playlist</a>
-					</h1>
-				</li>
-				<li class="playlist-li">
-					<div class="song-thumb"></div>
-					<h1>
-				    <a href="#">Playlist</a>
-					</h1>
-				</li>
-				<li class="playlist-li">
-					<div class="song-thumb"></div>
-					<h1>
-				    <a href="#">Playlist</a>
-					</h1>
-				</li>
+			<%uploader.playlists().forEach(function(list){%>
+				<%if (playlist.escape('name') !== list.escape('name')) {%>
+					<li class="playlist-li">
+						<div class="song-thumb"></div>
+						<h1>
+					    <a href="#/playlists/<%=list.id%>"><%=list.escape('name')%></a>
+						</h1>
+					</li>
+
+			<%}%>
+			<%})%>
+				
 			</ul>
 		</section>
 	</section>
