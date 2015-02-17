@@ -35,9 +35,9 @@ class Api::SongsController < ApplicationController
     # redirect_to user_url(current_user)
   end
 
-  def edit
-    @song = Song.find(params[:id])
-  end
+  # def edit
+  #   @song = Song.find(params[:id])
+  # end
 
   def update
     @song = Song.find(params[:id])
@@ -52,7 +52,7 @@ class Api::SongsController < ApplicationController
 
   private
   def song_params
-    params.require(:song).permit(:title, :artist, :album, :playlists, :audio, :audio_url, :likers, :image, :image_url)
+    params.require(:song).permit(:title, :artist, :album, :playlists, :audio, :audio_url,:image)
   end
 
   # def prevent_delete

@@ -1,6 +1,6 @@
 class Api::PlaylistsController < ApplicationController
   before_action :prevent_delete, only: [:destroy, :edit, :update]
-  wrap_parameters :playlist, include: [:image, :image_url]
+  # wrap_parameters :playlist, include: [:image, :image_url]
   def new
     @playlist = Playlist.new
     render :new
@@ -53,7 +53,7 @@ class Api::PlaylistsController < ApplicationController
 
   private
   def playlist_params
-    params.require(:playlist).permit(:name, :image, :image_url)
+    params.require(:playlist).permit(:name, :image)
   end
 
   def prevent_delete
