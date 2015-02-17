@@ -8,6 +8,10 @@ Songstorm.Models.Song = Backbone.Model.extend({
       json.song.audio = this._audio;
     }
 
+    if (this._image) {
+      json.song.image = this._image;
+    }
+
     return json;
   },
 

@@ -14,7 +14,8 @@ Songstorm.Views.SongForm = Backbone.View.extend({
 
   events: {
     "click .submit_form": "submit",
-    "change #add_audio_file": "fileInputChange"
+    "change #add_audio_file": "audioFileInputChange",
+    "change #input-post-image": "imageFileInputChange"
   },
 
   render: function () {
@@ -27,6 +28,7 @@ Songstorm.Views.SongForm = Backbone.View.extend({
     event.preventDefault();
 
     var dataInfo = this.$el.serializeJSON();
+    console.log(dataInfo);
     var that = this;
     this.model.save(dataInfo, {
       success: function () {
@@ -38,7 +40,7 @@ Songstorm.Views.SongForm = Backbone.View.extend({
     })
   },
 
-  fileInputChange: function(event){
+  audioFileInputChange: function(event){
     var that = this;
     var file = event.currentTarget.files[0];
     var reader = new FileReader();
@@ -49,6 +51,21 @@ Songstorm.Views.SongForm = Backbone.View.extend({
       reader.readAsDataURL(file);
     } else {
       delete this.model._audio;
+    }
+  },
+
+  imageFileInputChange: function(event){
+    var that = this;
+    var file = event.currentTarget.files[0];
+    console.log(file);
+    var reader = new FileReader();
+    reader.onloadend = function(){
+      that.model._image = reader.result;
+    }
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      delete this.model._image;
     }
   },
 })

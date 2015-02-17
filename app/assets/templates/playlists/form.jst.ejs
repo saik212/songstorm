@@ -2,7 +2,9 @@
 
 <label>
   <span>Name</span>
-<input type="text" name="name" value="<%= playlist.escape("name") %>"><br>
+<input type="text" name="playlist[name]" value="<%= playlist.escape("name") %>"><br>
 </label>
+
+<input type="file" name="playlist[image]" id="input-post-image">
 
 <button class="submit_form">Submit</button>

@@ -1,5 +1,6 @@
 class Api::PlaylistsController < ApplicationController
   before_action :prevent_delete, only: [:destroy, :edit, :update]
+  wrap_parameters :playlist, include: [:image, :image_url]
   def new
     @playlist = Playlist.new
     render :new
@@ -16,7 +17,7 @@ class Api::PlaylistsController < ApplicationController
     @playlist = current_user.playlists.new(playlist_params)
     @playlist.user_id = current_user.id
     if @playlist.save
-      render json: @playlist
+      render :show
     else
       render json: @playlists.errors.full_messages
     end

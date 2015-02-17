@@ -30,8 +30,6 @@ Songstorm.Views.UsersForm = Backbone.View.extend({
 		var that = this;
 
 		this.model.set(dataInfo);
-		console.log('hihi')
-		debugger
 		this.model.save({}, {
 			success: function () {
 				Songstorm.currentUser.fetch();

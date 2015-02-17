@@ -1,4 +1,7 @@
 <h1>Create/Edit A Song!</h1>
+
+
+
 <label>
   <span>Title</span>
 <input type="text" name="title" value="<%= song.escape("title") %>"><br>
@@ -14,7 +17,12 @@
 <input type="text" name="album" value="<%= song.escape("album") %>"><br>
 </label>
 
+<label>Song file:
+	<input type="file" name="song[audio]" id="add_audio_file">
+</label>
 
-<input type="file" name="song[audio]" id="add_audio_file">
+<label>Song image(optional):
+	<input type="file" name="song[image]" id="input-post-image">
+</label>
 
 <button class="submit_form">Submit</button>

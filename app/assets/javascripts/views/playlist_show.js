@@ -30,8 +30,13 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
 
   getUploader: function () {
     var that = this;
-    this.uploader.set({id: this.model.toJSON().user_id});
-    this.uploader.fetch();
+    this.uploader.set({id: parseInt(this.model.escape('user_id'))});
+    this.uploader.fetch({
+      success: function () {
+        console.log(that.uploader);
+        console.log(that.uploader.playlists());
+      }
+    });
   },
 
   playSong: function (event) {

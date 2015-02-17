@@ -43,20 +43,20 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     var that = this;
     commSongId = parseInt($(".song_id").val());
     commBody = $(".comment_body").val();
-    console.log($(".comment_body"));
-    console.log(commBody);
 
     comment = new Songstorm.Models.Comment({
       user_id: Songstorm.currentUser.id,
       commentable_id: this.model.id,
       commentable_type: 'Song',
       body: commBody,
-      author: Songstorm.currentUser.escape("username")
+      author: Songstorm.currentUser.escape("username"),
+      author_image: Songstorm.currentUser.escape("image_url")
     });
 
     comment.save({}, {
       success: function () {
         that.model.comments().add(comment);
+
         Songstorm.comments.add(comment);
       }
     });
@@ -70,6 +70,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     comment.destroy({
       success: function () {
         that.model.comments().remove(comment);
+        Songstorm.comments.remove(comment);
       }
     })
   },

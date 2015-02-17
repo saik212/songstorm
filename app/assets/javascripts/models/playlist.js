@@ -1,6 +1,16 @@
 Songstorm.Models.Playlist = Backbone.Model.extend({
   urlRoot: "/api/playlists",
 
+   toJSON: function(){
+    var json = {playlist: _.clone(this.attributes)};
+
+    if (this._image) {
+      json.playlist.image = this._image;
+    }
+
+    return json;
+  },
+
   uploader: function () {
     if (!this._uploader) {
       this._uploader = new Songstorm.Models.User();
