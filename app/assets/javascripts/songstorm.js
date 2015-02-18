@@ -27,6 +27,10 @@ window.Songstorm = {
     Songstorm.router = new Songstorm.Routers.Router({
       $rootEl: $("#content")
     });
+
+    //global player playlists
+    Songstorm.playQueue = [];
+    
     Backbone.history.start()
   }
 };

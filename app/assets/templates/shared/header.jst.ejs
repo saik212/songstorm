@@ -12,13 +12,16 @@
         </h1>
       <% } %>
 
-      <form class="search-bar">
-      <input type="text" class="query" placeholder="Search songs, artists, albums" value="">
-      <input type="submit" class="search">
-      </form>
+     
 
       <ul class="header-list group">
         <% if (Songstorm.currentUser.isSignedIn()) {%>
+          <!-- <li>
+            <form class="search-bar">
+              <input type="text" class="query" placeholder="Search songs, artists, albums" value="">
+              <input type="submit" class="search">
+            </form>
+          </li> -->
           <li>
             <a href="#/users/<%= currentUserId%>/likes">Favorites</a>
           </li>
@@ -26,8 +29,7 @@
             <a href="#/songs/new">Upload</a>
           </li>
           <li>
-             <% user_home = "/#/users/<%= currentUserId%>"%>
-            <a href=<% user_home %>>Home</a>
+            <a href="#/users/<%=Songstorm.currentUser.id%>">Home</a>
           </li>
           <li>
             <a id="sign-out-link">Sign Out</a>

@@ -11,6 +11,7 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
   },
 
   events: {
+    "click #play-queue": "playQueue",
   	"click .fa-play": "playSong",
     "click .remove-button": "removeSong"
   },
@@ -39,13 +40,25 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
     });
   },
 
+  playQueue: function (event) {
+    event.preventDefault();
+
+    Songstorm.playQueue = [];
+    this.model.songs().forEach(function (song) {
+      Songstorm.playQueue.push(song.escape('audio_url'));
+    });
+
+    console.log('playlist hihi');
+    Songstorm.globalPlayer.playQueue();
+  },
+
   playSong: function (event) {
     event.preventDefault();
-    var player = $("#global-player audio");
+
+    Songstorm.playQueue = [];
     var songUrl = $(event.currentTarget).data("song-url");
-    player.attr("src", songUrl);
-    player = player[0];
-    player.play();
+    Songstorm.playQueue.push(songUrl);
+    Songstorm.globalPlayer.playQueue();
   },
 
   removeSong: function(event) {
