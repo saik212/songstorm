@@ -17,6 +17,7 @@ window.Songstorm = {
     Songstorm.comments = new Songstorm.Collections.Comments();
     Songstorm.comments.fetch();
     Songstorm.likes = new Songstorm.Collections.Likes();
+    Songstorm.likes.fetch();
     new Songstorm.Views.Header({el: "#header"});
     new Songstorm.Views.Footer({el: "#footer"});
     Songstorm.globalPlayer = new Songstorm.Views.MusicPlayer({

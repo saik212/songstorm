@@ -7,6 +7,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     this.listenTo(this.model.comments(), 'sync add change remove', this.render);
     this.listenTo(Songstorm.playlistSongs, 'add change remove', this.render);
     this.listenTo(Songstorm.playlists, 'sync', this.render);
+    this.listenTo(Songstorm.likes, 'add sync remove', this.render);
   },
 
   events: {
@@ -77,20 +78,18 @@ Songstorm.Views.SongShow = Backbone.View.extend({
 
   addLike: function (event) {
     event.preventDefault();
+    this.render();
     var that = this;
 
     var song_id = this.model.id;
     var user_id = Songstorm.currentUser.id;
 
     var like = new Songstorm.Models.Like({song_id: song_id, user_id: user_id, song: this.model});
-    // debugger
     like.save({}, {
       success: function () {
+        Songstorm.likes.add(like);
 
-        console.log('saved like');
-      },
-      error: function () {
-        console.log("didn't save like");
+        that.model.fetch();
       }
     });
   },
@@ -102,26 +101,19 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     var user_id = Songstorm.currentUser.id;
     var user = Songstorm.users.getOrFetch(user_id);
     var like;
-    // debugger
-    // like.destroy();
-    Songstorm.likes.fetch({
+    like = Songstorm.likes.findWhere({user_id: user_id, song_id: song_id});
+    like.destroy({
       success: function () {
-        like = Songstorm.likes.findWhere({user_id: user_id, song_id: song_id});
-        like.destroy({
+        that.model.fetch();
+        Songstorm.likes.remove(like);
+        user.likedSongs().fetch({
           success: function () {
-            user.likedSongs().fetch({
-              success: function () {
-                console.log(like);
-                // console.log(user.likedSongs());
-                user.likedSongs().remove(like);
-                // console.log(user.likedSongs());
-                
-              }
-            });
+            user.likedSongs().remove(like);
           }
-        })
+        });
       }
     })
+      
 
     
   },

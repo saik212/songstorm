@@ -15,7 +15,11 @@
 
 			<div class="song-widgets-tab">
 				<ul class="song-widgets">
-					<li>Like</li>
+					<%if (song.escape('liked_by_current_user') === "false") {%>
+						<li class="add-like">Like</li>
+					<%} else {%>
+						<li class="remove-like">Unlike</li>
+					<%}%>
 					<% if (currUserId === uploader_id) { %>
 						<li><a href="#/songs/<%=song.id%>/edit">Edit</a></li>
 						<li>Delete</li>
