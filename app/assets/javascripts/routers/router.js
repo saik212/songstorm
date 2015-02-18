@@ -20,9 +20,9 @@ Songstorm.Routers.Router = Backbone.Router.extend({
 
   checkSignIn: function () {
     if (Songstorm.currentUser.isSignedIn()) {
-      this.userShow();
+      Backbone.history.navigate("users/"+Songstorm.currentUser.id, {trigger:true});
     } else {
-      this.signIn();
+      Backbone.history.navigate("session/new", {trigger:true});
     }
   },
 
@@ -72,22 +72,19 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   _goHome: function () {
-    Backbone.history.navigate("", {trigger: true});
-
+    alert("You need to be logged in to do that.");
+    Backbone.history.navigate("session/new", {trigger: true});
   },
 
   userShow: function (id) {
-    if (!Songstorm.currentUser.isSignedIn()) {
-      this._goHome();
-      return ;
-    };
-
+    console.log("ROUTER HIHI");
     var that = this;
 
     var user = Songstorm.users.getOrFetch(id, function() {
-      var userShowView = new Songstorm.Views.UserShow({model: user});
-      that._swapView(userShowView);
     });
+    var userShowView = new Songstorm.Views.UserShow({model: user});
+    that._swapView(userShowView);
+
   },
 
   userFavorites: function (id) {
@@ -111,6 +108,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   playlistNew: function () {
+    var callback = this.playlistNew.bind(this);
+    if (!this._requireSignedIn(callback)) {return;}
     var newPlaylist = new Songstorm.Models.Playlist();
 
     var playlistFormView = new Songstorm.Views.PlaylistForm({
@@ -130,6 +129,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   playlistEdit: function (id) {
+    var callback = this.playlistNew.bind(this, id);
+    if (!this._requireSignedIn(callback)) {return;}
     var playlist = Songstorm.playlists.getOrFetch(id);
     var playlistEditView = new Songstorm.Views.PlaylistForm({
       model: playlist,
@@ -139,6 +140,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   songNew: function () {
+    var callback = this.playlistNew.bind(this);
+    if (!this._requireSignedIn(callback)) {return;}
     var newSong = new Songstorm.Models.Song();
     var songFormView = new Songstorm.Views.SongForm({
       model: newSong,
@@ -149,6 +152,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   songShow: function (id) {
+    var callback = this.playlistNew.bind(this, id);
+    if (!this._requireSignedIn(callback)) {return;}
     var song = Songstorm.songs.getOrFetch(id);
     Songstorm.playlists.fetch();
     var songShowView = new Songstorm.Views.SongShow({ model: song });
@@ -156,6 +161,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   songEdit: function (id) {
+    var callback = this.playlistNew.bind(this, id);
+    if (!this._requireSignedIn(callback)) {return;}
     var song = Songstorm.songs.getOrFetch(id);
     var songEditView = new Songstorm.Views.SongForm({
       model: song,

@@ -24,7 +24,7 @@ window.Songstorm = {
       el: "#global-player",
       rootEl: "#content"
     });
-    new Songstorm.Routers.Router({
+    Songstorm.router = new Songstorm.Routers.Router({
       $rootEl: $("#content")
     });
     Backbone.history.start()

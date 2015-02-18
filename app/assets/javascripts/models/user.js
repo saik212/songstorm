@@ -65,7 +65,7 @@ Songstorm.Models.CurrentUser = Backbone.Model.extend({
   },
 
   fireSessionEvent: function () {
-    if (this.isSignedIn) {
+    if (this.isSignedIn()) {
       this.trigger('signIn');
       console.log("CurrentUser is signed in!", this);
     } else {
@@ -92,6 +92,7 @@ Songstorm.Models.CurrentUser = Backbone.Model.extend({
       dataType: "json",
       success: function (data) {
         model.set(data);
+        Songstorm.router.userShow(Songstorm.currentUser.id);
         options.success && options.success();        
       },
       error: function () {
@@ -110,6 +111,7 @@ Songstorm.Models.CurrentUser = Backbone.Model.extend({
       dataType: "json",
       success: function (data) {
         model.clear();
+        Backbone.history.navigate("", {trigger: true})
         options.success && options.success();
       }
     });
