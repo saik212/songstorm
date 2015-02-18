@@ -22,7 +22,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
     if (Songstorm.currentUser.isSignedIn()) {
       Backbone.history.navigate("users/"+Songstorm.currentUser.id, {trigger:true});
     } else {
-      Backbone.history.navigate("session/new", {trigger:true});
+      // Backbone.history.navigate("session/new", {trigger:true});
+      this.signIn();
     }
   },
 
