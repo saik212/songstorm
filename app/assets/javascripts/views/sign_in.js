@@ -19,7 +19,6 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 
 		var newUser = new Songstorm.Models.User();
 		newUser.set(userInfo);
-		debugger
 		newUser.save({}, {
 			success: function () {
 				Songstorm.currentUser.fetch();
@@ -44,7 +43,7 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 			username: formData.username,
 			password: formData.password,
 			error: function () {
-				alert("Wrong user info combination.");
+				// alert("Wrong user info combination.");
 			}
 		});
 	},

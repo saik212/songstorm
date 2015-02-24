@@ -153,8 +153,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   songShow: function (id) {
-    var callback = this.playlistNew.bind(this, id);
-    if (!this._requireSignedIn(callback)) {return;}
+    // var callback = this.playlistNew.bind(this, id);
+    // if (!this._requireSignedIn(callback)) {return;}
     var song = Songstorm.songs.getOrFetch(id);
     Songstorm.playlists.fetch();
     var songShowView = new Songstorm.Views.SongShow({ model: song });

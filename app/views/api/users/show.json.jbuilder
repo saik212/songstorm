@@ -31,4 +31,6 @@ json.liked_songs @user.liked_songs do |liked_song|
 	json.album liked_song.album
 end
 
-json.is_current_user(@user.id === current_user.id)
+if current_user
+	json.is_current_user(@user.id === current_user.id)
+end

@@ -36,4 +36,6 @@ json.likers @song.likers do |liker|
 	json.username liker.username
 end
 
-json.liked_by_current_user @song.likers.to_a.include?(User.find(current_user.id))
+if current_user
+	json.liked_by_current_user @song.likers.to_a.include?(User.find(current_user.id))
+end
