@@ -46,20 +46,26 @@
   padding: 20px;
 }
 
-.user-songs > h3 {
+.song-list-header {
   text-align: center;
   font-size: 30px;
 }
 
 .user-blurb {
   border-bottom: 1px solid #000;
+  margin-bottom: 5px;
+}
+
+.user-details > * {
+  text-align: left;
+  padding: 5px;
 }
 
 .user-propic {
   margin: 0 20% 5px 20%;
-  border: 1px solid #5A0881;
+  background: #000;
   padding: 10px;
-  border-radius: 4%;
+  border-radius: 5%;
 }
 
 .user-playlist-list {
@@ -67,27 +73,60 @@
   text-align: left;
 }
 
+.user-playlist-list > li {
+  height: 80px;
+}
+
 .user-playlist-list > li > .delete-button {
   text-align: left;
 }
 
 .user-song-list li {
-  padding: 10px 0 10px 0;
-  border-bottom: 1px solid #000;
+  padding: 10px 0 0 0;
+  /*border-bottom: 1px solid #000;*/
+  height: 80px;
 }
 
 .user-song-list li > * {
   margin-right: 20px;
 }
 
+.user-song-list li > a {
+  font-size: 30px;
+}
+
+.user-song-list li > a:hover {
+  color: #fff;
+}
+
+.user-song-list li > i {
+  font-size: 50px;
+  padding-top: 6px;
+}
+
+.user-song-list li > i:hover {
+  cursor: pointer;
+  color: white;
+}
+
 .delete-button {
   text-align: left;
   margin: 0;
-  padding-left: 90px;
   padding-top: 10px;  
   font-size: 10px;
   width: 100%;
-  display: inline-block;
+  display: inline;
+}
+
+.delete-wrapper {
+  display: block;
+  border-bottom: 1px solid #000;
+  text-align: left;
+}
+
+.delete-playlist:hover, .delete-button:hover {
+  cursor: pointer;
+  color: #FF0303;
 }
 
 .delete-playlist {
@@ -99,10 +138,27 @@
   display: block;
 }
 
+.create-list {
+  text-align: right;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
 .song-thumb {
+  padding: 5px;
+  border-radius: 5px;
   height: 50px;
   width: 50px;
   float: left;
   background: #000;
   display: inline-block;
+}
+
+/*hover stuff*/
+.create:hover {
+  color: #fff;
+}
+
+.delete:hover {
+  color: #FF0303;
 }

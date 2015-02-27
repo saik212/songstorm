@@ -111,7 +111,7 @@ Songstorm.Models.CurrentUser = Backbone.Model.extend({
       dataType: "json",
       success: function (data) {
         model.clear();
-        Backbone.history.navigate("", {trigger: true})
+        Backbone.history.navigate("", {trigger: true});
         options.success && options.success();
       }
     });

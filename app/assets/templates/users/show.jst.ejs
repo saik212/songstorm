@@ -11,63 +11,57 @@
 
 
 		<section class="user-playlists">
-			<h3> <%= username %>'s Playlists: </h3>
-			<ul class="user-playlist-list">
-				<% user.playlists().each(function (playlist) { %>
-				 	<li>
-						<img class="song-thumb" src="<%= playlist.escape("image_url") %>" width="100" alt="">
-				 		<a href="#/playlists/<%= playlist.id %>"><%=playlist.escape("name")  %></a>
-				 		<%if (currUserId === userShowId) {%>
-					 		<span class="delete-playlist" data-id="<%= playlist.id %>" data-collection="playlists">Delete Playlist</span>
-					 	<%}%>
-				 	</li>
-			 	<% }) %>
-			 	<li>
-			 		<%if (currUserId === userShowId) {%>
-				 		<a href="#/playlists/new">Create Playlist</a>
-				 	<%}%>
-			 	</li>
+			<ul class="user-details">
+				<li>Joined: <%=user.escape("joinDate")%></li>
+				<li>Uploads: <%=user.songs().length%></li>
+			</ul>
 		</section>
 	</section>
 
 	<section class="page-center">
 		<section class="user-songs">
-			<h3> <%=username%>'s Songs: </h3>
+			<h3 class="song-list-header"> <%=username%>'s Songs: </h3>
 			<ul class="user-song-list">
 				<%user.songs().forEach(function(song){%>
 					<li>
 						<img class="song-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
 						<i class="fa fa-play" data-song-url="<%=song.escape('audio_url')%>"></i>
-						<a href="#/songs/<%=song.id%>"><%=song.escape('title')%></a>
-						<span class="waveform">BLAHBLAHBLAH Waveform</span>
-						<%if (currUserId === userShowId) {%>
-							<span class="delete-button" data-id="<%= song.id %>" data-collection="songs">Delete Song</span>
-					 	<%}%>
+						<a href="#/songs/<%=song.id%>"><%=song.escape('artist') +" - "+ song.escape('title')%></a>
 					</li>
+						<%if (currUserId === userShowId) {%>
+							<span class="delete-wrapper">
+								<span class="delete-button" data-id="<%= song.id %>" data-collection="songs">Delete Song</span>
+							</span>
+					 	<%}%>
 				<%})%>
 			</ul>
+			<h3 class="create-list">
+				<a href="#/search" class="create">Explore More Songs >></a>
+			</h3>
 		</section>
 	</section>
 
 	
 
 	<section class="page-right">
-		<section>
-			<h3>Followers</h3>
-			<ul class="followers">
-				<li class="follower">Follower A</li>
-				<li class="follower">Follower A</li>
-				<li class="follower">Follower A</li>
-				<li class="follower">Follower A</li>
+		<section class="user-playlists">
+			<h3> <%= username %>'s Playlists: </h3>
+			<ul class="user-playlist-list">
+				<% user.playlists().each(function (playlist) { %>
+				 	<li>
+						<img class="song-thumb" src="<%= playlist.escape("image_url") %>" width="100" alt="">
+				 		<a href="#/playlists/<%= playlist.id %>" class="create"><%=playlist.escape("name")  %></a>
+				 		<%if (currUserId === userShowId) {%>
+					 		<span class="delete-playlist" data-id="<%= playlist.id %>" data-collection="playlists">Delete Playlist</span>
+					 	<%}%>
+				 	</li>
+			 	<% }) %>
 			</ul>
-		</section>
-		<section>
-			<h3>Totals</h3>
-			<ul class="totals">
-				<li class="total">Total A</li>
-				<li class="total">Total A</li>
-				<li class="total">Total A</li>
-			</ul>
+	 		<%if (currUserId === userShowId) {%>
+			 	<h3 class="create-list">
+			 		<a class="create" href="#/playlists/new">Create Playlist >></a>
+			 	</h3>
+		 	<%}%>
 		</section>
 	</section>
 </div>

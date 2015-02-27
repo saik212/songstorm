@@ -34,3 +34,5 @@ end
 if current_user
 	json.is_current_user(@user.id === current_user.id)
 end
+
+json.joinDate "#{Date::MONTHNAMES[@user.created_at.month]} #{@user.created_at.year}"

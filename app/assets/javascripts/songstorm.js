@@ -13,13 +13,13 @@ window.Songstorm = {
     Songstorm.playlistSongs = new Songstorm.Collections.PlaylistSongs();
     Songstorm.playlistSongs.fetch();
     Songstorm.songs = new Songstorm.Collections.Songs();
-    // Songstorm.songs.fetch();
+    Songstorm.songs.fetch();
     Songstorm.comments = new Songstorm.Collections.Comments();
     Songstorm.comments.fetch();
     Songstorm.likes = new Songstorm.Collections.Likes();
     Songstorm.likes.fetch();
     new Songstorm.Views.Header({el: "#header"});
-    new Songstorm.Views.Footer({el: "#footer"});
+    // new Songstorm.Views.Footer({el: "#footer"});
     Songstorm.globalPlayer = new Songstorm.Views.MusicPlayer({
       el: "#global-player",
       rootEl: "#content"

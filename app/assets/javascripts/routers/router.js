@@ -78,7 +78,6 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   userShow: function (id) {
-    console.log("ROUTER HIHI");
     var that = this;
 
     var user = Songstorm.users.getOrFetch(id, function() {

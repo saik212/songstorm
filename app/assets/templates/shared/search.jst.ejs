@@ -1,8 +1,38 @@
-<h1>Search!</h1>
-
-<input type="text" class="query" value="<%= collection._query %>">
-<input type="submit" class="search">
 
 
-<a class="next-page">Next Page</a>
-<ul class="search-results"></ul>
+<section class="user-songs" id="search-wrapper">
+	<h1>Search!</h1>
+	<input type="text" class="query" value="<%= collection._query %>">
+	<input type="submit" class="search-button">
+	<ul class="search-results">
+		<h3 class="results-header">Results: </h3>
+	</ul>
+</section>
+
+<section class="explore-wrapper group">
+<section class="user-songs explore" id="explore-left">
+	<h1>All Songs: </h1>
+	<ul class="user-song-list">
+		<%Songstorm.songs.forEach(function (song) {%>
+			<li>
+				<img class="song-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
+				<i class="fa fa-play" data-song-url="<%=song.escape('audio_url')%>"></i>
+				<a href="#/songs/<%=song.id%>"><%=song.escape('artist') +" - "+ song.escape('title')%></a>
+			</li>
+		<%})%>
+	</ul>
+</section>
+
+
+<section class="user-songs explore" id="explore-right">
+	<h1>Community: </h1>
+	<ul class="user-song-list" id="explore-users">
+		<%Songstorm.users.forEach(function (user) {%>
+			<li>
+				<img class="song-thumb" src="<%= user.escape("image_url") %>" width="100" alt="">
+				<a href="#/users/<%=user.id%>"><%=user.escape('username')%></a>
+			</li>
+		<%})%>
+	</ul>
+</section>
+</section>

@@ -8,7 +8,11 @@ class Api::PlaylistsController < ApplicationController
 
   def index
     # @playlists = params[:user_id] ? Playlist.where(user_id: params[:user_id]) : Playlist.all
-    @playlists = current_user.playlists
+    if current_user
+      @playlists = current_user.playlists
+    else
+      @playlists = Playlist.all
+    end
 
     render :index
   end

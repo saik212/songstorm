@@ -2,17 +2,19 @@ Songstorm.Views.Search = Backbone.View.extend({
 	initialize: function () {
 		this.searchResults = new Songstorm.Collections.SearchResults();
 		this.listenTo(this.searchResults, "sync", this.render);
+		this.listenTo(Songstorm.songs, 'sync', this.render);
 	},
 
 	events: {
-		"click .search": "search",
+		"click .search-button": "search",
 		"click .next-page": "nextPage"
 	},
 
+	className: "search",
 	template: JST["shared/search"],
 
 	render: function () {
-		console.log(this.searchResults);
+		console.log(Songstorm.songs);
 		var content = this.template ({
 			collection: this.searchResults
 		});
@@ -40,14 +42,13 @@ Songstorm.Views.Search = Backbone.View.extend({
 		event.preventDefault();
 
 		var that = this;
-		console.log("in search");
 
 		this.searchResults._query = this.$(".query").val();
-		console.log(this);
-		console.log(this.searchResults._query);
 		this.searchResults.fetch({
-			data: {query: this.searchResults._query},
-			
+			data: {query: that.searchResults._query},
+			success: function () {
+				console.log(that.searchResults.length);
+			},
 		});
 	},
 
