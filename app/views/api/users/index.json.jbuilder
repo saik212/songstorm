@@ -30,6 +30,8 @@ json.array! @users do |user|
     json.album song.album
   end
 
-  json.is_current_user(user.id === current_user.id)
+  if current_user
+    json.is_current_user(user.id === current_user.id)
+  end
 
 end

@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  skip_before_action :require_signed_in!, only: [:new, :create]
+  # skip_before_action :require_signed_in!, only: [:new, :create]
 
   # wrap_parameters :user, include: [:username, :password, :image]
   # def new

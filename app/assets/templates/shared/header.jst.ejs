@@ -15,6 +15,9 @@
      
 
       <ul class="header-list group">
+        <li>
+            <a href="#/search">Explore</a>
+          </li>
         <% if (Songstorm.currentUser.isSignedIn()) {%>
           <!-- <li>
             <form class="search-bar">
@@ -22,9 +25,7 @@
               <input type="submit" class="search">
             </form>
           </li> -->
-          <li>
-            <a href="#/search">Explore</a>
-          </li>
+          
           <li>
             <a href="#/users/<%= currentUserId%>/likes">Favorites</a>
           </li>
