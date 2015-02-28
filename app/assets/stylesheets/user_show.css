@@ -157,8 +157,10 @@
 /*hover stuff*/
 .create:hover {
   color: #fff;
+  cursor: pointer;
 }
 
 .delete:hover {
   color: #FF0303;
+  cursor: pointer;
 }

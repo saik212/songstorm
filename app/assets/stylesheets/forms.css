@@ -29,13 +29,31 @@
 }
 
 #song-form {
-  background: #8e44ad;
-  border: 3px solid #8e44ad;
-  box-shadow: 2px 2px 2px;
-  font: #000;
-  text-shadow: 1px 1px 1px #000;
+  width: 400px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
 }
 
+.song-form-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.song-form-list {
+}
+
+.song-form-list > * {
+  margin: 10px 0 5px 0;
+}
+
+
+#playlist-form {
+  width: 400px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
 /*// .comments-form h2 {
 //   text-align: center;
 //   font-weight: bold;

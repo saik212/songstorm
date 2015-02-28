@@ -7,17 +7,16 @@
 				<img class="song-img" src="<%= playlist.escape("image_url") %>" width="100" alt="">
 					<ul class="song-info">
 						<li id="song-title"><%=playlist.escape('name')%></li>
+						<li>Created by: <a class="create" href="#/users/<%=playlist.escape('user_id')%>"><%=playlist.escape('owner')%></a></li>
 					</ul>
-					<span class="waveform" id="show-waveform">BLAHBLAH WAVEFORM</span>
-					<span id="play-queue">Play Queue!</span>
+					<span class="create" id="play-queue">Play Queue!</span>
 			</div>
 
 			<div class="song-widgets-tab">
 				<ul class="song-widgets">
-					<li>Like</li>
 					<% if (currUserId === uploader_id) { %>
-						<li><a href="#/playlists/<%=playlist.id%>/edit">Edit</a></li>
-						<li>Delete</li>
+						<li><a class="create" href="#/playlists/<%=playlist.id%>/edit">Edit</a></li>
+						<li class="delete">Delete</li>
 					<% } %>
 
 				</ul>
@@ -32,11 +31,10 @@
 					<%playlist.songs().forEach(function(song){%>
 						<li>
 							<img class="song-thumb" id="playlist-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
-							<i class="fa fa-play" data-song-url="<%=song.escape('audio_url')%>"></i>
-							<a href="#/songs/<%=song.id%>"><%=song.escape('artist')+" - "+song.escape('title')%></a>
-							<span class="waveform">BLAHBLAHBLAH Waveform</span>
+							<i class="fa fa-play create" data-song-url="<%=song.escape('audio_url')%>"></i>
+							<a class="create" href="#/songs/<%=song.id%>"><%=song.escape('artist')+" - "+song.escape('title')%></a>
 							<% if (currUserId === uploader_id) { %>
-								<span class="remove-button" data-song-id=<%=song.id%>>Remove</span>
+								<span class="remove-button delete" data-song-id=<%=song.id%>>Remove</span>
 							<% } %>
 						</li>
 					<%})%>
@@ -53,14 +51,14 @@
 
 
 		<section class="playlists-section">
-			<h2 id="playlist-owner"><img class="song-thumb" src="<%= playlist.escape("owner_image") %>" width="100" alt="">More From <a href="#/users/<%=uploader.id%>"><%= uploader.escape('username')%></a></h2>
+			<h2 id="playlist-owner"><img class="song-thumb" src="<%= playlist.escape("owner_image") %>" width="100" alt="">More From <a class="create" href="#/users/<%=uploader.id%>"><%= uploader.escape('username')%></a></h2>
 			<ul class="songs-playlists">
 			<%uploader.playlists().forEach(function(list){%>
 				<%if (playlist.escape('name') !== list.escape('name')) {%>
 					<li class="playlist-li">
 						<img class="song-thumb" src="<%= list.escape("image_url") %>" width="100" alt="">
 						<h1>
-					    <a href="#/playlists/<%=list.id%>"><%=list.escape('name')%></a>
+					    <a class="create" href="#/playlists/<%=list.id%>"><%=list.escape('name')%></a>
 						</h1>
 					</li>
 

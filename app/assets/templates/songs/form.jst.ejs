@@ -1,28 +1,34 @@
-<h1>Create/Edit A Song!</h1>
+<h1 class="song-form-title">Create/Edit A Song!</h1>
 
+<ul class="song-form-list">
+<li>
+	<label>
+	  <span>Title:</span>
+	<input type="text" name="title" value="<%= song.escape("title") %>"><br>
+	</label>
+</li>
+<li>
+	<label>
+	  <span>Artist:</span>
+	<input type="text" name="artist" value="<%= song.escape("artist") %>"><br>
+	</label>
+</li>
+<li>
+	<label>
+	  <span>Album:</span>
+	<input type="text" name="album" value="<%= song.escape("album") %>"><br>
+	</label>
+</li>
+<li>
+	<label>Song file:
+		<input type="file" name="song[audio]" id="add_audio_file">
+	</label>
+</li>
+<li>
+	<label>Song image(optional):<input type="file" name="song[image]" id="input-post-image">
+	</label>
+</li>
 
-
-<label>
-  <span>Title</span>
-<input type="text" name="title" value="<%= song.escape("title") %>"><br>
-</label>
-
-<label>
-  <span>Artist</span>
-<input type="text" name="artist" value="<%= song.escape("artist") %>"><br>
-</label>
-
-<label>
-  <span>Album</span>
-<input type="text" name="album" value="<%= song.escape("album") %>"><br>
-</label>
-
-<label>Song file:
-	<input type="file" name="song[audio]" id="add_audio_file">
-</label>
-
-<label>Song image(optional):
-	<input type="file" name="song[image]" id="input-post-image">
-</label>
+</ul>
 
 <button class="submit_form">Submit</button>

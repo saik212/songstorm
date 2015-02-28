@@ -1,10 +1,16 @@
-<h1>Create/Edit A Playlist!</h1>
+<h1 class="song-form-title">Create/Edit A Playlist!</h1>
+<ul class="song-form-list">
+<li>
+	<label>
+	  <span>Name</span>
+	<input type="text" name="playlist[name]" value="<%= playlist.escape("name") %>"><br>
+	</label>
+</li>
 
-<label>
-  <span>Name</span>
-<input type="text" name="playlist[name]" value="<%= playlist.escape("name") %>"><br>
-</label>
+<li>
+	<input type="file" name="playlist[image]" id="input-post-image">
+</li>
 
-<input type="file" name="playlist[image]" id="input-post-image">
+</ul>
 
 <button class="submit_form">Submit</button>

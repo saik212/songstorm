@@ -1,6 +1,6 @@
 Songstorm.Views.SongForm = Backbone.View.extend({
   tagName: 'form',
-  className: 'users-form',
+  className: 'user-songs',
   id: 'song-form',
 
   attributes: {
@@ -19,6 +19,7 @@ Songstorm.Views.SongForm = Backbone.View.extend({
   },
 
   render: function () {
+    console.log('hiyoooo');
     var content = this.template({song: this.model});
     this.$el.html(content);
     return this;

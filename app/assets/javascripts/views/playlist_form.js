@@ -1,6 +1,7 @@
 Songstorm.Views.PlaylistForm = Backbone.View.extend({
   tagName: 'form',
-  className: 'users-form',
+  className: 'user-songs',
+  id: 'playlist-form',
 
   attributes: {
     "enctype": "multipart/form-data"
@@ -15,6 +16,7 @@ Songstorm.Views.PlaylistForm = Backbone.View.extend({
   },
 
   render: function () {
+    console.log('hello!!');
     var content = this.template({playlist: this.model});
     this.$el.html(content);
     return this;

@@ -7,23 +7,38 @@
 				<img class="song-img" src="<%= song.escape("image_url") %>" width="100" alt="">
 					<ul class="song-info">
 						<li id="song-title"><%=song.escape('title')%></li>
-						<li><%=song.escape('artist')%></li>
-						<li><%=song.escape('album')%></li>
+						<li>Artist: 
+							<strong>
+								<%=song.escape('artist')%>
+							</strong>
+						</li>
+						<li>Album: 
+							<strong>
+								<%=song.escape('album')%>
+							</strong>
+						</li>
+						<li>Uploaded by: 
+							<strong>
+								<a class="create" href="#/users/<%=song.escape('uploader_id')%>"><%=song.escape('uploader_name')%>
+								</a>
+							</strong>
+						</li>
+						<li class="song-show-play"><i class="fa fa-play create"></i></li>
 					</ul>
-					<span class="waveform" id="show-waveform">BLAHBLAH WAVEFORM</span>
+					<!-- <span class="waveform" id="show-waveform">BLAHBLAH WAVEFORM</span> -->
 			</div>
 
 			<div class="song-widgets-tab">
 				<ul class="song-widgets">
 					<% if (Songstorm.currentUser.isSignedIn()) { %>
 						<%if (song.escape('liked_by_current_user') === "false") {%>
-							<li class="add-like">Like</li>
+							<li class="add-like create">Like</li>
 						<%} else {%>
-							<li class="remove-like">Unlike</li>
+							<li class="remove-like create">Unlike</li>
 						<%}%>
 						<% if (currUserId === uploader_id) { %>
-							<li><a href="#/songs/<%=song.id%>/edit">Edit</a></li>
-							<li>Delete</li>
+							<li><a class="create" href="#/songs/<%=song.id%>/edit">Edit</a></li>
+							<li class="delete">Delete</li>
 						<% } %>
 					<% } %>
 				</ul>
@@ -38,7 +53,7 @@
 				<form class="comments-form group">
 				  <input type="hidden" class="song_id" name="song_id" value="<%= song.id %>">
 			    <textarea class="comment_body" name="body" placeholder="comment here"></textarea>
-				  <span class="comment-submit">Submit</span>
+				  <span class="comment-submit create">Submit</span>
 				</form>
 			<% } %>
 
@@ -48,13 +63,13 @@
 							<li class="comment">
 								<img class="song-thumb" src="<%= comment.escape("author_image") %>" width="100" alt="">
 								<h1>
-									<a href="#/users/<%= comment.escape('user_id') %>"><%= comment.escape('author')%></a>
+									<a class="create" href="#/users/<%= comment.escape('user_id') %>"><%= comment.escape('author')%></a>
 								</h1>
 								<h2>
 									<%= comment.escape('body') %>
 								</h2>
 								<% if (currUserId === parseInt(comment.escape('user_id'))) { %>
-									<span class="delete-comment" data-id="<%= comment.id %>">DELETE</span>
+									<span class="delete-comment delete" data-id="<%= comment.id %>">DELETE</span>
 								<% } %>
 							</li>
 						<%})%>
@@ -87,7 +102,9 @@
 									<option value="<%=playlist.id%>"><%=playlist.escape('name')%></option>
 								<%})%>
 						</select>
-						<span id="add-playlist">Add</span>
+						<strong>
+							<span class="create" id="add-playlist">Add</span>
+						</strong>
 				</form>
 			</section>
 		<% } %>
@@ -100,10 +117,10 @@
 					<li class="playlist-li">
 						<img class="song-thumb" src="<%= playlist.escape("image_url") %>" width="100" alt="">
 						<h1>
-					    <a href="#/playlists/<%=playlist.id%>"><%=playlist.escape('name')%></a>
+					    <a class="create" href="#/playlists/<%=playlist.id%>"><%=playlist.escape('name')%></a>
 						</h1>
 						<h2>
-					    By: <a href="#/users/<%=playlist.escape('user_id')%>"><%=playlist.escape('owner')%></a>
+					    By: <a class="create" href="#/users/<%=playlist.escape('user_id')%>"><%=playlist.escape('owner')%></a>
 						</h2>
 					</li>
 				<% }) %>
