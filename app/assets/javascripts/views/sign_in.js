@@ -1,5 +1,6 @@
 Songstorm.Views.SignIn = Backbone.View.extend({
 	template: JST["shared/sign_in"],
+	className: "group landing-wrapper",
 
 	initialize: function (options) {
 		this.callback = options.callback;
@@ -7,7 +8,7 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 	},
 
 	events: {
-		"submit form": "submit",
+		"click .sign-in-button": "submit",
 		"click .sign-in-guest": "guestSignIn"
 	},
 
@@ -36,9 +37,8 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 
 	submit: function (event) {
 		event.preventDefault();
-		var $form = $(event.currentTarget);
+		var $form = $(".user-sign-in");
 		var formData = $form.serializeJSON().user;
-
 		Songstorm.currentUser.signIn({
 			username: formData.username,
 			password: formData.password,

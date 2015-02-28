@@ -1,26 +1,27 @@
-<h2>Sign Up</h2>
+<section class="landing-sign-in" id="sign-up">
+<h2 class="sign-in-header">Sign Up</h2>
 
-<form enctype="multipart/form-data">
-
+<form class="user-sign-in" enctype="multipart/form-data">
   <label>
-    Username
-    <input type="text" name="user[username]"
-           value="<%= user.escape("username") %>">
-  </label>
+      <strong>Username:</strong>
+      <input type="text" name="user[username]" value="<%= user.escape("username") %>">
+    </label>
 
-  <br>
+    <label>
+      <strong>Password:</strong>
+      <input type="password" name="user[password]" value="<%= user.escape("password") %>">
+    </label>
 
-  <label>
-    Password
-    <input type="password" name="user[password]"
-           value="<%= user.escape("password") %>">
-  </label>
+    <label>
+      <strong>Image:</strong>
+      <input type="file" name="user[image]" id="input-post-image">
+    </label>
 
-  <label class="image-label">
-  <span>Image</span>
-  <input type="file" name="user[image]" id="input-post-image">
-  <br>
+  
 
-  <button class="sign-up">Create Account</button>
 
 </form>
+
+<span class="sign-in-button">Sign Up</span>
+
+</section>

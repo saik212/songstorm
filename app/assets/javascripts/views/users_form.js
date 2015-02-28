@@ -1,8 +1,7 @@
 Songstorm.Views.UsersForm = Backbone.View.extend({
 	template: JST["users/form"],
-
-	tagName: "form",
-	className: "users-form",
+	className: "group",
+	id: "sign-up-wrapper",
 
 	initialize: function (options) {
 		this.listenTo(this.model, "sync change", this.render);;
@@ -18,15 +17,15 @@ Songstorm.Views.UsersForm = Backbone.View.extend({
 	},
 
 	events: {
-		"click .sign-up": "submit",
+		"click .sign-in-button": "submit",
 		"change #input-post-image": "fileInputChange"
 	},
 
 	submit: function (event) {
 		event.preventDefault();
 
-		// var $form = $(event.currentTarget);
-		var dataInfo = this.$el.serializeJSON().user;
+		var $form = $(".user-sign-in");
+		var dataInfo = $form.serializeJSON().user;
 		var that = this;
 
 		this.model.set(dataInfo);

@@ -1,24 +1,27 @@
-<div class="landing-text">
+<section class="landing-text">
   <p>
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   </p>
   <p>
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   </p>
-</div>
+</section>
 
-<form class="users-form">
+<section class="landing-sign-in">
+  <h1 class="sign-in-header">Sign In:</h1>
+  <form class="user-sign-in">
+    <label>
+      <strong>Username:</strong>
+      <input type="text" name="user[username]" value="">
+    </label>
 
-  <label>
-    <span>Username</span>
-    <input type="text" name="user[username]" value="">
-  </label>
+    <label>
+      <strong>Password:</strong>
+      <input type="password" name="user[password]" value="">
+    </label>
 
-  <label>
-    <span>Password</span>
-    <input type="password" name="user[password]" value="">
-  </label>
+  </form>
 
-  <button class="sign-in-button">Sign In</button>
-  <button class="sign-in-guest">Sign In As Guest</button>
-</form>
+  <span class="sign-in-button">Login</span>
+  <span class="sign-in-guest">Login As Guest</span>
+</section>
