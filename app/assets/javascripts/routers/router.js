@@ -45,12 +45,19 @@ Songstorm.Routers.Router = Backbone.Router.extend({
 
   signIn: function (callback) {
     if (!this._requireSignedOut(callback)) {return;};
+    var that = this;
 
-    var signView = new Songstorm.Views.SignIn({
-      callback: callback
-    });
+    Songstorm.songs.fetch({
+      success: function () {
+        var signView = new Songstorm.Views.SignIn({
+          callback: callback
+        });
 
-    this._swapView(signView);
+        that._swapView(signView);
+
+      }
+    })
+
   },
 
   _requireSignedIn: function (callback) {

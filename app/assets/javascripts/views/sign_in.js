@@ -9,8 +9,17 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 
 	events: {
 		"click .sign-in-button": "submit",
-		"click .sign-in-guest": "guestSignIn"
+		"click .sign-in-guest": "guestSignIn",
+		"click #preview-play": "playSong"
 	},
+
+  playSong: function (event) {
+    event.preventDefault();
+    Songstorm.playQueue = [];
+    var songUrl = $(event.currentTarget).data("song-url");
+    Songstorm.playQueue.push(songUrl);
+    Songstorm.globalPlayer.playQueue();
+  },
 
 	guestSignIn: function(event) {
 		var guestNames = ['Pikachu', "Squirtle", "Guy Pearce", "Bulbasaur", "Charmander" ];
@@ -30,7 +39,17 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 	},
 
 	render: function () {
-		var content = this.template;
+		var previewNum = Math.floor(Math.random()*Songstorm.songs.length);
+		var previewSong = Songstorm.songs.toJSON()[previewNum].song;
+		console.log(previewSong);
+		var content = this.template({
+			songTitle: previewSong.title,
+			imageUrl: previewSong.image_url,
+			audioUrl: previewSong.audio_url,
+			songArtist: previewSong.artist,
+			songAlbum: previewSong.album,
+			songId: previewSong.id
+		});
 		this.$el.html(content);
 		return this;
 	},

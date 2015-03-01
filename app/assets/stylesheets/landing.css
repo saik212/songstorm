@@ -7,7 +7,8 @@
 	width: 600px;
 	background: #892090;
 	padding: 50px;
-	border-radius: 10px
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px;
 }
 
 .landing-sign-in {
@@ -41,14 +42,14 @@
   padding: 20px 50px;
 }
 
-.sign-in-button, .sign-in-guest {
+.sign-in-button, .sign-in-guest, .explore-button {
 	padding: 20px;
 	background: #000;
 	color: #fff;
 	border-radius: 10px;
 }
 
-.sign-in-button:hover, .sign-in-guest:hover {
+.sign-in-button:hover, .sign-in-guest:hover, .explore-button:hover {
 	color: #000;
 	background: #fff;
 	box-shadow: 2px 2px 2px;
@@ -69,4 +70,82 @@
 
 #sign-up {
 	width: 450px;
+}
+
+.preview-song {
+	padding: 25px;
+	margin: 20px auto 0px auto;
+	border-radius: 10px;
+	border: 2px solid #000;
+	background: #931A84;
+}
+
+.preview-details {
+	display: inline-block;
+}
+
+.preview-details > * {
+	font-size: 15px;
+	margin-bottom: 5px;
+}
+
+#preview-title {
+	font-size: 35px;
+}
+
+#preview-play {
+	font-size: 50px;
+	margin-left: 10px;
+}
+
+#preview-play:hover {
+	color: #fff;
+	cursor: pointer;
+}
+
+#preview-image {
+	float: left;
+	width: 120px;
+	height: 120px;
+	margin-right: 20px;
+	display: inline-block;
+	border: 5px solid #000;
+	border-radius: 10px;
+}
+
+#landing-header {
+	display: block;
+	width: 335px;
+	margin: auto;
+	font-weight: bold;
+	text-align: center;
+	font-size: 45px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #000;
+	border-radius: 0;
+}
+
+.explore-button {
+	display: block;
+	text-align: center;
+	width: 100px;
+	margin: auto;
+}
+
+.preview-explore-header {
+	width: 200px;
+	display: block;
+	text-align: center;
+	margin: 20px auto 10px auto;
+}
+
+.preview-explore {
+	padding: 5px;
+	padding-bottom: 20px;
+	width: 300px;
+	margin: 20px auto 0px auto;
+	border-radius: 10px;
+	border: 2px solid #000;
+	background: #931A84;
 }
