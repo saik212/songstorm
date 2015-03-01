@@ -6,6 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+song_urls = {
+	rolento_theme: "http://s3.amazonaws.com/songstorm-pics/songs/audios/000/000/001/original/data?1425200209",
+	
+}
+
 
 User.create(
     username: "Guy Fierce",

@@ -149,3 +149,12 @@
 	border: 2px solid #000;
 	background: #931A84;
 }
+
+.site-header {
+	display: block;
+	width: 300px;
+	font-weight: bold;
+	font-size: 40px;
+	text-align: center;
+	margin: 0 auto 15px auto;
+}
