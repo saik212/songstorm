@@ -28,6 +28,7 @@
 		<section class="comments-section">
 
 				<ul class="comments-display" id="song-list-display">
+					<li>Songs(<%=playlist.songs().length%>): </li>
 					<%playlist.songs().forEach(function(song){%>
 						<li>
 							<img class="song-thumb" id="playlist-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
@@ -40,7 +41,7 @@
 					<%})%>
 
 					<%if (playlist.songs().length === 0) {%>
-						<li>You don't have any songs in this list!</li>
+						<li>No songs in this list!</li>
 					<%}%>
 				</ul>
 

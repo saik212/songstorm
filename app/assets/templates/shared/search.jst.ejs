@@ -11,7 +11,7 @@
 
 <section class="explore-wrapper group">
 <section class="user-songs explore" id="explore-left">
-	<h1>All Songs: </h1>
+	<h1>All Songs(<%=Songstorm.songs.length%>): </h1>
 	<ul class="user-song-list">
 		<%Songstorm.songs.forEach(function (song) {%>
 			<li>
@@ -25,7 +25,7 @@
 
 
 <section class="user-songs explore" id="explore-right">
-	<h1>Community: </h1>
+	<h1>Community(<%=Songstorm.users.length%>): </h1>
 	<ul class="user-song-list" id="explore-users">
 		<%Songstorm.users.forEach(function (user) {%>
 			<li>
