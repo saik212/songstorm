@@ -4,6 +4,7 @@
 ###Summary:
 - A simple music-player application to manage and listen to music
 - Written using Ruby on Rails and Backbone.js
+
 ###Features:
 - Uses Backbone.js to manage front-end user authentication, allowing for a single-page app
 - CRUD functionality for models such as Songs and Playlists
