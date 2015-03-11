@@ -52,6 +52,7 @@ Songstorm.Views.UserShow = Backbone.View.extend({
     Songstorm.playQueue = [];
     var songId = $(event.currentTarget).data("song-id");
     Songstorm.playQueue.push(Songstorm.songs.getOrFetch(songId));
+    Songstorm.globalPlayer.track = 0;
     Songstorm.globalPlayer.playQueue();
   },
 })

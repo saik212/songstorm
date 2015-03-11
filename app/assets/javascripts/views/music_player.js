@@ -26,10 +26,10 @@ Songstorm.Views.MusicPlayer = Backbone.View.extend({
 		this.$player[0].play();
 
 		this.$player.on("ended", function(){
-			var nextTrack = Songstorm.playQueue[this.track];
+			var nextTrack = Songstorm.playQueue[that.track+1];
 			$(".current-song").text(nextTrack.escape('title'));
-			if (track >= Songstorm.playQueue.length) {return;}
-			this.track++;
+			if (that.track >= Songstorm.playQueue.length) {return;}
+			that.track++;
 			that.$player.attr("src", nextTrack.escape('audio_url'));
 			that.$player[0].play();
 		});

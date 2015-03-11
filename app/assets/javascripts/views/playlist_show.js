@@ -34,8 +34,6 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
     this.uploader.set({id: parseInt(this.model.escape('user_id'))});
     this.uploader.fetch({
       success: function () {
-        console.log(that.uploader);
-        console.log(that.uploader.playlists());
       }
     });
   },
@@ -46,14 +44,15 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
     this.model.songs().forEach(function (song) {
       Songstorm.playQueue.push(song);
     });
-    // debugger
-    // console.log('playlist hihi');
+
+    Songstorm.globalPlayer.track = 0;
     Songstorm.globalPlayer.playQueue();
   },
 
   playSong: function (event) {
     event.preventDefault();
 
+    Songstorm.globalPlayer.track = 0;
     Songstorm.playQueue = [];
     var songId = $(event.currentTarget).data("song-id");
     Songstorm.playQueue.push(Songstorm.songs.getOrFetch(songId));

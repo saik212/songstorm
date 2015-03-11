@@ -36,6 +36,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
 
     Songstorm.playQueue = [];
     Songstorm.playQueue.push(this.model);
+    Songstorm.globalPlayer.track = 0;
     Songstorm.globalPlayer.playQueue();
   },
 
