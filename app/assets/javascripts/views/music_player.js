@@ -6,35 +6,58 @@ Songstorm.Views.MusicPlayer = Backbone.View.extend({
 		this.$rootEl = $(options.rootEl);
 		// debugger
 		this.render();
+
+		this.$player = $("#global-player audio");
+		this.track = 0;
+	},
+
+	events: {
+		"click #next-song": "playNext",
+		"click #previous-song": "playPrevious"
 	},
 
 	playQueue: function () {
-		console.log("GLOBAL PLAYER HIHI");
-		console.log(Songstorm.playQueue);
-		// grab video player
-		// play first song
-		// set counter variable
-		// on end of playing song, increment counter, and reset player src url
-		var track = 1;
-		var player = $("#global-player audio");
-		player.attr('src', Songstorm.playQueue[0]);
-		console.log(player[0]);
+		var that = this;
+		// var track = 1;
+		$(".stopped").removeClass("stopped");
+		// var player = $("#global-player audio");
+		this.$player.attr('src', Songstorm.playQueue[this.track].escape('audio_url'));
+		$(".current-song").text(Songstorm.playQueue[this.track].escape('title'));
+		this.$player[0].play();
 
-		player[0].play();
-
-		player.on("ended", function(){
-			var nextTrack = Songstorm.playQueue[track];
-			console.log("PLAYER EVENT HIHI");
-			console.log(track);
-			console.log(nextTrack);
+		this.$player.on("ended", function(){
+			var nextTrack = Songstorm.playQueue[this.track];
+			$(".current-song").text(nextTrack.escape('title'));
 			if (track >= Songstorm.playQueue.length) {return;}
-			track++;
-			player.attr("src", nextTrack);
-			player[0].play();
+			this.track++;
+			that.$player.attr("src", nextTrack.escape('audio_url'));
+			that.$player[0].play();
 		});
 
 	},
 
+	playNext: function (event) {
+		event.preventDefault();
+
+		if (Songstorm.playQueue[this.track+1]) {
+			this.track = (1 + this.track);
+		} else {
+			this.track = 0;
+		}
+		this.playQueue();
+	},
+
+	playPrevious: function (event) {
+		event.preventDefault();
+
+		if (this.track === 0) {
+			this.track = Songstorm.playQueue.length-1;
+		} else {
+			this.track--;
+		}
+
+		this.playQueue();
+	},
 
 	render: function () {
 		var content = this.template();

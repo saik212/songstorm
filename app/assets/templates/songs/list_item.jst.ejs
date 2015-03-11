@@ -1,5 +1,5 @@
 <li class="group">
 	<img class="song-thumb" id="playlist-thumb" src="<%= model.escape("image_url") %>" width="100" alt="">
-	<i class="fa fa-play create" data-song-url="<%=model.escape('audio_url')%>"></i>
+	<i class="fa fa-play create" data-song-id="<%=model.id%>"></i>
 	<a class="create" href="#/songs/<%= model.id %>"><%= model.escape("artist") +" - "+ model.escape("title") %></a>
 </li>

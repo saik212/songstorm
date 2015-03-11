@@ -33,10 +33,10 @@ Songstorm.Views.SongShow = Backbone.View.extend({
 
   playSong: function (event) {
     event.preventDefault();
-    var player = $("#global-player audio");
-    player.attr("src", this.model.escape("audio_url"));
-    player = player[0];
-    player.play();
+
+    Songstorm.playQueue = [];
+    Songstorm.playQueue.push(this.model);
+    Songstorm.globalPlayer.playQueue();
   },
 
   addComment: function (event) {

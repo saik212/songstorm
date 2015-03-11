@@ -26,7 +26,7 @@
 				<%user.songs().forEach(function(song){%>
 					<li>
 						<img class="song-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
-						<i class="fa fa-play" data-song-url="<%=song.escape('audio_url')%>"></i>
+						<i class="fa fa-play" data-song-id="<%=song.id%>"></i>
 						<a href="#/songs/<%=song.id%>"><%=song.escape('artist') +" - "+ song.escape('title')%></a>
 					</li>
 						<%if (currUserId === userShowId) {%>

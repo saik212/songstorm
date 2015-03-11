@@ -7,14 +7,14 @@ Songstorm.Views.Search = Backbone.View.extend({
 
 	events: {
 		"click .search-button": "search",
-		"click .next-page": "nextPage"
+		"click .next-page": "nextPage",
+		"click .fa-play": "playSong"
 	},
 
 	className: "search",
 	template: JST["shared/search"],
 
 	render: function () {
-		console.log(Songstorm.songs);
 		var content = this.template ({
 			collection: this.searchResults
 		});
@@ -59,6 +59,16 @@ Songstorm.Views.Search = Backbone.View.extend({
 				page: (this.searchResults._page || 1) +1
 			}
 		});
-	}
+	},
+
+	playSong: function (event) {
+    event.preventDefault();
+
+    Songstorm.playQueue = [];
+    var songId = $(event.currentTarget).data("song-id");
+    Songstorm.playQueue.push(Songstorm.songs.getOrFetch(songId));
+    console.log(Songstorm.playQueue);
+    Songstorm.globalPlayer.playQueue();
+  },
 
 });

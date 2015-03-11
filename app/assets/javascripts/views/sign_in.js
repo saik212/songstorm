@@ -5,6 +5,9 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 	initialize: function (options) {
 		this.callback = options.callback;
 		this.listenTo(Songstorm.currentUser, "signIn", this.signInCallback);
+
+		this.previewNum = Math.floor(Math.random()*Songstorm.songs.length);
+		this.previewSong = Songstorm.songs.toJSON()[this.previewNum].song;
 	},
 
 	events: {
@@ -15,9 +18,9 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 
   playSong: function (event) {
     event.preventDefault();
+
     Songstorm.playQueue = [];
-    var songUrl = $(event.currentTarget).data("song-url");
-    Songstorm.playQueue.push(songUrl);
+    Songstorm.playQueue.push(Songstorm.songs.getOrFetch(this.previewSong.id));
     Songstorm.globalPlayer.playQueue();
   },
 
@@ -39,16 +42,13 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 	},
 
 	render: function () {
-		var previewNum = Math.floor(Math.random()*Songstorm.songs.length);
-		var previewSong = Songstorm.songs.toJSON()[previewNum].song;
-		console.log(previewSong);
 		var content = this.template({
-			songTitle: previewSong.title,
-			imageUrl: previewSong.image_url,
-			audioUrl: previewSong.audio_url,
-			songArtist: previewSong.artist,
-			songAlbum: previewSong.album,
-			songId: previewSong.id
+			songTitle: this.previewSong.title,
+			imageUrl: this.previewSong.image_url,
+			audioUrl: this.previewSong.audio_url,
+			songArtist: this.previewSong.artist,
+			songAlbum: this.previewSong.album,
+			songId: this.previewSong.id
 		});
 		this.$el.html(content);
 		return this;

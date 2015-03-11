@@ -42,13 +42,12 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
 
   playQueue: function (event) {
     event.preventDefault();
-
     Songstorm.playQueue = [];
     this.model.songs().forEach(function (song) {
-      Songstorm.playQueue.push(song.escape('audio_url'));
+      Songstorm.playQueue.push(song);
     });
-
-    console.log('playlist hihi');
+    // debugger
+    // console.log('playlist hihi');
     Songstorm.globalPlayer.playQueue();
   },
 
@@ -56,8 +55,8 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
     event.preventDefault();
 
     Songstorm.playQueue = [];
-    var songUrl = $(event.currentTarget).data("song-url");
-    Songstorm.playQueue.push(songUrl);
+    var songId = $(event.currentTarget).data("song-id");
+    Songstorm.playQueue.push(Songstorm.songs.getOrFetch(songId));
     Songstorm.globalPlayer.playQueue();
   },
 
