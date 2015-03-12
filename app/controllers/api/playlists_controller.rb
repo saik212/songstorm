@@ -1,13 +1,6 @@
 class Api::PlaylistsController < ApplicationController
-  before_action :prevent_delete, only: [:destroy, :edit, :update]
-  # wrap_parameters :playlist, include: [:image, :image_url]
-  def new
-    @playlist = Playlist.new
-    render :new
-  end
 
   def index
-    # @playlists = params[:user_id] ? Playlist.where(user_id: params[:user_id]) : Playlist.all
     if current_user
       @playlists = current_user.playlists
     else
@@ -23,7 +16,7 @@ class Api::PlaylistsController < ApplicationController
     if @playlist.save
       render :show
     else
-      render json: @playlists.errors.full_messages
+      render json: @playlists.errors.full_messages, status: 422
     end
   end
 
@@ -36,22 +29,14 @@ class Api::PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
     @playlist.destroy
     render json: @playlist
-    #redirect_to "/#/users/#{current_user.id}"
-    # redirect_to user_url(current_user)
-  end
-
-  def edit
-    @playlist = Playlist.find(params[:id])
   end
 
   def update
     @playlist = Playlist.find(params[:id])
     if @playlist.update_attributes(playlist_params)
       render json: @playlist
-      # redirect_to playlist_url(@playlist)
     else
-      # flash.now[:errors] = @playlist.errors.full_messages
-      render json: @playlist.errors.full_messages
+      render json: @playlist.errors.full_messages, status: 422
     end
   end
 
@@ -60,12 +45,4 @@ class Api::PlaylistsController < ApplicationController
     params.require(:playlist).permit(:name, :image)
   end
 
-  def prevent_delete
-    playlist = Playlist.find(params[:id])
-    if current_user.id != playlist.user_id
-      redirect_to "/#/users/#{playlist.user_id}"
-      # redirect_to user_url(User.find(playlist.user_id))
-      # flash[:errors] = ["You can't do that"]
-    end
-  end
 end

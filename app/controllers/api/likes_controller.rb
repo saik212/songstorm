@@ -1,7 +1,8 @@
 class Api::LikesController < ApplicationController
-	def new
-		@like = Like.new
-		render :new
+
+	def index
+		@likes = params[:user_id] ? Like.where(user_id: params[:user_id]) : Like.all
+		render :index
 	end
 
 	def create
@@ -10,15 +11,9 @@ class Api::LikesController < ApplicationController
 		if @like.save
 			render json: @like
 		else
-			render json: "you suck"
+			render json: @like.errors.full_messages, status: 422
 		end
 	end
-
-	def index
-		@likes = params[:user_id] ? Like.where(user_id: params[:user_id]) : Like.all
-		render :index
-	end
-
 
 	def destroy
 		like = Like.find(params[:id])
@@ -30,4 +25,5 @@ class Api::LikesController < ApplicationController
 	def like_params
 		params.require(:like).permit(:song_id, :user_id, :song)
 	end
+	
 end

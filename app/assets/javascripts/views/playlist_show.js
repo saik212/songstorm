@@ -13,7 +13,8 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
   events: {
     "click #play-queue": "playQueue",
   	"click .fa-play": "playSong",
-    "click .remove-button": "removeSong"
+    "click .remove-button": "removeSong",
+    "click #delete-playlist": "deletePlaylist"
   },
 
   render: function () {
@@ -74,5 +75,19 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
         console.log("didn't remove song");
       }
     });
+  },
+
+  deletePlaylist: function(event) {
+    event.preventDefault();
+    var that = this;
+    Songstorm.playlists.remove(that.model);
+    this.model.destroy({
+      success: function () {
+        Backbone.history.navigate("", {trigger:true});
+      },
+      error: function () {
+        alert("didn't work");
+      }
+    })
   }
 })

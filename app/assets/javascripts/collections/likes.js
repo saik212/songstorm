@@ -1,5 +1,4 @@
 Songstorm.Collections.Likes = Backbone.Collection.extend({
-	// url: "api/likes",
 	url: function () {
 		if (this.user) {
 			return "api/users/"+this.user.id+"/likes";		

@@ -1,16 +1,8 @@
 class Api::CommentsController < ApplicationController
-  def new
-    @comments = Comment.new
-  end
 
   def index
     @comments = Comment.all
     render :index
-  end
-
-  def show
-    @comment = Comment.find(params[:id])
-    render :show
   end
 
   def create
@@ -22,14 +14,6 @@ class Api::CommentsController < ApplicationController
     end
   end
 
-  def update
-    @comment = Comment.find(params[:id])
-    if @comment.update(comment_params)
-      render json: @comment
-    end
-  end
-
-
   def destroy
     comment = Comment.find(params[:id])
     comment.destroy
@@ -40,4 +24,5 @@ class Api::CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:body, :commentable_id, :commentable_type)
   end
+  
 end
