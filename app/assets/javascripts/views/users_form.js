@@ -33,13 +33,16 @@ Songstorm.Views.UsersForm = Backbone.View.extend({
 			success: function () {
 				Songstorm.currentUser.fetch();
 				that.collection.add(that.model, {merge: true});
+				alert("Welcome");
 				Backbone.history.navigate("users/"+that.model.id, {trigger: true});
 			},
 			error: function (data) {
 				alert("Invalid Form Data");
 				console.log(data);
 			}
-		})
+		});
+		alert('hi');
+
 	},
 
   fileInputChange: function(event){

@@ -19,7 +19,6 @@ Songstorm.Views.SongForm = Backbone.View.extend({
   },
 
   render: function () {
-    console.log('hiyoooo');
     var content = this.template({song: this.model});
     this.$el.html(content);
     return this;
@@ -38,7 +37,8 @@ Songstorm.Views.SongForm = Backbone.View.extend({
       },
       error: function () {
       }
-    })
+    });
+    $(".user-songs").append("<img src='https://s3.amazonaws.com/songstorm-pics/seeds/spinner.gif'>");
   },
 
   audioFileInputChange: function(event){

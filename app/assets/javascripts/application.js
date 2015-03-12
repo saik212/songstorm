@@ -16,6 +16,7 @@
 //= require underscore
 //= require backbone
 //= require songstorm
+//= require_tree ../images
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

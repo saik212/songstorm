@@ -65,6 +65,7 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 				// alert("Wrong user info combination.");
 			}
 		});
+		$(".landing-sign-in").append("<img src='https://s3.amazonaws.com/songstorm-pics/seeds/spinner.gif'>");
 	},
 
 	signInCallback: function (event) {
