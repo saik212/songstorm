@@ -115,8 +115,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   playlistNew: function () {
-    // var callback = this.playlistNew.bind(this);
-    // if (!this._requireSignedIn(callback)) {return;}
+    var callback = this.playlistNew.bind(this);
+    if (!this._requireSignedIn(callback)) {return;}
     var newPlaylist = new Songstorm.Models.Playlist();
 
     var playlistFormView = new Songstorm.Views.PlaylistForm({
@@ -136,8 +136,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   },
 
   playlistEdit: function (id) {
-    // var callback = this.playlistNew.bind(this, id);
-    // if (!this._requireSignedIn(callback)) {return;}
+    var callback = this.playlistNew.bind(this, id);
+    if (!this._requireSignedIn(callback)) {return;}
     var playlist = Songstorm.playlists.getOrFetch(id);
     var playlistEditView = new Songstorm.Views.PlaylistForm({
       model: playlist,
@@ -162,9 +162,14 @@ Songstorm.Routers.Router = Backbone.Router.extend({
     // var callback = this.playlistNew.bind(this, id);
     // if (!this._requireSignedIn(callback)) {return;}
     var song = Songstorm.songs.getOrFetch(id);
-    Songstorm.playlists.fetch();
-    var songShowView = new Songstorm.Views.SongShow({ model: song });
-    this._swapView(songShowView);
+    var that = this;
+    Songstorm.playlists.fetch({
+      success: function () {
+        var songShowView = new Songstorm.Views.SongShow({ model: song });
+        that._swapView(songShowView);
+        
+      }
+    });
   },
 
   songEdit: function (id) {

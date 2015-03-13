@@ -1,3 +1,4 @@
+
 Songstorm.Views.SignIn = Backbone.View.extend({
 	template: JST["shared/sign_in"],
 	className: "group landing-wrapper",
@@ -25,18 +26,21 @@ Songstorm.Views.SignIn = Backbone.View.extend({
   },
 
 	guestSignIn: function(event) {
-		var guestNames = ['Pikachu', "Squirtle", "Guy Pearce", "Bulbasaur", "Charmander" ];
-		var guestIndex = Math.floor(Math.random() * guestNames.length);
-		var userInfo = {username: guestNames[guestIndex], password: "123456"};
+		var guestIndex = Math.floor(Math.random() * 1000);
+		var userInfo = {username: "Guest"+guestIndex, password: "123456", image_url: "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img5.jpg"};
 		var that = this;
 
 		var newUser = new Songstorm.Models.User();
 		newUser.set(userInfo);
+				$(".sign-in-guest").on("click", false);
 		newUser.save({}, {
 			success: function () {
-				Songstorm.currentUser.fetch();
+				Songstorm.currentUser.fetch({
+					success: function () {
+						that.guestSongs(newUser);
+					}
+				});
 				Songstorm.users.add(newUser);
-				Backbone.history.navigate("users/"+newUser.id, {trigger:true});
 			}
 		});
 	},
@@ -62,7 +66,7 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 			username: formData.username,
 			password: formData.password,
 			error: function () {
-				// alert("Wrong user info combination.");
+				alert("Wrong user info combination.");
 			}
 		});
 		$(".landing-sign-in").append("<img src='https://s3.amazonaws.com/songstorm-pics/seeds/spinner.gif'>");
@@ -74,5 +78,46 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 		} else {
 			Backbone.history.navigate("users/"+Songstorm.currentUser.id, {trigger: true});
 		}
+	},
+
+	guestSongs: function (guest) {
+		var that = this;
+		var song_urls = ["https://s3.amazonaws.com/songstorm-pics/seeds/songs/guest1.mp3",
+							  "https://s3.amazonaws.com/songstorm-pics/seeds/songs/guest2.mp3"];
+
+			var song1 = new Songstorm.Models.Song;
+			song1.set({title: "Frozen Ray", artist: "Takayuki Ishikawa", album: "Unknown", audio: song_urls[0]});
+			song1.save({}, {
+				success: function () {
+					Songstorm.songs.add(song1);
+					var song2 = new Songstorm.Models.Song;
+					song2.set({title: "Tricksy Clock", artist: "Yoko Shinomura", album: "KH1", audio: song_urls[1]});
+					song2.save({}, {
+						success: function () {
+							Songstorm.songs.add(song2);
+							that.guestPlaylists(guest);
+						}
+					});
+				}
+			});
+	},
+
+	guestPlaylists: function (guest) {
+		var that = this;
+		var playlist = new Songstorm.Models.Playlist;
+		playlist.set({name: guest.escape('username')+"'s Playlist"});
+		playlist.save({}, {
+			success: function (){
+				Songstorm.playlists.add(playlist);
+				for (var i = 0; i<5; i++) {
+					var playlistSong = new Songstorm.Models.PlaylistSong;
+					playlistSong.save({song_id: i, playlist_id: playlist.id}, {
+						success: function () {
+							Songstorm.playlistSongs.add(playlistSong);
+						}
+					})
+				}
+			}
+		});
 	}
 })

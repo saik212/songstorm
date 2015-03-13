@@ -1,4 +1,5 @@
 class Song < ActiveRecord::Base
+  validates :title, :audio, presence: true
   include PgSearch
 
   pg_search_scope :search_by_all, against: [:title, :artist, :album]

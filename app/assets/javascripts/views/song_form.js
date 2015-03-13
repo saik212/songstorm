@@ -36,9 +36,11 @@ Songstorm.Views.SongForm = Backbone.View.extend({
         Backbone.history.navigate("songs/"+that.model.id, {trigger: true});
       },
       error: function () {
+        alert("Invalid form data: Must have song title and song file");
+        $(".spinner").remove();
       }
     });
-    $(".user-songs").append("<img src='https://s3.amazonaws.com/songstorm-pics/seeds/spinner.gif'>");
+    $(".user-songs").append("<img class='spinner' src='https://s3.amazonaws.com/songstorm-pics/seeds/spinner.gif'>");
   },
 
   audioFileInputChange: function(event){
