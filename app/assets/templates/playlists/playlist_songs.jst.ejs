@@ -1,0 +1,8 @@
+<li>
+	<img class="song-thumb" id="playlist-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
+	<i class="fa fa-play create" data-song-id="<%=song.id%>"></i>
+	<a class="create" href="#/songs/<%=song.id%>"><%=song.escape('artist')+" - "+song.escape('title')%></a>
+	<% if (parseInt(Songstorm.currentUser.id) === parseInt(playlist.escape("user_id"))) { %>
+		<span class="remove-button delete" data-song-id=<%=song.id%>>Remove</span>
+	<% } %>
+</li>

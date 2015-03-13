@@ -1,0 +1,22 @@
+<li id="song-title"><%=song.escape('title')%></li>
+
+<li>Artist: 
+	<strong>
+		<%=song.escape('artist')%>
+	</strong>
+</li>
+
+<li>Album: 
+	<strong>
+		<%=song.escape('album')%>
+	</strong>
+</li>
+
+<li>Uploaded by: 
+	<strong>
+		<a class="create" href="#/users/<%=song.escape('uploader_id')%>"><%=song.escape('uploader_name')%>
+		</a>
+	</strong>
+</li>
+
+<li class="song-show-play"><i class="fa fa-play create"></i></li>

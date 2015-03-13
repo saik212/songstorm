@@ -10,7 +10,7 @@ class Api::CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     if @comment.save
-      render :show
+      render json: @comment
     end
   end
 

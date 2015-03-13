@@ -1,0 +1,10 @@
+<li>
+	<img class="song-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
+	<i class="fa fa-play" data-song-id="<%=song.id%>"></i>
+	<a href="#/songs/<%=song.id%>"><%=song.escape('artist') +" - "+ song.escape('title')%></a>
+	<%if (parseInt(Songstorm.currentUser.id) === parseInt(userShow.id)) {%>
+		<span class="delete-wrapper">
+			<span class="delete-button" data-id="<%= song.id %>" data-collection="songs">Delete Song</span>
+		</span>
+ 	<%}%>
+</li>

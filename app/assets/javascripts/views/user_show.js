@@ -15,7 +15,6 @@ Songstorm.Views.UserShow = Backbone.View.extend({
   },
 
   render: function () {
-    console.log("HIHI");
     var currUserId = parseInt(Songstorm.currentUser.id);
     var userShowId = parseInt(this.model.id);
     var content = this.template({
@@ -24,8 +23,30 @@ Songstorm.Views.UserShow = Backbone.View.extend({
       userShowId: userShowId
     });
     this.$el.html(content);
+    this.renderPlaylists();
+    this.renderSongs();
 
     return this;
+  },
+
+  renderPlaylists: function () {
+    var container = $(".user-playlist-list");
+    var template = JST["users/user_playlists"];
+    var that = this;
+
+    this.model.playlists().forEach(function (playlist) {
+      container.append(template({playlist: playlist, userShow: that.model}));
+    });
+  },
+
+  renderSongs: function () {
+    var container = $(".user-song-list");
+    var template = JST["users/user_songs"];
+    var that = this;
+
+    this.model.songs().forEach(function (song) {
+      container.append(template({song: song, userShow: that.model}));
+    });
   },
 
   delete: function (event) {

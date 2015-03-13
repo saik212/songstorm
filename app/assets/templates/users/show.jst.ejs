@@ -24,16 +24,7 @@
 			<h3 class="song-list-header"> <%=username%>'s Songs: </h3>
 			<ul class="user-song-list">
 				<%user.songs().forEach(function(song){%>
-					<li>
-						<img class="song-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
-						<i class="fa fa-play" data-song-id="<%=song.id%>"></i>
-						<a href="#/songs/<%=song.id%>"><%=song.escape('artist') +" - "+ song.escape('title')%></a>
-					</li>
-						<%if (currUserId === userShowId) {%>
-							<span class="delete-wrapper">
-								<span class="delete-button" data-id="<%= song.id %>" data-collection="songs">Delete Song</span>
-							</span>
-					 	<%}%>
+
 				<%})%>
 			</ul>
 			<h3 class="create-list">
@@ -48,15 +39,7 @@
 		<section class="user-playlists">
 			<h3> <%= username %>'s Playlists: </h3>
 			<ul class="user-playlist-list">
-				<% user.playlists().each(function (playlist) { %>
-				 	<li>
-						<img class="song-thumb" src="<%= playlist.escape("image_url") %>" width="100" alt="">
-				 		<a href="#/playlists/<%= playlist.id %>" class="create"><%=playlist.escape("name")  %></a>
-				 		<%if (currUserId === userShowId) {%>
-					 		<span class="delete-playlist" data-id="<%= playlist.id %>" data-collection="playlists">Delete Playlist</span>
-					 	<%}%>
-				 	</li>
-			 	<% }) %>
+				
 			</ul>
 	 		<%if (currUserId === userShowId) {%>
 			 	<h3 class="create-list">

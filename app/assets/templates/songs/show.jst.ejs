@@ -6,26 +6,7 @@
 			<div class="song-stuff group">
 				<img class="song-img" src="<%= song.escape("image_url") %>" width="100" alt="">
 					<ul class="song-info">
-						<li id="song-title"><%=song.escape('title')%></li>
-						<li>Artist: 
-							<strong>
-								<%=song.escape('artist')%>
-							</strong>
-						</li>
-						<li>Album: 
-							<strong>
-								<%=song.escape('album')%>
-							</strong>
-						</li>
-						<li>Uploaded by: 
-							<strong>
-								<a class="create" href="#/users/<%=song.escape('uploader_id')%>"><%=song.escape('uploader_name')%>
-								</a>
-							</strong>
-						</li>
-						<li class="song-show-play"><i class="fa fa-play create"></i></li>
 					</ul>
-					<!-- <span class="waveform" id="show-waveform">BLAHBLAH WAVEFORM</span> -->
 			</div>
 
 			<div class="song-widgets-tab">
@@ -38,7 +19,7 @@
 						<%}%>
 						<% if (currUserId === uploader_id) { %>
 							<li><a class="create" href="#/songs/<%=song.id%>/edit">Edit</a></li>
-							<li class="delete">Delete</li>
+							<li class="delete" id="delete-song">Delete</li>
 						<% } %>
 					<% } %>
 				</ul>
@@ -49,81 +30,39 @@
 
 		<section class="comments-section">
 
-			<% if (Songstorm.currentUser.isSignedIn()) { %>
 				<form class="comments-form group">
 				  <input type="hidden" class="song_id" name="song_id" value="<%= song.id %>">
 			    <textarea class="comment_body" name="body" placeholder="comment here"></textarea>
 				  <span class="comment-submit create">Submit</span>
 				</form>
-			<% } %>
 
-				<% if (song.comments().length > 0) { %>
 					<ul class="comments-display">
-						<%song.comments().forEach(function(comment){%>
-							<li class="comment">
-								<img class="song-thumb" src="<%= comment.escape("author_image") %>" width="100" alt="">
-								<h1>
-									<a class="create" href="#/users/<%= comment.escape('user_id') %>"><%= comment.escape('author')%></a>
-								</h1>
-								<h2>
-									<%= comment.escape('body') %>
-								</h2>
-								<% if (currUserId === parseInt(comment.escape('user_id'))) { %>
-									<span class="delete-comment delete" data-id="<%= comment.id %>">DELETE</span>
-								<% } %>
-							</li>
-						<%})%>
 
-		<!-- 				<li class="comment">
-							<div class="song-thumb"></div>
-							<h1>
-								<a href="#">Username</a>
-							</h1>
-							<h2>
-								PearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPearPear
-							</h2>
-							<span class="delete-comment">DELETE</span>
-						</li> -->
 					</ul>
-				<% } %>
 
 		</section>
 	</section>
 
 	<section class="page-right" id="song-page-left">
 
-		<% if (Songstorm.currentUser.isSignedIn()) { %>
-			<section class="playlists-section">
+			<section class="playlists-section" id="playlist-song-form">
 				<form class="playlist-form">
 					<input type="hidden" name="" value="">
 					<span>Add To Playlist</span>
 						<select id="playlist-song-playlist-id">
-								<%Songstorm.playlists.forEach(function(playlist){%>
-									<option value="<%=playlist.id%>"><%=playlist.escape('name')%></option>
-								<%})%>
+
 						</select>
 						<strong>
 							<span class="create" id="add-playlist">Add</span>
 						</strong>
 				</form>
 			</section>
-		<% } %>
 
 
 		<section class="playlists-section">
 			<h2>Playlists With This Song</h2>
 			<ul class="songs-playlists">
-				<% song.playlists().forEach(function(playlist){ %>
-					<li class="playlist-li">
-						<img class="song-thumb" src="<%= playlist.escape("image_url") %>" width="100" alt="">
-						<h1>
-					    <a class="create" href="#/playlists/<%=playlist.id%>"><%=playlist.escape('name')%></a>
-						</h1>
-						<h2>
-					    By: <a class="create" href="#/users/<%=playlist.escape('user_id')%>"><%=playlist.escape('owner')%></a>
-						</h2>
-					</li>
-				<% }) %>
+				
 			</ul>
 		</section>
 	</section>

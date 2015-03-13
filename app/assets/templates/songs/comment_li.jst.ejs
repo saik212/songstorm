@@ -1,0 +1,12 @@
+<li class="comment">
+	<img class="song-thumb" src="<%= comment.escape("author_image") %>" width="100" alt="">
+	<h1>
+		<a class="create" href="#/users/<%= comment.escape('user_id') %>"><%= comment.escape('author')%></a>
+	</h1>
+	<h2>
+		<%= comment.escape('body') %>
+	</h2>
+	<% if (parseInt(Songstorm.currentUser.id) === parseInt(comment.escape('user_id'))) { %>
+		<span class="delete-comment delete" data-id="<%= comment.id %>">DELETE</span>
+	<% } %>
+</li>

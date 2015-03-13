@@ -17,8 +17,10 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     "click .delete-comment": "deleteComment",
     "click .add-like": "addLike",
     "click .remove-like": "removeLike",
-    "click .fa-play": "playSong"
+    "click .fa-play": "playSong",
+    "click #delete-song": "deleteSong"
   },
+
   render: function () {
     var currUserId = parseInt(Songstorm.currentUser.id);
     var uploader_id = parseInt(this.model.escape('uploader_id'));
@@ -28,7 +30,62 @@ Songstorm.Views.SongShow = Backbone.View.extend({
       uploader_id: uploader_id
     });
     this.$el.html(content);
+    this.renderInfo();
+
     return this;
+  },
+
+  renderInfo: function () {
+    this.renderSongInfo();
+    this.renderPlaylists();
+    this.renderPlaylistForm();
+    this.renderComments();
+  },
+
+  renderSongInfo: function () {
+    var container = $(".song-info")
+    var template = JST["songs/song_info"];
+    var uploader_id = parseInt(this.model.escape('uploader_id'));
+
+    container.append(template({
+      song: this.model,
+      uploader_id: uploader_id
+    }))    
+  },
+
+  renderPlaylists: function () {
+    var container = $(".songs-playlists");
+    var template = JST["playlists/list_item"];
+
+    this.model.playlists().forEach(function (playlist) {
+      container.append(template({playlist: playlist}));
+    })
+  },
+
+  renderPlaylistForm: function () {
+    if (Songstorm.currentUser.isSignedIn()) {
+      Songstorm.playlists.forEach(function (playlist) {
+        $("#playlist-song-playlist-id").append("<option value="+playlist.id+">"+playlist.escape('name')+"</option>");
+      });
+    } else {
+      $("#playlist-song-form").css("display", "none");
+    }
+  },
+
+  renderComments: function () {
+    if (!Songstorm.currentUser.isSignedIn()) {
+      $(".comments-form").css("display", "none");
+    }
+
+    var container = $(".comments-display");
+    var template = JST["songs/comment_li"];
+    if (this.model.comments().length > 0) {
+      this.model.comments().forEach(function (comment) {
+        container.append(template({comment: comment}));
+      })
+    } else {
+      container.css("display", "none");
+    }
   },
 
   playSong: function (event) {
@@ -131,6 +188,21 @@ Songstorm.Views.SongShow = Backbone.View.extend({
         console.log(playlist);
         that.model.playlists().add(playlist);
         Songstorm.playlistSongs.add(playlistSong);
+      }
+    });
+  },
+
+  deleteSong: function (event) {
+    event.preventDefault();
+    var that = this;
+
+    Songstorm.songs.remove(this.model);
+    this.model.destroy({
+      success: function () {
+        Backbone.history.navigate("", {trigger: true});
+      }, 
+      error: function () {
+        alert("Didn't work");
       }
     });
   }

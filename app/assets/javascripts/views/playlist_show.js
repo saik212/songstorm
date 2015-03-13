@@ -27,7 +27,36 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
       uploader_id: uploader_id
     });
     this.$el.html(content);
+    this.renderSongs();
+    this.renderSongPlaylists();
     return this;
+  },
+
+  renderSongs: function () {
+    var container = $("#song-list-display");
+    var template = JST["playlists/playlist_songs"];
+    var that = this;
+
+    if (this.model.songs().length > 0) {
+      this.model.songs().forEach(function (song) {
+        container.append(template({song:song, playlist: that.model}));
+      })
+    } else {
+      container.append("<li>No songs in this list!</li>");
+    }
+
+  },
+
+  renderSongPlaylists: function () {
+    var container = $(".songs-playlists");
+    var template = JST["playlists/more_playlists"];
+    var that = this;
+
+    this.uploader.playlists().forEach(function (playlist) {
+      if (that.model.escape("name") !== playlist.escape("name")) {
+        container.append(template({playlist: playlist}));
+      }
+    });
   },
 
   getUploader: function () {
