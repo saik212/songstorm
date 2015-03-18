@@ -1,0 +1,41 @@
+html, body, section, article, div,
+h1, h2, p, strong, em, a, ul, li,
+nav, header, form, img {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	outline: 0;
+	box-sizing: inherit;
+	font: inherit;
+	text-decoration: inherit;
+	text-align: inherit;
+	color: inherit;
+	background: transparent;
+	box-sizing: inherit;
+}
+
+ul, li {
+	list-style: none;
+}
+
+body {
+	background: #F0F0F0;
+}
+
+#content {
+	max-width: 1000px;
+	margin: auto;
+	padding-top: 76px;
+
+	background: #F5F5F5;
+
+	font-family: "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
+
+}
+
+
+.group:after {
+	content: "";
+	display: block;
+	clear: both;
+}

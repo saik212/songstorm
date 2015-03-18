@@ -26,8 +26,16 @@ Songstorm.Views.SignIn = Backbone.View.extend({
   },
 
 	guestSignIn: function(event) {
+		var images = ["https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img3.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img4.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img5.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img6.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img7.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img8.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img9.jpg"];
+		var randomImage = images[Math.floor(Math.random() * images.length)];
 		var guestIndex = Math.floor(Math.random() * 1000);
-		var userInfo = {username: "Guest"+guestIndex, password: "123456", image_url: "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img5.jpg"};
+		var userInfo = {username: "Guest"+guestIndex, password: "123456", image_url: randomImage};
 		var that = this;
 
 		var newUser = new Songstorm.Models.User();
@@ -89,11 +97,13 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 			song1.set({title: "Frozen Ray", artist: "Takayuki Ishikawa", album: "Unknown", audio: song_urls[0]});
 			song1.save({}, {
 				success: function () {
+					guest.songs().add(song1)
 					Songstorm.songs.add(song1);
 					var song2 = new Songstorm.Models.Song;
 					song2.set({title: "Tricksy Clock", artist: "Yoko Shinomura", album: "KH1", audio: song_urls[1]});
 					song2.save({}, {
 						success: function () {
+							guest.songs().add(song2)
 							Songstorm.songs.add(song2);
 							that.guestPlaylists(guest);
 						}
@@ -108,6 +118,7 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 		playlist.set({name: guest.escape('username')+"'s Playlist"});
 		playlist.save({}, {
 			success: function (){
+				guest.playlists().add(playlist);
 				Songstorm.playlists.add(playlist);
 				for (var i = 0; i<5; i++) {
 					var playlistSong = new Songstorm.Models.PlaylistSong;

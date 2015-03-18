@@ -4,8 +4,8 @@ Songstorm.Views.UserShow = Backbone.View.extend({
   initialize: function () {
     this.listenTo(Songstorm.currentUser, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.model.songs(), 'sync remove', this.render);
-    this.listenTo(this.model.playlists(), 'sync remove', this.render);
+    this.listenTo(this.model.songs(), 'sync remove add', this.render);
+    this.listenTo(this.model.playlists(), 'sync remove add', this.render);
   },
 
   events: {
