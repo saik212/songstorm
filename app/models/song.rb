@@ -39,4 +39,8 @@ class Song < ActiveRecord::Base
     end
   end
 
+  def days_ago
+    ((Time.now - self.created_at.to_time)/86400).to_i
+  end
+
 end

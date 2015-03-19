@@ -37,10 +37,11 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   },
 
   renderInfo: function () {
-    this.renderSongInfo();
+    this.renderComments();
+    return;
+    // this.renderSongInfo();
     this.renderPlaylists();
     this.renderPlaylistForm();
-    this.renderComments();
   },
 
   renderSongInfo: function () {
@@ -78,7 +79,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
       $(".comments-form").css("display", "none");
     }
 
-    var container = $(".comments-display");
+    var container = $(".cmts-display");
     var template = JST["songs/comment_li"];
     if (this.model.comments().length > 0) {
       this.model.comments().forEach(function (comment) {

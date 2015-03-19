@@ -1,4 +1,4 @@
-<li class="comment">
+<!-- <li class="comment">
 	<img class="song-thumb" src="<%= comment.escape("author_image") %>" width="100" alt="">
 	<h1>
 		<a class="create" href="#/users/<%= comment.escape('user_id') %>"><%= comment.escape('author')%></a>
@@ -9,4 +9,18 @@
 	<% if (parseInt(Songstorm.currentUser.id) === parseInt(comment.escape('user_id'))) { %>
 		<span class="delete-comment delete" data-id="<%= comment.id %>">DELETE</span>
 	<% } %>
+</li> -->
+
+<li class="cmt group">
+	<img class="cmter-img" src="<%= comment.escape("author_image") %>">
+
+	<p class="cmter-name">
+		<a href="#/users/<%= comment.escape('user_id') %>"><%= comment.escape('author')%></a> 
+		<% if (parseInt(Songstorm.currentUser.id) === parseInt(comment.escape('user_id'))) { %>
+			<i class="fa fa-trash-o"></i>
+		<% } %>
+	</p>
+
+	<p class="cmt-time"><%= comment.escape('days_ago') %> days ago at <%= comment.escape('create_time') %></p>
+	<p class="cmt-txt"><%= comment.escape('body') %></p>
 </li>

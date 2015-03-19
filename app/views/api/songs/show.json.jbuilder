@@ -2,7 +2,12 @@ json.extract! @song, :id, :title, :artist, :uploader_id, :album, :created_at, :u
 json.audio_url asset_path(@song.audio.url)
 json.image_url asset_path(@song.image.url)
 
+json.days_ago @song.days_ago 
+
 json.uploader_name @song.uploader.username
+json.uploader_img @song.uploader.image.url
+json.uploader_num_songs @song.uploader.songs.count
+json.uploader_num_playlists @song.uploader.playlists.count
 
 json.playlists @song.playlists do |playlist|
 	json.id playlist.id
@@ -32,11 +37,15 @@ json.comments @song.comments do |comment|
 	json.user_id comment.user_id
 	json.author comment.user.username
 	json.author_image comment.user.image.url
+	json.days_ago comment.days_ago
+	json.create_time comment.at_time
 end
 
-json.likers @song.likers do |liker|
-	json.username liker.username
-end
+# json.likers @song.likers do |liker|
+# 	json.username liker.username
+# end
+
+json.num_likes @song.likers.count
 
 if current_user
 	json.liked_by_current_user @song.likers.to_a.include?(User.find(current_user.id))
