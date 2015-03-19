@@ -1,4 +1,170 @@
-.landing-wrapper {
+#lndg-welcome {
+	background-image: url("concert3.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	width: 100%;
+	height: 560px;
+}
+
+/*Landing image styles*/
+#welcome {
+	padding: 155px 0 0 0;
+}
+
+#welcome > h1, #welcome > div {
+	margin: auto;
+
+	font-family: "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
+	letter-spacing: 1px;
+	text-align: center;
+
+	color: #fff;
+	text-shadow: 2px 2px 2px #000;
+}
+
+.lndg-h1 {
+	max-width: 630px;
+	/*background: #000;*/
+	
+	font-size: 43px;
+}
+
+.lndg-h2 {
+	max-width: 330px;
+	/*background: violet;*/
+
+	font-size: 20px;
+}
+
+.lndg-explore-btn-wrapper {
+	/*background: #fff;*/
+	width: 300px;
+	padding: 40px 0;
+}
+
+.site-btn {
+	/*background: #6889BD;*/
+	transition: 0.35s;
+	background-image: linear-gradient(#6889BD, #385B91);
+
+	padding: 10px 25px;
+
+	border: 1px solid #4581DB;
+	border-radius: 4px;
+
+	letter-spacing: 1px;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.67);
+	font-size: 15px;
+	color: #fff;
+}
+
+.site-btn:hover {
+	transition: 0.3s;
+	/*text-shadow: none;*/
+	text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/*...
+Sample Song
+...*/
+
+#lndg-img {
+	float: left;
+	height: 250px;
+	width: 250px;
+	margin: 0;
+}
+
+#lndg-item > h1 {
+  float: right;
+  color: #fff;
+  background: #000;
+  text-align: center;
+}
+
+#featr-sg {
+  text-align: center;
+  font-size: 40px;
+  margin: 47px auto 20px auto;
+  width: 606px;
+  opacity: 0.8;
+  border-top: 1px solid #ccc;
+}
+
+#lndg-item {
+  padding: 35px 80px 35px 40px;
+  width: 650px;
+  margin: auto;
+  margin-bottom: 20px;
+  background-image: linear-gradient(#6161A3, #3B3B6C);
+  box-sizing: border-box;
+}
+
+.song-item {
+	width: 100%;
+
+	margin-top: 20px;
+	background: #E2E2E2;
+}
+
+.img-item {
+	/*background-image: url("../images/img1.jpg");*/
+	background-size: 100% 100%;
+
+	display: inline-block;
+	margin: 25px;
+	height: 196px;
+	width: 196px;
+
+}
+
+.song-modal {
+	display: none;
+	height: 100%;
+	width: 100%;
+
+	background-color: rgba(0, 0, 0, 0.7);
+	color: #fff;
+}
+
+.play-btn {
+	height: 80px;
+	width: 80px;
+
+	display: block;
+	margin: auto;
+
+	text-align: center;
+	font-size: 35px;
+	color: #000;
+	background: #fff;
+
+	padding: 11% 0 0 3%;
+	box-sizing: border-box;
+	border-radius: 50%;
+}
+
+.play-btn:hover {
+	cursor: pointer;
+}
+
+.lndg-sample > h1 {
+	display: block;
+	width: 75%;
+	height: 86px;
+
+	margin: auto;
+	margin-bottom: -40px;
+	padding: 26px 0 0 0;
+
+	text-align: center;
+	font-size: 15px;
+	letter-spacing: 1.75px;
+
+}
+
+/*.landing-wrapper {
 	padding: 0 85px;
 }
 .landing-text {
@@ -158,4 +324,4 @@
 	font-size: 40px;
 	text-align: center;
 	margin: 0 auto 15px auto;
-}
+}*/

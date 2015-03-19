@@ -1,47 +1,34 @@
-<h1 class="site-header">Welcome to Songstorm!</h1>
+    <section id="lndg-welcome" >
+    
+      <div id="welcome">
+        <h1 class="lndg-h1">Share music with the world</h1>
+        <h1 class="lndg-h2">Discover music and artists</h1>
 
-<section class="landing-text">
-  <section class="preview-song group">
-  <h1 id="landing-header">Featured Song:</h1>
-    <img id="preview-image" src="<%=imageUrl%>">
-    <ul class="preview-details">
-      <li id="preview-title">
-        <strong>
-          <a class="create" href="#/songs/<%=songId%>">
-            <%= songTitle %>
-          </a>
-        </strong>
-        <i data-song-url="<%=songId%>" id="preview-play" class="fa fa-play"></i>
-      </li>
-      <li><strong>Artist:</strong> <%=songArtist%></li>
-      <li><strong>Album:</strong> <%=songAlbum%></li>
-    </ul>
+        <div class="lndg-explore-btn-wrapper">
+          <a class="site-btn" href="#/search">Explore the world's songs</a>
+        </div>
 
-  </section>
+      </div>
 
-  <section class="preview-explore">
-    <h1 class="preview-explore-header">Explore the site!</h1>
-    <a href="#/search">
-      <span class="explore-button">Explore</span>
-    </a>
-  </section>
-</section>
+    </section>
 
-<section class="landing-sign-in">
-  <h1 class="sign-in-header">Sign In:</h1>
-  <form class="user-sign-in">
-    <label>
-      <strong>Username:</strong>
-      <input type="text" name="user[username]" value="">
-    </label>
+    <h1 id="featr-sg">Featured Song:</h1>
 
-    <label>
-      <strong>Password:</strong>
-      <input type="password" name="user[password]" value="">
-    </label>
+    <section class="song-item group" id="lndg-item">
+    
+      <div class="img-item" style="background-image:url(<%=imageUrl%>)" id="lndg-img">
+        <div class="song-modal lndg-sample">
+          <h1>Artist - Song</h1>
+          <span class="play-btn">
+            <i data-song-url="<%=songId%>" id="preview-play" class="fa fa-play"></i>
+          </span>
+        </div>
+      </div>
 
-  </form>
+      <h1><%=songTitle%></h1><br>
+      <h1><%=songArtist%></h1><br>
+      <h1><%=songAlbum%></h1><br>
+      
+      
 
-  <span class="sign-in-button">Login</span>
-  <span class="sign-in-guest">Login As Guest</span>
-</section>
+    </section>
