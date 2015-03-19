@@ -48,7 +48,9 @@
 					<div class="upldr-wrapper">
 						<h1 class="upldr-header">Uploader</h1>
 						<img class="upldr-img" src="<%= song.escape("uploader_img") %>">
-						<p id="upldr-name"><%= song.escape("uploader_name") %></p>
+						<p id="upldr-name">
+							<a href="<%= song.escape("uploader_id") %>"><%= song.escape("uploader_name") %></a>
+						</p>
 						<p>Songs: <%= song.escape("uploader_num_songs") %></p>
 						<p>Playlists: <%= song.escape("uploader_num_playlists") %></p>
 					</div>
@@ -68,27 +70,7 @@
 				<div class="plst-wrapper">
 					<p id="in-plst-header">In playlists:</p>
 					<ul class="in-plst">
-						<li>
-							<img src="images/img1.jpg">
-							<div class="sg-pl-info">
-								<p>Playlist Title</p>
-								<p>Uploader Name</p>
-							</div>
-						</li>
-						<li>
-							<img src="images/img1.jpg">
-							<div class="sg-pl-info">
-								<p>Playlist Title</p>
-								<p>Uploader Name</p>
-							</div>
-						</li>
-						<li>
-							<img src="images/img1.jpg">
-							<div class="sg-pl-info">
-								<p>Playlist Title</p>
-								<p>Uploader Name</p>
-							</div>
-						</li>
+						
 					</ul>
 				</div>
 

@@ -38,9 +38,9 @@ Songstorm.Views.SongShow = Backbone.View.extend({
 
   renderInfo: function () {
     this.renderComments();
+    this.renderPlaylists();
     return;
     // this.renderSongInfo();
-    this.renderPlaylists();
     this.renderPlaylistForm();
   },
 
@@ -56,7 +56,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   },
 
   renderPlaylists: function () {
-    var container = $(".songs-playlists");
+    var container = $(".in-plst");
     var template = JST["playlists/list_item"];
 
     this.model.playlists().forEach(function (playlist) {
