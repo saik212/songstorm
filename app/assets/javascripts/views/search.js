@@ -3,6 +3,7 @@ Songstorm.Views.Search = Backbone.View.extend({
 		this.searchResults = new Songstorm.Collections.SearchResults();
 		this.listenTo(this.searchResults, "sync", this.render);
 		this.listenTo(Songstorm.songs, 'sync', this.render);
+		this.listenTo(Songstorm.users, 'sync', this.render);
 	},
 
 	events: {
@@ -20,6 +21,8 @@ Songstorm.Views.Search = Backbone.View.extend({
 			searchQuery: $("#query").val()
 		});
 		this.$el.html(content);
+		this.renderAllSongs();
+		this.renderAllUsers();
 		this.renderSearchResults();
 		return this;
 	},
@@ -54,14 +57,28 @@ Songstorm.Views.Search = Backbone.View.extend({
 		});
 	},
 
-	nextPage: function (event) {
-		this.searchResults.fetch({
-			data: {
-				query: this.searchResults._query,
-				page: (this.searchResults._page || 1) +1
-			}
+	renderAllSongs: function () {
+		var container = $("#all-songs-list");
+		var that = this;
+
+		Songstorm.songs.forEach(function (song) {
+			var template = JST["songs/list_item"];
+
+			container.append(template({model: song}));
 		});
 	},
+
+	renderAllUsers: function () {
+		var container = $("#all-users-list");
+		var that = this;
+
+		Songstorm.users.forEach(function (user) {
+			var template = JST["users/list_item"];
+
+			container.append(template({user: user}));
+		});
+	},	
+
 
 	playSong: function (event) {
     event.preventDefault();
