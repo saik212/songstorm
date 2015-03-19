@@ -1,13 +1,34 @@
 
 
-<section class="user-songs" id="search-wrapper">
+<!-- <section class="user-songs" id="search-wrapper">
 	<h1>Search!</h1>
 	<input type="text" class="query" value="<%= collection._query %>">
 	<input type="submit" class="search-button">
 	<ul class="search-results">
 		<h3 class="results-header">Results: </h3>
 	</ul>
-</section>
+</section> -->
+
+		<section class="search">
+			<div class="cmt-sbmt-wrapper" id="search-bar">
+					<!-- <img src="images/img1.jpg"> -->
+					<div class="cmt-sbmt">
+						<input class="cmt-text" type="text" id="query" value="<%= collection._query %>" placeholder="Search for songs by Title, Artist, or Album">
+						<!-- <div id="special"></div> -->
+					</div>
+					<div class="sbmt-btn" id="search-btn">
+						<i class="fa fa-search"></i>
+					</div>
+				</div>
+
+			<div class="search-results">
+						<h1 class="cmt-header"><i class="fa fa-music"></i> Results (<%= collection.length %>) for "<%= searchQuery %>"</h1>
+						<ul class="cmts-display" id="search-results">
+
+						</ul>
+			</div>
+		</section>
+
 
 <section class="explore-wrapper group">
 <section class="user-songs explore" id="explore-left">

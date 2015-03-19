@@ -8,6 +8,7 @@ json.results @search_results do |song|
 	json.audio_url asset_path(song.audio.url)
 	json.image_url asset_path(song.image.url)
 	json._type "Song"
+	json.num_likes song.likes.count
 	# if model.class == Song
 		# json.(song, :id, :title, :artist, :album)
 		# json._type "Song"
