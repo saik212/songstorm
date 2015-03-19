@@ -1,7 +1,12 @@
+
 <li>
-	<img class="song-thumb" src="<%= playlist.escape("image_url") %>" width="100" alt="">
-	<a href="#/playlists/<%= playlist.id %>" class="create"><%=playlist.escape("name")  %></a>
-	<%if (parseInt(Songstorm.currentUser.id) === parseInt(userShow.id)) {%>
-		<span class="delete-playlist" data-id="<%= playlist.id %>" data-collection="playlists">Delete Playlist</span>
-	<%}%>
+	<a href="#/playlists/<%= playlist.id %>">
+		<img src="<%= playlist.escape("image_url") %>">
+	</a>
+	<div class="sg-pl-info">
+		<a href="#/playlists/<%= playlist.id %>">
+			<p><%= playlist.escape("name") %></p>
+		</a>
+		<p><i class="fa fa-music"></i>: <%= playlist.escape("num_pl_songs") %></p>
+	</div>
 </li>

@@ -31,7 +31,7 @@ Songstorm.Views.UserShow = Backbone.View.extend({
   },
 
   renderPlaylists: function () {
-    var container = $(".user-playlist-list");
+    var container = $("#user-playlists");
     var template = JST["users/user_playlists"];
     var that = this;
 
@@ -41,7 +41,7 @@ Songstorm.Views.UserShow = Backbone.View.extend({
   },
 
   renderSongs: function () {
-    var container = $(".user-song-list");
+    var container = $("#user-songs");
     var template = JST["users/user_songs"];
     var that = this;
 

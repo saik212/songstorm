@@ -9,6 +9,7 @@ json.songs @user.songs do |song|
 	json.album song.album
 	json.artist song.artist
 	json.uploader_id song.uploader_id
+	json.num_likes song.likes.count
 
 	json.created_at song.created_at
 	json.updated_at song.updated_at
