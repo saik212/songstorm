@@ -1,5 +1,4 @@
-
-/*//// Song Stuff ////*/
+/*
 
 #song-page-left {
   background: transparent;
@@ -59,16 +58,12 @@
 
 .song-info > li:first-child {
   font-size: 40px;
-  /*float: right;*/
 }
 
 .song-show-play {
   margin-top: 10px;
   font-size: 60px;
-  /*float: left;*/
 }
-
-/*//// Playlist Stuff ////*/
 
 .playlists-section {
   margin-bottom: 10px;
@@ -141,7 +136,6 @@
   width: 50px;
 }
 
-/*//// Comment Stuff ////*/
 
 .comments-section {
   float: left;
@@ -190,7 +184,7 @@
 }
 
 
-/*Comment Form*/
+
 
 .comments-form {
   background: #8e44ad;
@@ -211,4 +205,5 @@
   padding: 10px 55px 0 0;
   font-size: 20px;
   font-weight: bold;
-}
+}*/
+

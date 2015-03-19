@@ -2,7 +2,9 @@ json.extract! @playlist, :id, :name, :user_id, :created_at, :updated_at
 json.owner @playlist.user.username
 json.owner_image @playlist.user.image.url
 json.image_url asset_path(@playlist.image.url)
-
+json.days_ago @playlist.days_ago
+json.owner_num_songs @playlist.user.songs.count
+json.owner_num_playlists @playlist.user.playlists.count
 
 json.songs @playlist.songs do |song|
 	json.audio_url asset_path(song.audio.url)
@@ -12,6 +14,7 @@ json.songs @playlist.songs do |song|
 	json.album song.album
 	json.artist song.artist
 	json.uploader_id song.uploader_id
+	json.num_likes song.likes.count
 
 	json.created_at song.created_at
 	json.updated_at song.updated_at

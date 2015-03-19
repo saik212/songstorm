@@ -1,4 +1,75 @@
-<div class="content-main group" id="song-main">
+		<section class="show-banner song-sb group">
+			<img src="<%= playlist.escape("image_url") %>">
+			<span class="other-info">
+				<span> <%= playlist.escape("days_ago") %> days ago </span>
+				<!-- <span> 3 <i class="fa fa-heart"></i> </span> -->
+			</span>
+			<p class="banner-info song-info title-info"><%= playlist.escape("name") %></p>
+			<br>
+			<span class="banner-info show-play-btn">
+				<i class="fa fa-play" id="play-queue"></i>
+			</span>
+
+		</section>
+
+		<section class="show-content group">
+			<section class="content-lt">
+				<div class="wgt-wrapper group">
+					<%if (parseInt(Songstorm.currentUser.id) === parseInt(playlist.escape("user_id"))) { %>
+						<span class="wgt-btn"><i class="fa fa-trash-o"></i>Delete</span>
+					<%}%>
+					<span class="wgt-btn"><i class="fa fa-plus"></i>Create Playlist</span>
+				</div>
+
+				
+
+				<div class="show-comm group">
+					<div class="upldr-wrapper">
+						<h1 class="upldr-header">Uploader</h1>
+						<a href="#/users/<%= playlist.escape("user_id") %>">
+							<img class="upldr-img" src="<%= playlist.escape("owner_image") %>">
+						</a>
+						<p id="upldr-name"><a href="#/users/<%= playlist.escape("user_id") %>"><%= playlist.escape("owner") %></a></p>
+						<p>Songs: <%= playlist.escape("owner_num_songs") %></p>
+						<p>Playlists: <%= playlist.escape("owner_num_playlists") %></p>
+					</div>
+
+					<div class="cmts-wrapper">
+						<h1 class="cmt-header"><i class="fa fa-music"></i> Songs (<%= playlist.songs().length %>)</h1>
+						<ul class="cmts-display" id="trk-listing">
+							
+						</ul>
+					</div>
+				</div>
+
+			</section>
+
+			<section class="content-rt">
+
+				<div class="plst-wrapper">
+					<p id="in-plst-header">More by user:</p>
+					<ul class="in-plst">
+
+					</ul>
+				</div>
+
+				<!-- <div class="likers-wrapper">
+					likers go here
+				</div> -->
+
+			</section>
+
+		</section>
+
+
+
+
+
+
+
+
+
+<!-- <div class="content-main group" id="song-main">
 
 	<section class="page-left" id="song-page-left">
 	
@@ -45,5 +116,5 @@
 	</section>
 
 </div>
-
+ -->
 

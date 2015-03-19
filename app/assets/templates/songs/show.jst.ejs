@@ -26,7 +26,9 @@
 		
 
 					<span class="wgt-btn"><i class="fa fa-bars"></i>Add to playlist</span>
-					<span class="wgt-btn"><i class="fa fa-trash-o"></i>Delete</span>
+					<%if (parseInt(Songstorm.currentUser.id) === parseInt(song.escape("uploader_id"))) { %>
+						<span class="wgt-btn"><i class="fa fa-trash-o"></i>Delete</span>
+					<%} %>
 					<span id="num-likes"> <%= song.escape("num_likes") %> <i class="fa fa-heart"></i></span>
 				</div>
 
@@ -49,7 +51,7 @@
 						<h1 class="upldr-header">Uploader</h1>
 						<img class="upldr-img" src="<%= song.escape("uploader_img") %>">
 						<p id="upldr-name">
-							<a href="<%= song.escape("uploader_id") %>"><%= song.escape("uploader_name") %></a>
+							<a href="#/users/<%= song.escape("uploader_id") %>"><%= song.escape("uploader_name") %></a>
 						</p>
 						<p>Songs: <%= song.escape("uploader_num_songs") %></p>
 						<p>Playlists: <%= song.escape("uploader_num_playlists") %></p>

@@ -14,4 +14,8 @@ class Playlist < ActiveRecord::Base
 
   validates_attachment_content_type :image,
     :content_type => /\Aimage\/.*\Z/
+
+    def days_ago
+      ((Time.now - self.created_at.to_time)/86400).to_i
+    end
 end

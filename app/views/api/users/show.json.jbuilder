@@ -19,6 +19,7 @@ json.playlists @user.playlists do |playlist|
 	json.id playlist.id
 	json.name playlist.name
 	json.user_id playlist.user_id
+	json.num_pl_songs playlist.songs.count
 
 	json.created_at playlist.created_at
 	json.updated_at playlist.updated_at

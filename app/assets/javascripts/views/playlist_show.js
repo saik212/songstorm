@@ -33,22 +33,27 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
   },
 
   renderSongs: function () {
-    var container = $("#song-list-display");
+    var container = $("#trk-listing");
     var template = JST["playlists/playlist_songs"];
     var that = this;
 
     if (this.model.songs().length > 0) {
+
+      var trackNum = 1;
       this.model.songs().forEach(function (song) {
-        container.append(template({song:song, playlist: that.model}));
+        container.append(template({song:song, playlist: that.model, trackNum: trackNum}));
+        trackNum++;
       })
+
     } else {
+
       container.append("<li>No songs in this list!</li>");
     }
 
   },
 
   renderSongPlaylists: function () {
-    var container = $(".songs-playlists");
+    var container = $(".in-plst");
     var template = JST["playlists/more_playlists"];
     var that = this;
 
@@ -70,6 +75,7 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
 
   playQueue: function (event) {
     event.preventDefault();
+    console.log("Trying to play queue");
     Songstorm.playQueue = [];
     this.model.songs().forEach(function (song) {
       Songstorm.playQueue.push(song);
@@ -81,6 +87,7 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
 
   playSong: function (event) {
     event.preventDefault();
+    if (event.target.id === "play-queue") {return;}
 
     Songstorm.globalPlayer.track = 0;
     Songstorm.playQueue = [];

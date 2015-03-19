@@ -1,8 +1,25 @@
-<li>
+<!-- <li>
 	<img class="song-thumb" id="playlist-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
 	<i class="fa fa-play create" data-song-id="<%=song.id%>"></i>
 	<a class="create" href="#/songs/<%=song.id%>"><%=song.escape('artist')+" - "+song.escape('title')%></a>
 	<% if (parseInt(Songstorm.currentUser.id) === parseInt(playlist.escape("user_id"))) { %>
 		<span class="remove-button delete" data-song-id=<%=song.id%>>Remove</span>
 	<% } %>
+</li> -->
+
+<li class="sg-li group">
+	<a href="#/songs/<%= song.id %>">
+		<img class="sg-li-img" src="<%= song.escape("image_url") %>">
+	</a>
+<div class="play"><i class="fa fa-play" data-song-id="<%= song.id %>"></i></div>
+<div class="sg-li-info">
+	<div class="trk-num"> <%= trackNum %>. </div>
+	<div class="trk-info"><span><%= song.escape("artist") %> -<a href="#/songs/<%= song.id %>">
+	</span> <%= song.escape("title") %></a></div>
+
+	<% if (parseInt(Songstorm.currentUser.id) === parseInt(playlist.escape("user_id"))) { %>
+		<i class="fa fa-trash rmv-sg-btn"> Remove</i>
+	<% } %>
+</div>
+	<div class="trk-likes"><i class="fa fa-heart"></i> <%= song.escape("num_likes") %></div>
 </li>

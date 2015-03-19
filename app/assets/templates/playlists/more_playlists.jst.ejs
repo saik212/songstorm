@@ -1,6 +1,21 @@
-<li class="playlist-li">
+<!-- <li class="playlist-li">
 	<img class="song-thumb" src="<%= playlist.escape("image_url") %>" width="100" alt="">
 	<h1>
     <a class="create" href="#/playlists/<%=playlist.id%>"><%=playlist.escape('name')%></a>
 	</h1>
+</li>
+ -->
+
+<li>
+	<a href="#/playlists/<%= playlist.id %>">
+		<img src="<%= playlist.escape("image_url") %>">
+	</a>
+	<div class="sg-pl-info">
+		<p>
+			<a href="#/playlists/<%= playlist.id %>">
+				<%= playlist.escape("name") %>
+			</a>
+		</p>
+		<p><i class="fa fa-music"></i>: <%= playlist.escape("num_pl_songs") %></p>
+	</div>
 </li>
