@@ -11,7 +11,8 @@ Songstorm.Views.UserShow = Backbone.View.extend({
   events: {
     "click .delete-playlist": "delete",
     "click .delete-button": "delete",
-    "click .fa-play": "playSong"
+    "click .fa-play": "playSong",
+    "click #create-playlist": "createPlaylist"
   },
 
   render: function () {
@@ -76,4 +77,10 @@ Songstorm.Views.UserShow = Backbone.View.extend({
     Songstorm.globalPlayer.track = 0;
     Songstorm.globalPlayer.playQueue();
   },
+
+  createPlaylist: function (event) {
+    event.preventDefault();
+
+    Songstorm.modal.showPlaylistForm();
+  }
 })

@@ -16,7 +16,7 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 		"click .sign-in-guest": "guestSignIn",
 		"click #preview-play": "playSong"
 	},
-
+	
   playSong: function (event) {
     event.preventDefault();
 

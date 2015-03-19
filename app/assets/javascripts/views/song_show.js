@@ -18,7 +18,8 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     "click .add-like": "addLike",
     "click .remove-like": "removeLike",
     "click .fa-play": "playSong",
-    "click #delete-song": "deleteSong"
+    "click #delete-song": "deleteSong",
+    "click #add-playlist-form": "playlistForm"
   },
 
   render: function () {
@@ -205,6 +206,12 @@ Songstorm.Views.SongShow = Backbone.View.extend({
         alert("Didn't work");
       }
     });
+  },
+
+  playlistForm: function (event) {
+    event.preventDefault();
+
+    Songstorm.modal.showAddPlaylist();
   }
 
 });

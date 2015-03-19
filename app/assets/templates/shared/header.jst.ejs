@@ -30,7 +30,7 @@
 
       <ul class="header-list group">
         <li>
-            <a href="#">Upload</a>
+            <a id="upld-song">Upload</a>
           </li>
         <% if (Songstorm.currentUser.isSignedIn()) {%>
           <!-- <li>
@@ -54,7 +54,7 @@
           </li>
         <%} else {%>
           <li>
-            <a href="#/session/new">Sign In</a>
+            <a id="nav-sign-in">Sign In</a>
           </li>
           <li>
             <a href="#/users/new">Sign Up</a>

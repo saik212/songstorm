@@ -31,6 +31,8 @@ window.Songstorm = {
       el: "#global-player",
       rootEl: "#content"
     });
+
+    Songstorm.modal = new Songstorm.Views.Modal({el:".modal-wrapper"});
     
     Songstorm.router = new Songstorm.Routers.Router({
       $rootEl: $("#content")

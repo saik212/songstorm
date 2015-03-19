@@ -92,7 +92,6 @@ Songstorm.Models.CurrentUser = Backbone.Model.extend({
       dataType: "json",
       success: function (data) {
         model.set(data);
-        Songstorm.router.userShow(Songstorm.currentUser.id);
         options.success && options.success();        
       },
       error: function () {

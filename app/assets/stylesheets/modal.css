@@ -1,47 +1,155 @@
+.closed {
+	display: none;
+}
 
-.modal {
-display: none;
+.close-modal {
+	height: 100%;
+	width: 100%;
 }
-.modal.is-open {
-display: block;
+
+.modal-wrapper {
+	font-family: "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
+
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 900;
+
+
+	background: rgba(0, 0, 0, 0.67);
+
+	/*transition: 1s;*/
 }
-.modal-screen {
-position: fixed;
-background: rgba(0, 0, 0, 0.7);
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
-z-index: 2;
+
+.close-modal-header {
+	display: block;
+	margin-bottom: 20px;
+	padding-right: 15px;
+
+  background: #2c3e50;
+
+	color: #fff;
+	font-size: 25px;
+	font-weight: 800;
+	text-align: right;
 }
-.modal-form {
-position: absolute;
-top: 100px;
-left: 50%;
-margin-left: -220px;
-width: 360px;
-padding: 20px;
-background: #fff;
-z-index: 3;
-border-radius: 5px;
-border: 1px solid #000;
+
+.close-btn {
+	cursor: pointer;
+	float: right;
 }
-.modal-close {
-position: absolute;
-top: 10px;
-right: 20px;
-font-size: 36px;
-line-height: 1;
-cursor: pointer;
+
+.close-modal-header > h1 {
+	float: left;
+  padding-left: 14px;
+  padding-top: 5px;
+  letter-spacing: 1px;
+  font-size: 17px;
 }
-.modal-close:hover {
-color: #f00;
+
+.form-welcome {
+	display: block;
+	width: 275px;
+	margin: auto;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+
+	text-align: center;
 }
-.modal-form > h1 {
-font-size: 36px;
-line-height: 1;
-font-weight: 300;
+
+/*...
+Modal Form
+...*/
+
+.form-wrapper {
+	width: 25%;
+	background: #fff;
+	padding-bottom: 20px;
+	border-radius: 4px;
+
+	position: absolute;
+	z-index: 1000;
+	top: 50%;
+	left: 50%;
+
+	margin-left: -250px;
+	transform: translateY(-48%);
 }
-.modal-form > p {
-margin: 0 0 20px 0;
+
+.input-wrapper {
+	display: block;
+	width: 75%;
+	text-align: right;
+}
+
+.input-wrapper > * {
+	margin: 10px 0;
+}
+
+.input-wrapper > input {
+	border-radius: 2px;
+}
+
+/*Buttons*/
+
+.submit {
+	width: 50%;
+	margin: auto;
+
+}
+
+.submit-btn {
+	display: block;
+	width: 65px;
+	margin: 5px auto;
+
+	text-align: center;
+	cursor: pointer;
+}
+
+.or-guest {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+
+	color: #000;
+	letter-spacing: 1px;
+	opacity: 0.9;
+
+	cursor: auto;
+}
+
+#guest-btn {
+	width: 132px;
+}
+
+#upld-img {
+	width: 174px;
+}
+
+#req-field {
+	text-align: right;
+  padding: 10px 10px 0 0;
+
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #EA0F28;
+}
+
+.input-wrapper > label > span {
+	color: #EA0F28;
+}
+
+#create-pl {
+	width: 121px;
+}
+
+#add-pl-wrapper {
+  width: 50%;
+  text-align: center;
+  margin: auto;
 }
