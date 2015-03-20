@@ -12,6 +12,7 @@ window.Songstorm = {
 
     Songstorm.playlists = new Songstorm.Collections.Playlists();
     // Songstorm.playlists.fetch();
+    
     Songstorm.playlistSongs = new Songstorm.Collections.PlaylistSongs();
     Songstorm.playlistSongs.fetch();
 
@@ -22,7 +23,7 @@ window.Songstorm = {
     Songstorm.comments.fetch();
 
     Songstorm.likes = new Songstorm.Collections.Likes();
-    // Songstorm.likes.fetch();
+    Songstorm.likes.fetch();
 
     new Songstorm.Views.Header({el: "#header"});
     // new Songstorm.Views.Footer({el: "#footer"});

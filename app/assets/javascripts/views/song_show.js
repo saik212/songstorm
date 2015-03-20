@@ -13,10 +13,10 @@ Songstorm.Views.SongShow = Backbone.View.extend({
 
   events: {
     "click .remove_playlist": "removePlaylist",
-    "click .comment-submit": "addComment",
-    "click .delete-comment": "deleteComment",
+    "click #cmt-submit-btn": "addComment",
+    "click #cmt-rmv-btn": "deleteComment",
     "click #like-btn": "addLike",
-    "click #unline-btn": "removeLike",
+    "click #unlike-btn": "removeLike",
     "click .fa-play": "playSong",
     "click #delete-song": "deleteSong",
     "click #add-pl-btn": "playlistForm"
@@ -117,10 +117,10 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   addComment: function (event) {
     event.preventDefault();
     var that = this;
-    commSongId = parseInt($(".song_id").val());
-    commBody = $(".comment_body").val();
+    // commSongId = parseInt($(".song_id").val());
+    var commBody = $(".cmt-text").val();
 
-    comment = new Songstorm.Models.Comment({
+    var comment = new Songstorm.Models.Comment({
       user_id: Songstorm.currentUser.id,
       commentable_id: this.model.id,
       commentable_type: 'Song',
@@ -141,14 +141,24 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   deleteComment: function (event) {
     event.preventDefault();
     var that = this;
-    commId = $(event.target).data('id');
-    comment = this.model.comments().get(commId);
-    comment.destroy({
+    var commId = $(event.target).data('cmt-id');
+    var comment = new Songstorm.Models.Comment({id: commId});
+    comment.fetch({
       success: function () {
-        that.model.comments().remove(comment);
-        Songstorm.comments.remove(comment);
+        debugger
+        comment.destroy({
+          success: function () {
+            that.model.comments().remove(comment);
+            Songstorm.comments.remove(comment);
+          },
+
+          error: function () {
+            alert("didn't delete comment!");
+          }
+        })
+        
       }
-    })
+    });
   },
 
   addLike: function (event) {
@@ -177,6 +187,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     var user = Songstorm.users.getOrFetch(user_id);
     var like;
     like = Songstorm.likes.findWhere({user_id: user_id, song_id: song_id});
+    // debugger
     like.destroy({
       success: function () {
         that.model.fetch();

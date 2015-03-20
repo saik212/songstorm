@@ -70,8 +70,7 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 			$(".form-wrapper").empty().html(template);
 			this.showModal();
 		} else {
-			this.showSignIn({callback: that.showUpload});
-			// return;
+			this.showSignIn();
 		}
 	},
 
@@ -85,7 +84,6 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 			this.showModal();
 		} else {
 			this.showSignIn();
-			// return;
 		}
 	},
 

@@ -11,10 +11,10 @@ Rails.application.routes.draw do
     resources :playlists, only: [:create, :index, :show, :update, :destroy]
 
     resources :songs, only: [:create, :index, :show, :update, :destroy]
-    resources :comments, only: [:create, :index, :destroy]
+    resources :comments, only: [:create, :index, :show, :destroy]
 
     resources :playlist_songs, only: [:create, :index, :destroy]
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: [:index, :create, :destroy]
 
     get 'search', to: "searches#index"
   end

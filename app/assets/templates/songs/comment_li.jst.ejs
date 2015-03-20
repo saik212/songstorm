@@ -17,7 +17,7 @@
 	<p class="cmter-name">
 		<a href="#/users/<%= comment.escape('user_id') %>"><%= comment.escape('author')%></a> 
 		<% if (parseInt(Songstorm.currentUser.id) === parseInt(comment.escape('user_id'))) { %>
-			<i class="fa fa-trash-o"></i>
+			<i class="fa fa-trash-o dlt-btn" id="cmt-rmv-btn" data-cmt-id="<%= comment.id %>"></i>
 		<% } %>
 	</p>
 
