@@ -1,15 +1,18 @@
 Songstorm.Views.Modal = Backbone.View.extend ({
 	initialize: function () {
 		// alert("Modal Online");
+		this.currentModel;
 	},
 
 	events: {
 		"click .open-modal": "showModal",
 		"click .close-modal": "hideModal",
 		"click .close-btn": "hideModal",
+		"change .file-upld": "fileInputChange",
 		"click #sign-in-modal": "showSignIn",
 		"click #user-sign-in": "signIn",
-		"click #add-pl": "addPlaylist"
+		"click #add-pl": "addPlaylist",
+		"click #create-pl": "createPlaylist"
 	},
 
 	showModal: function () {
@@ -78,6 +81,9 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 		var that = this;
 		var template;
 
+		var playlist = new Songstorm.Models.Playlist;
+		this.currentModel = playlist;
+
 		if (Songstorm.currentUser.isSignedIn()) {
 			template = JST["modals/playlist_form"];
 			$(".form-wrapper").empty().html(template);
@@ -85,6 +91,36 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 		} else {
 			this.showSignIn();
 		}
+	},
+
+	createPlaylist: function (event) {
+		event.preventDefault();
+		var that = this;
+
+
+		var formData = $(".modal-form").serializeJSON().playlist;
+		var playlist = this.currentModel;
+
+		playlist.set(formData);
+		playlist.save({}, {
+			success: function () {
+      	var addNotice = $("<h1>");
+      	addNotice.text("Created "+ playlist.escape("name") + "!").css({"text-align":"center", "color": "#580B77", "margin-top": "5px"});
+
+
+      	$(".form-wrapper").append(addNotice);
+      	setTimeout(function () {
+	      	that.hideModal();
+	      	Songstorm.playlists.add(that.currentModel, {merge: true});
+	        Backbone.history.navigate("#/playlists/"+playlist.id, {trigger: true});
+      	}, 1250);
+			},
+
+			error: function () {
+				alert("Couldn't create playlist for some reason");
+			}
+		})
+
 	},
 
 	showAddPlaylist: function (options) {
@@ -136,5 +172,23 @@ Songstorm.Views.Modal = Backbone.View.extend ({
     });
 
 	},
+
+	fileInputChange: function(event){
+		alert("File Input Change!!");
+    var that = this;
+
+    var file = event.currentTarget.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function(){
+      console.log(reader.result)
+      that.currentModel._image = reader.result;
+    }
+    if (file) {
+      reader.readAsDataURL(file);
+      debugger
+    } else {
+      delete this.currentModel._image;
+    }
+  },
 
 });

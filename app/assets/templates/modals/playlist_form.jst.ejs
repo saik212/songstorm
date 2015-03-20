@@ -3,12 +3,12 @@
 	<span class="close-btn">&times;</span>
 </span>
 <h1 class="form-welcome">Create a playlist</h1>
-<form class="modal-form">
+<form class="modal-form" enctype="multipart/form-data">
 	<div class="input-wrapper">
 		<label>Title<span>*</span>: </label>
-		<input type="text"><br>
+		<input name="playlist[name]" type="text"><br>
 		<label>Playlist Image: </label>
-		<input type="file" id="upld-img">
+		<input name="playlist[image]" type="file" class="file-upld" id="upld-img">
 	</div>
 </form>
 
