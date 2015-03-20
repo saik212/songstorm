@@ -118,11 +118,11 @@ input[submit] {
   transition: 0.25s;
 }
 
-.search-bar {
+/*.search-bar {
   display: inline;
-  /*clear: both;*/
+  clear: both;
 }
 
 #sign-out-link {
   cursor: pointer;
-}
+}*/

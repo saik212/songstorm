@@ -25,7 +25,7 @@ body {
 #content {
 	max-width: 1000px;
 	margin: auto;
-	padding-top: 76px;
+	padding: 76px 20px 0 20px;
 
 	background: #F5F5F5;
 
@@ -38,4 +38,18 @@ body {
 	content: "";
 	display: block;
 	clear: both;
+}
+
+.txt-hov, .wgt-btn, .rmv-sg-btn {
+	transition: 0.15s;
+}
+
+.txt-hov:hover, .wgt-btn:hover {
+	transition: 0.15s;
+	color: #580B77;
+}
+
+.dlt-btn:hover {
+	transition: 0.15s;
+	color: #FF0013;
 }

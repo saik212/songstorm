@@ -8,15 +8,10 @@ Songstorm.Views.Header = Backbone.View.extend({
 
 	events: {
 		"click #sign-out-link": "signOut",
-		"click #upld-song": "stuff",
+		"click #upld-song": "showUpload",
 		"click #nav-sign-in": "signIn"
 	},
 
-	stuff: function (event) {
-		event.preventDefault();
-
-		Songstorm.modal.stuff();
-	},
 
 	render: function () {
 		var content = this.template({
@@ -43,5 +38,11 @@ Songstorm.Views.Header = Backbone.View.extend({
 				// Backbone.history.navigate("session/new", {trigger: true});
 			}
 		});
-	}
+	},
+	
+	showUpload: function (event) {
+		event.preventDefault();
+
+		Songstorm.modal.showUpload();
+	},
 });

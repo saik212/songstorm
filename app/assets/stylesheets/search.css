@@ -1,6 +1,6 @@
-.search {
+/*.search {
 	width: 100%;
-	/*margin: auto;*/
+	margin: auto;
 }
 
 #search-wrapper {
@@ -24,7 +24,7 @@
 
 #explore-right {
 	float: right;
-	/*padding: 0;*/
+	padding: 0;
 	width: 400px;
 }
 
@@ -38,4 +38,73 @@
 	padding: 10px 5px 0 5px;
 }
 
+
+*/
+
+#search-content-lt {
+	width: 675px;
+}
+
+#all-songs {
+	width: 660px;
+	padding: 0;
+}
+
+#all-users {
+	width: 255px;
+	margin: 0;
+	padding: 0 20px;
+}
+
+#all-users-header {
+	width: 100%;
+	margin: 0px 0 10px 0;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #ccc;
+
+	text-align: center;
+	opacity: 0.5;
+}
+
+#search-users {
+	margin: 10px;
+}
+
+.search-user-info {
+	width: 150px;
+}
+
+.search-user-name {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.search-wrapper {
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+}
+
+#search-results {
+	width: 500px;
+	margin: 20px auto;
+}
+
+.search {
+	padding-top: 15px;
+}
+
+#search-bar {
+	text-align: center;
+	height: 70px;
+}
+
+.explr-header {
+	text-align: center;
+	font-size: 46px;
+}
+
+#results-header {
+	border-bottom: 0;
+}
 

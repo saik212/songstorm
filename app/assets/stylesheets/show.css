@@ -117,6 +117,10 @@ Widgets
   font-size: 14px;
 }
 
+.wgt-btn:hover {
+	cursor: pointer;
+}
+
 .wgt-btn > i {
 	margin-right: 5px;
 }
@@ -149,10 +153,11 @@ Submit Comment
 }
 
 .cmt-sbmt {
-  height: 45px;
+  height: 51px;
   width: 580px;
   box-sizing: border-box;
   padding: 6px;
+  padding-right: 10px;
 
   background: #717171;
   border-radius: 4px;
@@ -164,7 +169,7 @@ Submit Comment
 }
 
 .sbmt-btn {
-  height: 45px;
+  height: 50px;
   width: 75px;
   border-radius: 4px;
   
@@ -310,7 +315,7 @@ In Playlists
 
 
 .sg-pl-info > p {
-	text-align: left;
+	text-align: right;
 	font-size: 12px;
 
 	opacity: 0.5;
@@ -341,11 +346,12 @@ Playlist Show
 .play {
 	height: 40px;
 	width: 40px;
-	background: #000;
+	background-image: radial-gradient(#EBD6F4, #580B77);
 	border-radius: 50%;
+	transition: 0.15s;
 
 	text-align: center;
-	color: #fff;
+	color: #000;
 
 	float: left;
 
@@ -353,7 +359,13 @@ Playlist Show
 }
 
 .play > i {
-	padding: 12px 0px 0px 3px;
+	padding: 13px 0px 0px 3px;
+}
+
+.play:hover {
+	transition: 0.15s;
+	color: #fff;
+	cursor: pointer;
 }
 
 .sg-li-info {
@@ -384,6 +396,10 @@ Playlist Show
   opacity: 0.8;
 }
 
+.rmv-sg-btn:hover {
+	cursor: pointer;
+}
+
 .trk-likes {
 	float: right;
 
@@ -406,4 +422,35 @@ User Show
   border-bottom: 1px solid #ccc;
   text-align: center;
   opacity: 0.5;
+}
+
+
+.txt-trunc {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+}
+
+#user-show-pl {
+	font-size: 16px;
+	width: 110px;
+}
+
+#user-show-sg {
+	width: 290px;
+}
+
+.create-playlist {
+	display: inline;
+	color: #717171;
+}
+
+#user-to-explore {
+	text-align: right;
+	opacity: 0.5;
+}
+
+#user-to-explore:hover {
+	opacity: 1;
 }

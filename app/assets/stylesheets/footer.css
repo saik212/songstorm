@@ -1,10 +1,10 @@
-.footer {
-  /*background: #8e44ad;*/
+/*.footer {
+  background: #8e44ad;
   background: #000000;
   height: 80px;
   width: 100%;
   color: #fff;
-  /*position: fixed;*/
+  position: fixed;
   display: block;
   bottom: 0px;
   padding-top: 10px;
@@ -24,3 +24,4 @@
   float: left;
   padding: 0 0 0 20px;
 }
+*/

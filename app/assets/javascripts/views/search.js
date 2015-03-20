@@ -12,7 +12,6 @@ Songstorm.Views.Search = Backbone.View.extend({
 		"click .fa-play": "playSong"
 	},
 
-	// className: "search",
 	template: JST["shared/search"],
 
 	render: function () {

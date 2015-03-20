@@ -2,6 +2,7 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
   template: JST["playlists/show"],
 
   initialize: function () {
+    this.listenTo(Songstorm.currentUser, 'change', this.render);
     this.uploader = new Songstorm.Models.User();
     this.listenTo(this.model, 'sync', this.getUploader);
     this.listenTo(this.model, 'sync', this.render);

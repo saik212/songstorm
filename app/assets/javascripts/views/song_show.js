@@ -2,6 +2,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   template: JST["songs/show"],
 
   initialize: function (options) {
+    this.listenTo(Songstorm.currentUser, 'change', this.render);
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model.playlists(), 'sync add change remove', this.render);
     this.listenTo(this.model.comments(), 'sync add change remove', this.render);
@@ -40,8 +41,6 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     this.renderComments();
     this.renderPlaylists();
     return;
-    // this.renderSongInfo();
-    this.renderPlaylistForm();
   },
 
   renderSongInfo: function () {

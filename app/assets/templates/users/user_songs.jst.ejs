@@ -1,24 +1,12 @@
-<!-- <li>
-	<img class="song-thumb" src="<%= song.escape("image_url") %>" width="100" alt="">
-	<i class="fa fa-play" data-song-id="<%=song.id%>"></i>
-	<a href="#/songs/<%=song.id%>"><%=song.escape('artist') +" - "+ song.escape('title')%></a>
-	<%if (parseInt(Songstorm.currentUser.id) === parseInt(userShow.id)) {%>
-		<span class="delete-wrapper">
-			<span class="delete-button" data-id="<%= song.id %>" data-collection="songs">Delete Song</span>
-		</span>
- 	<%}%>
-</li>
-
- -->
 <li class="sg-li group">
 	<a href="#/songs/<%= song.id %>">
 		<img class="sg-li-img" src="<%= song.escape("image_url") %>">
 	</a>
 	<div class="play"><i class="fa fa-play" data-song-id="<%=song.id%>"></i></div>
 	<div class="sg-li-info">
-		<div class="trk-info"><span><%= song.escape("artist") %> -</span> <a href="#/songs/<%= song.id %>"> <%= song.escape("title") %></a></div>
+		<div class="trk-info txt-trunc" id="user-show-sg"><span><%= song.escape("artist") %> -</span> <a class="txt-hov" href="#/songs/<%= song.id %>"> <%= song.escape("title") %></a></div>
 		<%if (parseInt(Songstorm.currentUser.id) === parseInt(userShow.id)) {%>
-			<i class="fa fa-trash rmv-sg-btn"> Delete</i>
+			<i class="fa fa-trash rmv-sg-btn dlt-btn" data-id="<%= song.id %>" data-collection="songs"> Delete</i>
 		<%}%>
 	</div>
 		<div class="trk-likes"><i class="fa fa-heart"></i> <%= song.escape("num_likes") %></div>

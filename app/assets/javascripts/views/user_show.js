@@ -2,7 +2,7 @@ Songstorm.Views.UserShow = Backbone.View.extend({
   template: JST["users/show"],
 
   initialize: function () {
-    this.listenTo(Songstorm.currentUser, 'sync', this.render);
+    this.listenTo(Songstorm.currentUser, 'change', this.render);
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model.songs(), 'sync remove add', this.render);
     this.listenTo(this.model.playlists(), 'sync remove add', this.render);
@@ -10,11 +10,12 @@ Songstorm.Views.UserShow = Backbone.View.extend({
 
   events: {
     "click .delete-playlist": "delete",
-    "click .delete-button": "delete",
+    "click .rmv-sg-btn": "delete",
     "click .fa-play": "playSong",
-    "click #create-playlist": "createPlaylist"
+    "click .create-playlist": "createPlaylist"
   },
 
+  
   render: function () {
     var currUserId = parseInt(Songstorm.currentUser.id);
     var userShowId = parseInt(this.model.id);
@@ -81,6 +82,6 @@ Songstorm.Views.UserShow = Backbone.View.extend({
   createPlaylist: function (event) {
     event.preventDefault();
 
-    Songstorm.modal.showPlaylistForm();
+    Songstorm.modal.showCreatePlaylist();
   }
 })

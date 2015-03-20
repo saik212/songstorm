@@ -2,6 +2,7 @@ json.array! @songs do |song|
 	json.extract! song, :id, :title, :artist, :uploader_id, :album, :created_at, :updated_at
 	json.audio_url asset_path(song.audio.url)
 	json.image_url asset_path(song.image.url)
+	json.num_likes song.likes.count
 
 	json.playlists song.playlists do |playlist|
 		json.id playlist.id

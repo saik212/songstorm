@@ -12,11 +12,11 @@
 					</div>
 
 					<div class="cmts-wrapper">
-						<h1 class="cmt-header"><i class="fa fa-music"></i> Songs (<%= user.songs().length %>) - <a href="#">Explore all songs</a></h1>
+						<h1 class="cmt-header"><i class="fa fa-music"></i> Songs (<%= user.songs().length %>)</h1>
 						<ul class="cmts-display" id="user-songs">
 							
 						</ul>
-						<h1>Explore all</h1>
+						<h1 class="txt-hov" id="user-to-explore"><a href="#/search">Explore all songs >></a></h1>
 					</div>
 				</div>
 
@@ -29,65 +29,9 @@
 					<ul class="in-plst" id="user-playlists">
 
 					</ul>
-					<h1>Create playlist</h1>
+					<h1 class="wgt-btn create-playlist"><i class="fa fa-plus"></i> Create playlist</h1>
 				</div>
-
-				<!-- <div class="likers-wrapper">
-					likers go here
-				</div> -->
 
 			</section>
 
 		</section>
-
-<!-- <% username = user.escape("username") %>  -->
-
-<!-- <div class="content-main group">
-	<section class="page-left">
-
-
-		<section class="user-blurb">
-			<img class="user-propic" src="<%= user.get("image_url") %>" width="100" alt="">
-			<h1 class="hello_user"> <%= username %>'s Show page </h1>
-		</section>
-
-
-		<section class="user-playlists">
-			<ul class="user-details">
-				<li>Joined: <%=user.escape("joinDate")%></li>
-				<li>Uploads: <%=user.songs().length%></li>
-				<li>Playlists: <%=user.playlists().length%></li>
-			</ul>
-		</section>
-	</section>
-
-	<section class="page-center">
-		<section class="user-songs">
-			<h3 class="song-list-header"> <%=username%>'s Songs: </h3>
-			<ul class="user-song-list">
-				<%user.songs().forEach(function(song){%>
-
-				<%})%>
-			</ul>
-			<h3 class="create-list">
-				<a href="#/search" class="create">Explore More Songs >></a>
-			</h3>
-		</section>
-	</section>
-
-	
-
-	<section class="page-right">
-		<section class="user-playlists">
-			<h3> <%= username %>'s Playlists: </h3>
-			<ul class="user-playlist-list">
-				
-			</ul>
-	 		<%if (currUserId === userShowId) {%>
-			 	<h3 class="create-list">
-			 		<a class="create" id="create-playlist">Create Playlist >></a>
-			 	</h3>
-		 	<%}%>
-		</section>
-	</section>
-</div> -->

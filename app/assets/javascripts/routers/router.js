@@ -30,6 +30,8 @@ Songstorm.Routers.Router = Backbone.Router.extend({
   search: function () {
     var searchView = new Songstorm.Views.Search();
     this._swapView(searchView);
+    Songstorm.songs.fetch();
+    Songstorm.users.fetch();
   },
 
   userNew: function () {

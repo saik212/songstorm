@@ -1,12 +1,12 @@
 
 <li>
-	<a href="#/playlists/<%= playlist.id %>">
-		<img src="<%= playlist.escape("image_url") %>">
-	</a>
 	<div class="sg-pl-info">
-		<a href="#/playlists/<%= playlist.id %>">
-			<p><%= playlist.escape("name") %></p>
+		<a class="txt-hov" href="#/playlists/<%= playlist.id %>">
+			<p class="txt-trunc" id="user-show-pl"><%= playlist.escape("name") %></p>
 		</a>
 		<p><i class="fa fa-music"></i>: <%= playlist.escape("num_pl_songs") %></p>
 	</div>
+	<a href="#/playlists/<%= playlist.id %>">
+		<img src="<%= playlist.escape("image_url") %>">
+	</a>
 </li>

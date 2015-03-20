@@ -1,19 +1,9 @@
-<!-- <li class="playlist-li">
-	<img class="song-thumb" src="<%= playlist.escape("image_url") %>" width="100" alt="">
-	<h1>
-    <a class="create" href="#/playlists/<%=playlist.id%>"><%=playlist.escape('name')%></a>
-	</h1>
-	<h2>
-    By: <a class="create" href="#/users/<%=playlist.escape('user_id')%>"><%=playlist.escape('owner')%></a>
-	</h2>
-</li>
- -->
 <li>
+	<div class="sg-pl-info">
+		<p><a class="txt-hov" href="#/playlists/<%=playlist.id%>"><%=playlist.escape('name')%></a></p>
+		<p><a href="#/users/<%=playlist.escape('user_id')%>"><%=playlist.escape('owner')%></p>
+	</div>
 	<a href="#/playlists/<%=playlist.id%>">
 		<img src="<%= playlist.escape("image_url") %>">
 	</a>
-	<div class="sg-pl-info">
-		<p><a href="#/playlists/<%=playlist.id%>"><%=playlist.escape('name')%></a></p>
-		<p><a href="#/users/<%=playlist.escape('user_id')%>"><%=playlist.escape('owner')%></p>
-	</div>
 </li>

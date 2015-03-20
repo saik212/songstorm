@@ -21,8 +21,8 @@
 					</div>
 				</div>
 
-			<div class="search-results">
-						<h1 class="cmt-header"><i class="fa fa-music"></i> Results (<%= collection.length %>) for "<%= searchQuery %>"</h1>
+			<div class="search-wrapper">
+						<h1 class="cmt-header" id="results-header"><i class="fa fa-music"></i> Results (<%= collection.length %>) for "<%= searchQuery %>"</h1>
 						<ul class="cmts-display" id="search-results">
 
 						</ul>
@@ -33,7 +33,7 @@
 		<h1 class="explr-header">Explore the community!</h1>
 
 		<section class="show-content group">
-			<section class="content-lt">
+			<section class="content-lt" id="search-content-lt">
 
 					<div class="cmts-wrapper" id="all-songs">
 						<h1 class="cmt-header"><i class="fa fa-music"></i> Songs (<%= Songstorm.songs.length %>)</h1>
@@ -47,7 +47,7 @@
 			<section class="content-rt" id="all-users">
 
 				<div class="plst-wrapper">
-					<p id="in-plst-header">Users:</p>
+					<p id="all-users-header"><i class="fa fa-user"></i> Users (<%= Songstorm.users.length %>)</p>
 					<ul class="in-plst" id="all-users-list">
 						
 					</ul>

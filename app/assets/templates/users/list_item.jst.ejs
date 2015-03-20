@@ -1,11 +1,11 @@
-<li>
-	<a href="#/users/<%= user.id %>">
-		<img src="<%= user.escape('image_url') %>">
-	</a>
-	<div class="sg-pl-info">
+<li id="search-users">
+	<div class="sg-pl-info search-user-info">
 		<a href="#/users/<%= user.id %>">
-			<p><%= user.escape('username') %></p>
+			<p class="search-user-name txt-hov"><%= user.escape('username') %></p>
 		</a>
 		<p><i class="fa fa-music"></i>: <%= user.escape('num_songs') %></p>
 	</div>
+	<a href="#/users/<%= user.id %>">
+		<img src="<%= user.escape('image_url') %>">
+	</a>
 </li>

@@ -4,22 +4,11 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 	},
 
 	events: {
-		"click .site-header": "stuff",
 		"click .open-modal": "showModal",
 		"click .close-modal": "hideModal",
 		"click .close-btn": "hideModal",
 		"click #sign-in-modal": "showSignIn",
 		"click #user-sign-in": "signIn"
-	},
-
-	stuff: function () {
-		// this.showSignIn();
-		console.log()
-		this.showUpload();
-	},
-
-	test: function () {
-		console.log('test modal hihi');
 	},
 
 	showModal: function () {

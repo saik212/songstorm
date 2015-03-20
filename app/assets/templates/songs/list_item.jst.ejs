@@ -1,16 +1,10 @@
-<!-- <li class="group">
-	<img class="song-thumb" id="playlist-thumb" src="<%= model.escape("image_url") %>" width="100" alt="">
-	<i class="fa fa-play create" data-song-id="<%=model.id%>"></i>
-	<a class="create" href="#/songs/<%= model.id %>"><%= model.escape("artist") +" - "+ model.escape("title") %></a>
-</li> -->
-
 <li class="sg-li group">
 	<a href="#/songs/<%= model.id %>">
 		<img class="sg-li-img" src="<%= model.escape("image_url") %>">
 	</a>
 	<div class="play"><i class="fa fa-play" data-song-id="<%=model.id%>"></i></div>
 	<div class="sg-li-info">
-		<div class="trk-info"><span><%= model.escape("artist") %> -</span> <a href="#/songs/<%= model.id %>"><%= model.escape("title") %></a></div>
+		<div class="trk-info"><span><%= model.escape("artist") %> -</span> <a class="txt-hov" href="#/songs/<%= model.id %>"><%= model.escape("title") %></a></div>
 	</div>
 		<div class="trk-likes"><i class="fa fa-heart"></i> <%= model.escape("num_likes") %></div>
 </li>
