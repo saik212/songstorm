@@ -12,15 +12,14 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   },
 
   events: {
-    "click #add-playlist": "addPlaylist",
     "click .remove_playlist": "removePlaylist",
     "click .comment-submit": "addComment",
     "click .delete-comment": "deleteComment",
-    "click .add-like": "addLike",
-    "click .remove-like": "removeLike",
+    "click #like-btn": "addLike",
+    "click #unline-btn": "removeLike",
     "click .fa-play": "playSong",
     "click #delete-song": "deleteSong",
-    "click #add-playlist-form": "playlistForm"
+    "click #add-pl-btn": "playlistForm"
   },
 
   render: function () {
@@ -40,7 +39,24 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   renderInfo: function () {
     this.renderComments();
     this.renderPlaylists();
+    this.renderWidgets();
     return;
+  },
+
+  renderWidgets: function () {
+    var container = $(".wgt-wrapper");
+
+
+    if (Songstorm.currentUser.isSignedIn() && (this.model.escape("current_user_like") === "true")) {
+      container.append("<span class='wgt-btn dlt-btn' id='unlike-btn'><i class='fa fa-heart'></i> Unlike</span>");
+    } else {
+      container.append("<span class='wgt-btn' id='like-btn'><i class='fa fa-heart'></i> Like</span>");
+    }
+
+    if (Songstorm.currentUser.id === parseInt(this.model.escape("uploader_id"))) {
+      container.append("<span class='wgt-btn edit-model'><i class='fa fa-edit'></i> Edit</span>");
+      container.append("<span class='wgt-btn dlt-btn dlt-model'><i class='fa fa-trash'></i> Delete</span>");
+    }
   },
 
   renderSongInfo: function () {
@@ -211,7 +227,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
   playlistForm: function (event) {
     event.preventDefault();
 
-    Songstorm.modal.showAddPlaylist();
+    Songstorm.modal.showAddPlaylist({sgId: this.model.id});
   }
 
 });

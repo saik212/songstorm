@@ -15,29 +15,18 @@
 		</section>
 
 		<section class="show-content group">
-			<section class="content-lt">
 				<div class="wgt-wrapper group">
-
-					<span class="wgt-btn"><i class="fa fa-heart"></i> Like</span>
-			
-					<span class="wgt-btn dlt-btn"><i class="fa fa-heart"></i> Unlike</span>
-
-					<span class="wgt-btn"><i class="fa fa-edit"></i> Edit</span>
-		
-
-					<span class="wgt-btn"><i class="fa fa-bars"></i>Add to playlist</span>
-					<%if (parseInt(Songstorm.currentUser.id) === parseInt(song.escape("uploader_id"))) { %>
-						<span class="wgt-btn dlt-btn"><i class="fa fa-trash-o"></i>Delete</span>
-					<%} %>
+					<span class='wgt-btn' id="add-pl-btn"><i class='fa fa-bars'></i>Add to playlist</span>
 					<span id="num-likes"> <%= song.escape("num_likes") %> <i class="fa fa-heart"></i></span>
 				</div>
+			<section class="content-lt">
 
 				<div class="cmt-sbmt-wrapper">
 					<!-- <img src="images/img1.jpg"> -->
 					<div class="cmt-sbmt">
 						<form id="cmts-form">
 							<input type="hidden" class="song_id" name="song_id" value="<%= song.id %>">
-							<input class="cmt-text" type="text" placeholder="Leave a comment...">
+							<input class="cmt-text" type="text" placeholder="Leave a comment..." val="">
 						</form>
 						<!-- <div id="special"></div> -->
 					</div>
