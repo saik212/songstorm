@@ -18,6 +18,10 @@ ul, li {
 	list-style: none;
 }
 
+a:hover {
+	cursor: pointer;
+}
+
 body {
 	background: #F0F0F0;
 }

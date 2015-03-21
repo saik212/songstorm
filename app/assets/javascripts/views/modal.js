@@ -1,5 +1,5 @@
 Songstorm.Views.Modal = Backbone.View.extend ({
-	initialize: function () {
+	initialize: function (options) {
 		// alert("Modal Online");
 		this.currentModel;
 	},
@@ -11,6 +11,7 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 		"change .file-upld": "fileInputChange",
 		"click #sign-in-modal": "showSignIn",
 		"click #user-sign-in": "signIn",
+		"click #user-sign-up": "signUp",
 		"click #add-pl": "addPlaylist",
 		"click #create-pl": "createPlaylist"
 	},
@@ -154,7 +155,7 @@ Songstorm.Views.Modal = Backbone.View.extend ({
     playlistSong.save({}, {
 
       success: function (model) {
-      	var addNotice = $("<h1>");
+      	var addNotice = $(".notice");
       	addNotice.text("Added song to "+ playlist.escape("name") + "!").css({"text-align":"center", "color": "#580B77", "margin-top": "5px"});
 
 
@@ -190,5 +191,56 @@ Songstorm.Views.Modal = Backbone.View.extend ({
       delete this.currentModel._image;
     }
   },
+
+
+
+  showSignUp: function () {
+  	var that = this;
+  	var template = JST["modals/sign_up"];
+
+  	var newUser = new Songstorm.Models.User;
+  	this.currentModel = newUser;
+
+
+  	$(".form-wrapper").empty().html(template);
+  	this.showModal();
+  },
+
+  signUp: function (event) {
+  	event.preventDefault();
+  	var that = this;
+
+  	$(".notice").remove();
+
+  	var dataInfo = $(".modal-form").serializeJSON().user;
+
+  	if (dataInfo.password === $("#pass-check").val()) {
+  		this.currentModel.set(dataInfo);
+  		this.currentModel.save({}, {
+
+  			success: function (req, resp) {
+  				Songstorm.currentUser.fetch({
+  					success: function () {
+  						that.hideModal();
+  					}
+  				});
+  				Songstorm.users.add(that.currentModel, {merge: true});
+  			},
+
+  			error: function (req, resp) {
+  				resp.responseJSON.forEach(function (eMessage) {
+  					var err = $("<h1>").text(eMessage).addClass("notice notice-error");
+
+  					$(".form-wrapper").append(err);
+  				});
+  			}
+
+  		});
+
+  	} else {
+  		$(".form-wrapper").append($("<h1>").text("Passwords don't match").addClass("notice notice-error"));
+  	}
+
+  }
 
 });

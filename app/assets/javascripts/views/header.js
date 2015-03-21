@@ -9,7 +9,8 @@ Songstorm.Views.Header = Backbone.View.extend({
 	events: {
 		"click #sign-out-link": "signOut",
 		"click #upld-song": "showUpload",
-		"click #nav-sign-in": "signIn"
+		"click #nav-sign-in": "signIn",
+		"click #nav-sign-up": "signUp"
 	},
 
 
@@ -28,6 +29,12 @@ Songstorm.Views.Header = Backbone.View.extend({
 		event.preventDefault();
 		console.log('hihihihi');
 		Songstorm.modal.showSignIn();
+	},
+
+	signUp: function (event) {
+		event.preventDefault();
+
+		Songstorm.modal.showSignUp();
 	},
 
 	signOut: function (event) {

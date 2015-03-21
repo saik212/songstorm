@@ -12,7 +12,7 @@ window.Songstorm = {
 
     Songstorm.playlists = new Songstorm.Collections.Playlists();
     // Songstorm.playlists.fetch();
-    
+
     Songstorm.playlistSongs = new Songstorm.Collections.PlaylistSongs();
     Songstorm.playlistSongs.fetch();
 
