@@ -116,8 +116,13 @@ Songstorm.Views.SongShow = Backbone.View.extend({
 
   addComment: function (event) {
     event.preventDefault();
+
+    if (!Songstorm.currentUser.isSignedIn()) {
+      Songstorm.modal.showSignIn();
+      return;
+    }
+
     var that = this;
-    // commSongId = parseInt($(".song_id").val());
     var commBody = $(".cmt-text").val();
 
     var comment = new Songstorm.Models.Comment({
@@ -132,7 +137,7 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     comment.save({}, {
       success: function () {
         that.model.comments().add(comment);
-
+        console.log("comment success");
         Songstorm.comments.add(comment);
       }
     });
@@ -145,7 +150,6 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     var comment = new Songstorm.Models.Comment({id: commId});
     comment.fetch({
       success: function () {
-        debugger
         comment.destroy({
           success: function () {
             that.model.comments().remove(comment);
