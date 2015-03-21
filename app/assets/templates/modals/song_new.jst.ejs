@@ -2,23 +2,31 @@
 	<h1>Songstorm</h1>
 	<span class="close-btn">&times;</span>
 </span>
+
 <h1 class="form-welcome">Upload a song</h1>
-<form class="modal-form">
+
+<form class="modal-form" enctype="multipart/form-data">
 	<div class="input-wrapper">
+
 		<label>Title<span>*</span>: </label>
-		<input type="text"><br>
+		<input type="text" name="song[title]" value=""><br>
+
 		<label>Artist<span>*</span>: </label>
-		<input type="text"><br>
+		<input type="text" name="song[artist]" value=""><br>
+
 		<label>Album: </label>
-		<input type="text"><br>
+		<input type="text" name="song[album]" value=""><br>
+
 		<label>Song Image: </label>
-		<input type="file" id="upld-img"><br>
+		<input type="file" name="song[image]" class="file-upld" id="file-img"><br>
+
 		<label>Song File<span>*</span>: </label>
-		<input type="file" id="upld-img">
+		<input type="file" name="song[audio]" class="file-upld" id="file-sg">
+
 	</div>
 </form>
 
 <div class="submit">
-	<span class="submit-btn site-btn">Upload</span>
+	<span class="submit-btn site-btn" id="upld-sg">Upload</span>
 </div>
 <h1 id="req-field">*required field</h1>

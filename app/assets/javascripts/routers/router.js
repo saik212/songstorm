@@ -5,16 +5,16 @@ Songstorm.Routers.Router = Backbone.Router.extend({
 
   routes: {
     "": "checkSignIn",
-    "users/new": "userNew",
-    "session/new": "signIn",
+    // "users/new": "userNew",
+    // "session/new": "signIn",
     "users/:id": "userShow",
     "users/:id/likes": "userFavorites",
-    "playlists/new": "playlistNew",
+    // "playlists/new": "playlistNew",
     "playlists/:id": "playlistShow",
-    "playlists/:id/edit": "playlistEdit",
+    // "playlists/:id/edit": "playlistEdit",
     "songs/new": "songNew",
     "songs/:id": "songShow",
-    "songs/:id/edit": "songEdit",
+    // "songs/:id/edit": "songEdit",
     "search": "search"
   },
 

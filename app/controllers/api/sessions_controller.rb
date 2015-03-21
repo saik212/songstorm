@@ -10,7 +10,7 @@ class Api::SessionsController < ApplicationController
       sign_in(user)
       render :show
     else
-      head :unprocessable_entity
+      render json: "Invalid Credentials", status: 422
     end
   end
 
