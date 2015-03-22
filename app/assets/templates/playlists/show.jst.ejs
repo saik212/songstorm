@@ -16,9 +16,10 @@
 			<section class="content-lt">
 				<div class="wgt-wrapper group">
 					<%if (parseInt(Songstorm.currentUser.id) === parseInt(playlist.escape("user_id"))) { %>
-						<span class="wgt-btn"><i class="fa fa-trash-o"></i>Delete</span>
+						<span class='wgt-btn edit-model'><i class='fa fa-edit'></i> Edit</span>
+						<span class="wgt-btn dlt-btn"><i class="fa fa-trash-o"></i>Delete</span>
 					<%}%>
-					<span class="wgt-btn"><i class="fa fa-plus"></i>Create Playlist</span>
+					<span class="wgt-btn" id="create-pl"><i class="fa fa-plus"></i>Create Playlist</span>
 				</div>
 
 				

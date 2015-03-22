@@ -12,7 +12,8 @@ Songstorm.Views.UserShow = Backbone.View.extend({
     "click .delete-playlist": "delete",
     "click .rmv-sg-btn": "delete",
     "click .fa-play": "playSong",
-    "click .create-playlist": "createPlaylist"
+    "click .create-playlist": "createPlaylist",
+    "click #user-edit": "editUser"
   },
 
   
@@ -82,6 +83,18 @@ Songstorm.Views.UserShow = Backbone.View.extend({
   createPlaylist: function (event) {
     event.preventDefault();
 
+    Songstorm.modal.editing = false;
     Songstorm.modal.showCreatePlaylist();
+  },
+
+
+  editUser: function (event) {
+    event.preventDefault();
+
+    Songstorm.modal.editing = true;
+    Songstorm.modal.showEditUser(this.model.id);
+    Songstorm.modal.editCallback = function (id) {
+      Songstorm.router.userShow(id);
+    };
   }
 })

@@ -6,6 +6,9 @@
 					<div class="upldr-wrapper">
 						<h1 class="upldr-header">User</h1>
 						<img class="upldr-img" src="<%= user.escape("image_url") %>">
+						<% if (Songstorm.currentUser.id === parseInt(user.id)) {	 %>
+							<span class="wgt-btn edit-model" id="user-edit"><i class="fa fa-edit"></i> Edit</span>
+						<% } %>
 						<p id="upldr-name"><%= user.escape("username") %></p>
 						<p>Songs: <%= user.songs().length %></p>
 						<p>Playlists: <%= user.playlists().length %></p>

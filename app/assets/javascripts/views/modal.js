@@ -1,7 +1,9 @@
 Songstorm.Views.Modal = Backbone.View.extend ({
 	initialize: function (options) {
-		// alert("Modal Online");
-		this.currentModel;
+
+		this.currentModel = null;
+		this.editing = false;
+		this.editCallback = null;
 	},
 
 	events: {
@@ -16,9 +18,17 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 		"click #add-pl": "addPlaylist",
 		"click #create-pl": "createPlaylist",
 
-		"click #upld-sg": "uploadSong"
+		"click #upld-sg": "uploadSong",
+		"click #user-edit-btn": "editUser"
 
 	},
+
+
+// __________
+// __________
+// __________ General functions for view
+// __________
+// __________
 
 	showModal: function () {
 		$(".modal-wrapper").fadeIn(150);
@@ -44,7 +54,17 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 
 			this.currentModel = options.model;
 
-			$(".form-wrapper").html(template);
+			$(".form-wrapper").html( template({ model: this.currentModel }) );
+
+			if (options.formWelcome) {
+				$(".form-welcome").text(options.formWelcome);
+			}
+
+			if (this.editing) {
+				$(".submit-btn").text("Update");
+				$(".req-star").remove();
+			}
+
 			this.showModal();
 
 		} else {
@@ -55,16 +75,172 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 
 
 
+	postModel: function (options) {
+		var that = this;
+		var formData = $(".modal-form").serializeJSON();
+		
+
+		if (options._type === "user") {
+			formData = formData.user;
+		}
+
+		if (options._type === "song") {
+			formData = formData.song;
+		}
+
+		if (options._type === "playlist") {
+			formData = formData.playlist;
+		}
+
+
+
+		this.currentModel.set(formData);
+		this.currentModel.save({}, {
+			success: function () {
+				that.postSuccess({
+
+					notice: options.notice,
+					collections: options.collections,
+					model: that.currentModel,
+					url: options.url
+
+				});
+			},
+
+			error: function (req, resp) {
+				that.showErrors(resp);
+			}
+
+		});
+	},
+
+
+
+	postSuccess: function (options) {
+		var that = this;
+
+		this.showNotice(options.notice);
+
+		if (!this.editing) {
+
+			options.collections.forEach(function (collection) {
+				collection.add(options.model, {merge: true});
+			});
+			
+		}
+
+
+		setTimeout(function () {
+			that.hideModal();
+
+			if (that.editing) {
+				that.editCallback(that.currentModel.id);
+			} else {	
+				Backbone.history.navigate(options.url+"/"+options.model.id, {trigger: true});
+			}
+
+		}, 1250)
+
+	},
+
+	showNotice: function (notice) {
+	var message = $("<h1>");
+
+	if (this.editing) {
+		message.text("Successfully Updated").addClass("notice notice-success");
+	} else {
+		message.text(notice).addClass("notice notice-success");
+	}
+
+	$(".form-wrapper").append(message);
+	},
+
+  showErrors: function (errors) {
+	errors = errors.responseJSON || errors;
+
+	errors.forEach(function (error) {
+		var message = $("<h1>").text(error).addClass("notice notice-error");
+
+		$(".form-wrapper").append(message);
+	});
+  },
+
+
+	removeNotices: function () {
+		$(".notice").remove();
+	},
+
+
+
+
+
+// __________
+// __________
+// __________ File Upload functions
+// __________
+// __________
+
+	fileInputChange: function(options){
+    var that = this;
+
+    var file = options.file;
+
+    var reader = new FileReader();
+    reader.onloadend = function(){
+
+      if (options.modelFile === "audio") {
+	      that.currentModel._audio = reader.result;
+      } else {
+	      that.currentModel._image = reader.result;
+      }
+    }
+
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+    	if (options.modelFile === "audio") {
+	      delete this.currentModel._audio;
+      } else {
+	      delete this.currentModel._image;
+      }
+    }
+  },
+
+  audioInputChange: function (event) {
+  	event.preventDefault();
+
+  	var file = event.currentTarget.files[0];
+  	this.fileInputChange({
+  		file: file,
+  		modelFile: "audio"
+  	});
+
+
+  },
+
+  imageInputChange: function (event) {
+  	event.preventDefault();
+
+  	var file = event.currentTarget.files[0];
+  	this.fileInputChange({
+  		file: file,
+  		modelFile: "image"
+  	});
+
+  	
+  },
+
+
+
+// __________
+// __________
+// __________ Sign in stuff
+// __________
+// __________
 
 
 	showSignIn: function () {
-		// if (event) {
-		// 	event.preventDefault();
-		// }
-
-		// console.log(options);
-
-		// $(".form-wrapper").empty();
 		var template = JST["modals/sign_in"];
 		$(".form-wrapper").html(template);
 		this.showModal();
@@ -92,6 +268,104 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 		});
 	},
 
+
+
+// __________
+// __________
+// __________  Sign up stuff
+// __________
+// __________
+
+showSignUp: function () {
+  	var that = this;
+  	var template = JST["modals/sign_up"];
+
+  	var newUser = new Songstorm.Models.User;
+  	this.currentModel = newUser;
+
+
+  	$(".form-wrapper").html(template);
+  	this.showModal();
+  },
+
+  signUp: function (event) {
+  	event.preventDefault();
+  	var that = this;
+
+  	$(".notice").remove();
+
+  	var dataInfo = $(".modal-form").serializeJSON().user;
+
+  	if (dataInfo.password === $("#pass-check").val()) {
+  		this.currentModel.set(dataInfo);
+  		this.currentModel.save({}, {
+
+  			success: function (req, resp) {
+  				Songstorm.currentUser.fetch({
+  					success: function () {
+  						that.hideModal();
+  					}
+  				});
+  				Songstorm.users.add(that.currentModel, {merge: true});
+  			},
+
+  			error: function (req, resp) {
+  				that.showErrors(resp);
+  			}
+
+  		});
+
+  	} else {
+  		$(".form-wrapper").append($("<h1>").text("Passwords don't match").addClass("notice notice-error"));
+  	}
+
+  },
+
+
+// __________
+// __________
+// __________ User Edit
+// __________
+// __________
+
+
+	showEditUser: function (id) {
+		var user = Songstorm.users.get(id);
+		this.editing = true;
+
+
+		this.showForm({
+			template: "user_edit",
+			model: user
+		})
+
+
+	},
+
+	editUser: function (event) {
+		event.preventDefault();
+
+		this.removeNotices();
+
+		this.postModel({
+			notice: "Update Successful",
+			collections: [Songstorm.users],
+			model: this.currentModel,
+			url: "users",
+			_type: "user"
+		});
+
+	},
+
+
+
+// __________
+// __________
+// __________ Song Uploads
+// __________
+// __________
+
+
 	showUpload: function() {
 		var song = new Songstorm.Models.Song;
 
@@ -112,94 +386,33 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 			notice: "Upload successful!",
 			collections: [Songstorm.songs],
 			model: that.currentModel,
-			url: "songs"
+			url: "songs",
+			_type: "song"
 		});
 
-		// var formData = $(".modal-form").serializeJSON().song;
-		// this.currentModel.set(formData);
-		// this.currentModel.save({}, {
-		// 	success: function () {
-		// 		that.postSuccess({
-
-		// 			notice: "Success! Uploaded '" + that.currentModel.escape("title") + "'",
-		// 			collections: [Songstorm.songs],
-		// 			model: that.currentModel,
-		// 			url: "songs"
-
-		// 		});
-		// 	},
-
-		// 	error: function (req, resp) {
-		// 		that.showErrors(resp);
-		// 	}
-
-		// });
-
 	},
 
-	postSuccess: function (options) {
-		var that = this;
+	showEditUpload: function (id) {
+		var song = Songstorm.songs.get(id);
+		this.editing = true;
 
-		this.showNotice(options.notice);
-
-		options.collections.forEach(function (collection) {
-			collection.add(options.model, {merge: true});
+		this.showForm({
+			template: "song_new",
+			model: song,
+			formWelcome: "Edit your song"
 		});
 
-		setTimeout(function () {
-			that.hideModal();
-			Backbone.history.navigate(options.url+"/"+options.model.id, {trigger: true});
-		})
-
-	},
-
-	showNotice: function (notice) {
-		// add to .form-wrapper
-		var message = $("<h1>");
-		message.text(notice).addClass("notice notice-success");
-
-		$(".form-wrapper").append(message);
-	},
-
-
-	postModel: function (options) {
-		var that = this;
-
-		var formData = $(".modal-form").serializeJSON().song;
-
-		this.currentModel.set(formData);
-		this.currentModel.save({}, {
-			success: function () {
-				that.postSuccess({
-
-					notice: options.notice,
-					collections: options.collections,
-					model: that.currentModel,
-					url: options.url
-
-				});
-			},
-
-			error: function (req, resp) {
-				that.showErrors(resp);
-			}
-
-		});
-	},
-
-	removeNotices: function () {
-		$(".notice").remove();
 	},
 
 
 
 
 
-
-
-
-
-
+// __________
+// __________
+// __________ Create Playlists
+// __________
+// __________
 
 
 
@@ -208,15 +421,11 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 		var template;
 
 		var playlist = new Songstorm.Models.Playlist;
-		this.currentModel = playlist;
 
-		if (Songstorm.currentUser.isSignedIn()) {
-			template = JST["modals/playlist_form"];
-			$(".form-wrapper").html(template);
-			this.showModal();
-		} else {
-			this.showSignIn();
-		}
+		this.showForm({
+			template: "playlist_form",
+			model: playlist
+		});
 	},
 
 	createPlaylist: function (event) {
@@ -224,30 +433,45 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 		var that = this;
 
 
-		var formData = $(".modal-form").serializeJSON().playlist;
-		var playlist = this.currentModel;
+		this.removeNotices();
 
-		playlist.set(formData);
-		playlist.save({}, {
-			success: function () {
-      	var addNotice = $("<h1>");
-      	addNotice.text("Created "+ playlist.escape("name") + "!").css({"text-align":"center", "color": "#580B77", "margin-top": "5px"});
-
-
-      	$(".form-wrapper").append(addNotice);
-      	setTimeout(function () {
-	      	that.hideModal();
-	      	Songstorm.playlists.add(that.currentModel, {merge: true});
-	        Backbone.history.navigate("#/playlists/"+playlist.id, {trigger: true});
-      	}, 1250);
-			},
-
-			error: function () {
-				alert("Couldn't create playlist for some reason");
-			}
-		})
+		this.postModel({
+			notice: "Playlist created!",
+			collections: [Songstorm.playlists],
+			model: that.currentModel,
+			url: "playlists",
+			_type: "playlist"
+		});
 
 	},
+
+	showEditPlaylist: function (id) {
+		var playlist = Songstorm.playlists.get(id);
+		this.editing = true;
+
+		this.showForm({
+			template: "playlist_form",
+			model: playlist,
+			formWelcome: "Edit your playlist"
+		});
+	},
+
+
+
+
+
+
+
+
+
+
+
+// __________
+// __________
+// __________ Add Songs to Playlists
+// __________
+// __________
+
 
 	showAddPlaylist: function (options) {
 		var that = this;
@@ -299,121 +523,14 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 
 	},
 
-	fileInputChange: function(options){
-		alert("File Input Change!!");
-		alert(options.modelFile);
-    var that = this;
-
-    // var file = event.currentTarget.files[0];
-    var file = options.file;
-
-    var reader = new FileReader();
-    reader.onloadend = function(){
-      console.log(reader.result)
-      // that.currentModel._image = reader.result;
-      if (options.modelFile === "audio") {
-	      that.currentModel._audio = reader.result;
-      } else {
-	      that.currentModel._image = reader.result;
-      }
-      debugger
-    }
-
-
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-    	if (options.modelFile === "audio") {
-	      delete this.currentModel._audio;
-      } else {
-	      delete this.currentModel._image;
-      }
-    }
-    debugger
-  },
-
-  audioInputChange: function (event) {
-  	event.preventDefault();
-
-  	var file = event.currentTarget.files[0];
-  	this.fileInputChange({
-  		file: file,
-  		modelFile: "audio"
-  	});
-
-
-  },
-
-  imageInputChange: function (event) {
-  	event.preventDefault();
-
-  	var file = event.currentTarget.files[0];
-  	this.fileInputChange({
-  		file: file,
-  		modelFile: "image"
-  	});
-
-  	
-  },
 
 
 
 
-  showSignUp: function () {
-  	var that = this;
-  	var template = JST["modals/sign_up"];
-
-  	var newUser = new Songstorm.Models.User;
-  	this.currentModel = newUser;
+  
 
 
-  	$(".form-wrapper").html(template);
-  	this.showModal();
-  },
 
-  signUp: function (event) {
-  	event.preventDefault();
-  	var that = this;
-
-  	$(".notice").remove();
-
-  	var dataInfo = $(".modal-form").serializeJSON().user;
-
-  	if (dataInfo.password === $("#pass-check").val()) {
-  		this.currentModel.set(dataInfo);
-  		this.currentModel.save({}, {
-
-  			success: function (req, resp) {
-  				Songstorm.currentUser.fetch({
-  					success: function () {
-  						that.hideModal();
-  					}
-  				});
-  				Songstorm.users.add(that.currentModel, {merge: true});
-  			},
-
-  			error: function (req, resp) {
-  				that.showErrors(resp);
-  			}
-
-  		});
-
-  	} else {
-  		$(".form-wrapper").append($("<h1>").text("Passwords don't match").addClass("notice notice-error"));
-  	}
-
-  },
-
-
-  showErrors: function (errors) {
-  	errors = errors.responseJSON || errors;
-
-  	errors.forEach(function (error) {
-  		var message = $("<h1>").text(error).addClass("notice notice-error");
-
-  		$(".form-wrapper").append(message);
-  	})
-  }
 
 });
 

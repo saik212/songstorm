@@ -50,6 +50,7 @@ Songstorm.Views.Header = Backbone.View.extend({
 	showUpload: function (event) {
 		event.preventDefault();
 
+		Songstorm.modal.editing = false;
 		Songstorm.modal.showUpload();
 	},
 });

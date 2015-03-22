@@ -18,9 +18,11 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     "click #like-btn": "addLike",
     "click #unlike-btn": "removeLike",
     "click .fa-play": "playSong",
-    "click #delete-song": "deleteSong",
-    "click #add-pl-btn": "playlistForm"
+    "click .dlt-model": "deleteSong",
+    "click #add-pl-btn": "playlistForm",
+    "click .edit-model": "editSong"
   },
+
 
   render: function () {
     var currUserId = parseInt(Songstorm.currentUser.id);
@@ -112,6 +114,15 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     Songstorm.playQueue.push(this.model);
     Songstorm.globalPlayer.track = 0;
     Songstorm.globalPlayer.playQueue();
+  },
+
+  editSong: function (event) {
+    event.preventDefault();
+
+    Songstorm.modal.showEditUpload(this.model.id);
+    Songstorm.modal.editCallback = function (id) {
+      Songstorm.router.songShow(id);
+    };
   },
 
   addComment: function (event) {
@@ -228,9 +239,9 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     event.preventDefault();
     var that = this;
 
-    Songstorm.songs.remove(this.model);
     this.model.destroy({
       success: function () {
+        Songstorm.songs.remove(this.model);
         Backbone.history.navigate("", {trigger: true});
       }, 
       error: function () {

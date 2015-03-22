@@ -454,3 +454,7 @@ User Show
 #user-to-explore:hover {
 	opacity: 1;
 }
+
+#user-edit {
+	font-size: 10px;
+}

@@ -5,8 +5,8 @@
 <h1 class="form-welcome">Create a playlist</h1>
 <form class="modal-form" enctype="multipart/form-data">
 	<div class="input-wrapper">
-		<label>Title<span>*</span>: </label>
-		<input name="playlist[name]" type="text"><br>
+		<label>Title<span class="req-star">*</span>: </label>
+		<input name="playlist[name]" type="text" value="<%= model.escape('name') %>"><br>
 		<label>Playlist Image: </label>
 		<input name="playlist[image]" type="file" class="file-upld" id="file-img">
 	</div>
@@ -15,4 +15,4 @@
 <div class="submit">
 	<span class="submit-btn site-btn" id="create-pl">Create Playlist</span>
 </div>
-<h1 id="req-field">*required field</h1>
+<h1 class="req-star" id="req-field">*required field</h1>

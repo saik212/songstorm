@@ -15,8 +15,13 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
     "click #play-queue": "playQueue",
   	"click .fa-play": "playSong",
     "click .remove-button": "removeSong",
-    "click #delete-playlist": "deletePlaylist"
+    "click #delete-playlist": "deletePlaylist",
+    "click .edit-model" : "editPlaylist",
+    "click #create-pl" : "createPlaylist",
+    "click .dlt-btn": "deletePlaylist"
   },
+
+
 
   render: function () {
     var currUserId = parseInt(Songstorm.currentUser.id);
@@ -117,14 +122,30 @@ Songstorm.Views.PlaylistShow = Backbone.View.extend({
   deletePlaylist: function(event) {
     event.preventDefault();
     var that = this;
-    Songstorm.playlists.remove(that.model);
     this.model.destroy({
       success: function () {
+        Songstorm.playlists.remove(that.model);
         Backbone.history.navigate("", {trigger:true});
       },
       error: function () {
         alert("didn't work");
       }
-    })
+    });
+  },
+
+  editPlaylist: function (event) {
+    event.preventDefault();
+
+    Songstorm.modal.showEditPlaylist(this.model.id);
+    Songstorm.modal.editCallback = function (id) {
+      Songstorm.router.playlistShow(id);
+    };
+  },
+
+  createPlaylist: function (event) {
+    event.preventDefault();
+
+    Songstorm.modal.showCreatePlaylist();
   }
+
 })

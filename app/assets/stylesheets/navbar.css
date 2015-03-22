@@ -118,6 +118,14 @@ input[submit] {
   transition: 0.25s;
 }
 
+.header-logo > a:hover {
+  text-decoration: none;
+}
+
+.header-list > li > a:hover {
+  text-decoration: none;
+}
+
 /*.search-bar {
   display: inline;
   clear: both;

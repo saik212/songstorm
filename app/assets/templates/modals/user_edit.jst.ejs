@@ -1,0 +1,28 @@
+<span class="close-modal-header group">
+	<h1>Songstorm</h1>
+	<span class="close-btn">&times;</span>
+</span>
+
+<h1 class="form-welcome">Welcome to Songstorm!</h1>
+
+<form class="modal-form" enctype="multipart/form-data">
+	<div class="input-wrapper">
+
+		<label>Username: </label>
+		<input type="text" name="user[username]" value="<%= model.escape('username') %>"><br>
+
+		<label>New Password: </label>
+		<input type="password" value="" id="pass-check"><br>
+
+		<label>Profile Pic: </label>
+		<input type="file" name="user[image]" class="file-upld" id="file-img">
+
+	</div>
+</form>
+
+<div class="submit">
+	<span class="submit-btn site-btn" id="user-edit-btn">Update</span>
+</div>
+
+
+<h1 class="notice"></h1>
