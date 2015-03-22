@@ -20,7 +20,16 @@ Songstorm.Views.SongShow = Backbone.View.extend({
     "click .fa-play": "playSong",
     "click .dlt-model": "deleteSong",
     "click #add-pl-btn": "playlistForm",
-    "click .edit-model": "editSong"
+    "click .edit-model": "editSong",
+    "keypress .cmt-text": "enterDefault"
+  },
+
+  enterDefault: function (event) {
+    if ( event.keyCode === 13) {
+      event.preventDefault();
+      return;
+      
+    }
   },
 
 

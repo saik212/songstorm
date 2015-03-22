@@ -458,3 +458,12 @@ User Show
 #user-edit {
 	font-size: 10px;
 }
+
+.rmv-sg-btn {
+	transition: 0.15s;
+}
+
+.rmv-sg-btn:hover {
+	transition: 0.15s;
+  color: #FF0013;
+}
