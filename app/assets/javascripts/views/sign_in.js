@@ -14,7 +14,7 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 	events: {
 		"click .sign-in-button": "submit",
 		"click .sign-in-guest": "guestSignIn",
-		"click #preview-play": "playSong"
+		"click .fa-play": "playSong"
 	},
 	
   playSong: function (event) {
@@ -60,7 +60,8 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 			audioUrl: this.previewSong.audio_url,
 			songArtist: this.previewSong.artist,
 			songAlbum: this.previewSong.album,
-			songId: this.previewSong.id
+			songId: this.previewSong.id,
+			numLikes: this.previewSong.num_likes
 		});
 		this.$el.html(content);
 		return this;

@@ -22,6 +22,11 @@
 Song Show
 =========================================*/
 
+
+#sg-content-lt {
+	width: 690px;
+}
+
 .song-sb {
 	background-image: linear-gradient(#4F9472, #004924);
 }
@@ -57,20 +62,23 @@ Song Show
 
 .show-play-btn {
 	margin: 25px 0 0 45px;
-	padding: 30px;
+	padding: 16px 20px; 
 	border-radius: 50%;
-
-	background-image: radial-gradient(#A07C7C, #000);
-	color: #fff;
-	font-size: 30px;
+	background-image: radial-gradient(#A081AD, #51106C);
+	color: #000;
+	font-size: 36px;
+	padding-right: 25px;
 }
 
 .show-play-btn:hover {
-
+	color: #fff;
+	cursor: pointer;
 }
 
 .show-play-btn > * {
-	padding-left: 6px;
+	padding-top: 10px;
+	font-size: 52px;
+	padding-left: 14px;
 }
 
 
@@ -325,12 +333,35 @@ In Playlists
 	font-size: 20px;
 }
 
+.pl-list-img {
+	margin-left: 13px;
+}
 
-
+.pl-name {
+	width: 175px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 
 /*===========================================
 Playlist Show
 ===========================================*/
+
+#pl-show-ct-lt {
+	width: 730px;
+}
+
+#pl-show-ct-rt {
+	margin-top: 42px;
+}
+
+.more-pl-name {
+	width: 145px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 
 .sg-li {
 	margin-bottom: 15px;

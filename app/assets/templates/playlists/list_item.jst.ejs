@@ -1,9 +1,9 @@
 <li>
 	<div class="sg-pl-info">
-		<p><a class="txt-hov" href="#/playlists/<%=playlist.id%>"><%=playlist.escape('name')%></a></p>
+		<p class="pl-name"><a class="txt-hov" href="#/playlists/<%=playlist.id%>"><%=playlist.escape('name')%></a></p>
 		<p><a href="#/users/<%=playlist.escape('user_id')%>"><%=playlist.escape('owner')%></p>
 	</div>
 	<a href="#/playlists/<%=playlist.id%>">
-		<img src="<%= playlist.escape("image_url") %>">
+		<img class="pl-list-img" src="<%= playlist.escape("image_url") %>">
 	</a>
 </li>

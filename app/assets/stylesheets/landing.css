@@ -85,11 +85,27 @@ Sample Song
 
 #featr-sg {
   text-align: center;
-  font-size: 40px;
-  margin: 47px auto 20px auto;
+  font-size: 26px;
+	margin: 20px auto 5px auto;
   width: 606px;
   opacity: 0.8;
   border-top: 1px solid #ccc;
+}
+
+#sample-li {
+	width: 750px;
+	margin: auto;
+	
+	font-size: 30px;
+}
+
+#sample-li-img, #sample-play {
+	height: 60px;
+	width: 60px;
+}
+
+#sample-play-icon {
+	padding: 16px 0px 0px 6px;
 }
 
 #lndg-item {
@@ -117,9 +133,15 @@ Sample Song
 
 	display: inline-block;
 	margin: 23px;
+	margin-bottom: 0px;
 	height: 196px;
 	width: 196px;
 
+}
+
+.fave-title {
+	width: 200px;
+	margin: auto;
 }
 
 .song-modal {
@@ -127,10 +149,23 @@ Sample Song
 	height: 100%;
 	width: 100%;
 	float: left;
+	padding-top: 61px;
+	text-align: center;
 
 	background-color: rgba(0, 0, 0, 0.7);
 	color: #fff;
 }
+
+#faves-play-btn {
+	margin: 25px 0 0 0px;
+}
+
+.fave-container {
+	float: left;
+	text-align: center;
+}
+
+
 
 .play-btn {
 	height: 80px;
@@ -166,50 +201,6 @@ Sample Song
 	font-size: 15px;
 	letter-spacing: 1.75px;
 
-}
-
-/*.landing-wrapper {
-	padding: 0 85px;
-}
-.landing-text {
-	float: right;
-	display: inline;
-	width: 600px;
-	background: #892090;
-	padding: 50px;
-	border-radius: 10px;
-	box-shadow: 2px 2px 2px;
-}
-
-.landing-sign-in {
-	float: left;
-	display: inline;
-	background: #892090;
-	border-radius: 10px;
-	padding: 15px;
-	padding-bottom: 20px;
-  text-align: center;
-	box-shadow: 2px 2px 2px;
-}
-
-.search-bar {
-	margin-left: 35%;	
-}
-
-
-.sign-in-header {
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.user-sign-in > * {
-   display: block;
-   margin-bottom: 10px;
-}
-
-.user-sign-in {
-  /*background: #fff;*/
-  padding: 20px 50px;
 }
 
 .sign-in-button, .sign-in-guest, .explore-button {

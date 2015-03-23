@@ -187,8 +187,13 @@ Songstorm.Views.SongShow = Backbone.View.extend({
 
   addLike: function (event) {
     event.preventDefault();
-    this.render();
+    // this.render();
     var that = this;
+
+    if (!Songstorm.currentUser.isSignedIn()) {
+      Songstorm.modal.showSignIn();
+      return;
+    }
 
     var song_id = this.model.id;
     var user_id = Songstorm.currentUser.id;

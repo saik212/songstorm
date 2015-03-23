@@ -13,7 +13,7 @@
 		</section>
 
 		<section class="show-content group">
-			<section class="content-lt">
+			<section class="content-lt" id="pl-show-ct-lt">
 				<div class="wgt-wrapper group">
 					<%if (parseInt(Songstorm.currentUser.id) === parseInt(playlist.escape("user_id"))) { %>
 						<span class='wgt-btn edit-model'><i class='fa fa-edit'></i> Edit</span>
@@ -45,7 +45,7 @@
 
 			</section>
 
-			<section class="content-rt">
+			<section class="content-rt" id="pl-show-ct-rt">
 
 				<div class="plst-wrapper">
 					<p id="in-plst-header">More by user:</p>

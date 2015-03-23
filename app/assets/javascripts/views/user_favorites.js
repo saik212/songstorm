@@ -7,7 +7,8 @@ Songstorm.Views.UserFavorites = Backbone.View.extend({
 
 	events: {
 		"mouseover .img-item": "showSongModal",
-		"mouseleave .img-item": "hideSongModal"
+		"mouseleave .img-item": "hideSongModal",
+    "click .fa-play": "playSong",
 	},
 
 	render: function () {
@@ -39,5 +40,18 @@ Songstorm.Views.UserFavorites = Backbone.View.extend({
 		event.preventDefault();
 
 		$(".song-modal").fadeOut(150);
-	}
+	},
+
+
+	playSong: function (event) {
+		event.preventDefault();
+    if (event.target.id === "play-queue") {return;}
+
+    Songstorm.globalPlayer.track = 0;
+    Songstorm.playQueue = [];
+    var songId = $(event.currentTarget).data("song-id");
+    Songstorm.playQueue.push(Songstorm.songs.getOrFetch(songId));
+    Songstorm.globalPlayer.playQueue();
+	},
+
 })

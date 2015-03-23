@@ -14,7 +14,7 @@
 
     <h1 id="featr-sg">Featured Song:</h1>
 
-    <section class="song-item group" id="lndg-item">
+<!--     <section class="song-item group" id="lndg-item">
     
       <div class="img-item" style="background-image:url(<%=imageUrl%>)" id="lndg-img">
         <div class="song-modal lndg-sample">
@@ -25,10 +25,23 @@
         </div>
       </div>
 
-      <h1><%=songTitle%></h1><br>
+      <h1><a href="#/songs/<%= songId %>"><%=songTitle%></a></h1><br>
       <h1><%=songArtist%></h1><br>
       <h1><%=songAlbum%></h1><br>
       
       
 
-    </section>
+    </section> -->
+
+    <ul class="cmts-display" id="all-songs-list">
+      <li class="sg-li group" id="sample-li">
+        <a href="#/songs/<%= songId %>">
+          <img class="sg-li-img" src="<%= imageUrl %>" id="sample-li-img">
+        </a>
+        <div class="play" id="sample-play"><i class="fa fa-play" id="sample-play-icon" data-song-id="<%=songId%>"></i></div>
+        <div class="sg-li-info">
+          <div class="trk-info"><span><%= songArtist %> -</span> <a class="txt-hov" href="#/songs/<%= songId %>"><%= songTitle %></a></div>
+        </div>
+        <div class="trk-likes"><i class="fa fa-heart"></i> <%= numLikes %></div>
+      </li>      
+    </ul>
