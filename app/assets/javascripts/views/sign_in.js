@@ -25,33 +25,7 @@ Songstorm.Views.SignIn = Backbone.View.extend({
     Songstorm.globalPlayer.playQueue();
   },
 
-	guestSignIn: function(event) {
-		var images = ["https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img3.jpg",
-								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img4.jpg",
-								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img5.jpg",
-								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img6.jpg",
-								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img7.jpg",
-								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img8.jpg",
-								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img9.jpg"];
-		var randomImage = images[Math.floor(Math.random() * images.length)];
-		var guestIndex = Math.floor(Math.random() * 1000);
-		var userInfo = {username: "Guest"+guestIndex, password: "123456", image_url: randomImage};
-		var that = this;
-
-		var newUser = new Songstorm.Models.User();
-		newUser.set(userInfo);
-				$(".sign-in-guest").on("click", false);
-		newUser.save({}, {
-			success: function () {
-				Songstorm.currentUser.fetch({
-					success: function () {
-						that.guestSongs(newUser);
-					}
-				});
-				Songstorm.users.add(newUser);
-			}
-		});
-	},
+	
 
 	render: function () {
 		var content = this.template({
@@ -87,6 +61,34 @@ Songstorm.Views.SignIn = Backbone.View.extend({
 		} else {
 			Backbone.history.navigate("users/"+Songstorm.currentUser.id, {trigger: true});
 		}
+	},
+
+	guestSignIn: function(event) {
+		var images = ["https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img3.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img4.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img5.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img6.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img7.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img8.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img9.jpg"];
+		var randomImage = images[Math.floor(Math.random() * images.length)];
+		var guestIndex = Math.floor(Math.random() * 1000);
+		var userInfo = {username: "Guest"+guestIndex, password: "123456", image_url: randomImage};
+		var that = this;
+
+		var newUser = new Songstorm.Models.User();
+		newUser.set(userInfo);
+				$(".sign-in-guest").on("click", false);
+		newUser.save({}, {
+			success: function () {
+				Songstorm.currentUser.fetch({
+					success: function () {
+						that.guestSongs(newUser);
+					}
+				});
+				Songstorm.users.add(newUser);
+			}
+		});
 	},
 
 	guestSongs: function (guest) {

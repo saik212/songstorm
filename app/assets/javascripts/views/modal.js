@@ -19,7 +19,9 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 		"click #create-pl": "createPlaylist",
 
 		"click #upld-sg": "uploadSong",
-		"click #user-edit-btn": "editUser"
+		"click #user-edit-btn": "editUser",
+
+		"click #guest-btn": "guestSignIn"
 
 	},
 
@@ -522,6 +524,86 @@ showSignUp: function () {
     });
 
 	},
+
+
+// __________
+// __________
+// __________  Guest sign in
+// __________
+// __________
+
+
+	guestSignIn: function(event) {
+		var images = ["https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img3.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img4.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img5.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img6.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img7.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img8.jpg",
+								  "https://s3.amazonaws.com/songstorm-pics/seeds/images/users/usr_img9.jpg"];
+		var randomImage = images[Math.floor(Math.random() * images.length)];
+		var guestIndex = Math.floor(Math.random() * 1000);
+		var userInfo = {username: "Guest"+guestIndex, password: "123456", image_url: randomImage};
+		var that = this;
+
+		var newUser = new Songstorm.Models.User();
+		newUser.set(userInfo);
+				$(".sign-in-guest").on("click", false);
+		newUser.save({}, {
+			success: function () {
+				Songstorm.currentUser.fetch({
+					success: function () {
+						that.guestSongs(newUser);
+					}
+				});
+				Songstorm.users.add(newUser);
+			}
+		});
+	},
+
+	guestSongs: function (guest) {
+		var that = this;
+		var song_urls = ["https://s3.amazonaws.com/songstorm-pics/seeds/songs/guest1.mp3",
+							  "https://s3.amazonaws.com/songstorm-pics/seeds/songs/guest2.mp3"];
+
+			var song1 = new Songstorm.Models.Song;
+			song1.set({title: "Frozen Ray", artist: "Takayuki Ishikawa", album: "Unknown", audio: song_urls[0]});
+			song1.save({}, {
+				success: function () {
+					guest.songs().add(song1)
+					Songstorm.songs.add(song1);
+					var song2 = new Songstorm.Models.Song;
+					song2.set({title: "Tricksy Clock", artist: "Yoko Shinomura", album: "KH1", audio: song_urls[1]});
+					song2.save({}, {
+						success: function () {
+							guest.songs().add(song2)
+							Songstorm.songs.add(song2);
+							that.guestPlaylists(guest);
+						}
+					});
+				}
+			});
+	},
+
+	guestPlaylists: function (guest) {
+		var that = this;
+		var playlist = new Songstorm.Models.Playlist;
+		playlist.set({name: guest.escape('username')+"'s Playlist"});
+		playlist.save({}, {
+			success: function (){
+				guest.playlists().add(playlist);
+				Songstorm.playlists.add(playlist);
+				for (var i = 0; i<5; i++) {
+					var playlistSong = new Songstorm.Models.PlaylistSong;
+					playlistSong.save({song_id: i, playlist_id: playlist.id}, {
+						success: function () {
+							Songstorm.playlistSongs.add(playlistSong);
+						}
+					})
+				}
+			}
+		});
+	}
 
 
 
