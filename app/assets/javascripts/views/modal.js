@@ -553,6 +553,7 @@ showSignUp: function () {
 			success: function () {
 				Songstorm.currentUser.fetch({
 					success: function () {
+						that.hideModal();
 						that.guestSongs(newUser);
 					}
 				});

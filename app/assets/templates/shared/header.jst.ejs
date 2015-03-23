@@ -1,17 +1,3 @@
-<!-- <header id="site-header">
-    <nav class="group" id="navbar">
-      <ul class="nav-grp nav-lt group">
-        <li>Songstorm</li>
-        <li>Explore</li>
-      </ul>
-      <ul class="nav-grp nav-rt group">
-        <li>Upload</li>
-        <li>Sign Up</li>
-        <li>Sign In</li>
-      </ul>
-    </nav>
-  </header> -->
-
     <nav class="header-nav group">
       <% if (Songstorm.currentUser.isSignedIn()) {%>
         <% user_home = "/#/users/"+Songstorm.currentUser.id %>
@@ -33,19 +19,12 @@
             <a id="upld-song">Upload</a>
           </li>
         <% if (Songstorm.currentUser.isSignedIn()) {%>
-          <!-- <li>
-            <form class="search-bar">
-              <input type="text" class="query" placeholder="Search songs, artists, albums" value="">
-              <input type="submit" class="search">
-            </form>
-          </li> -->
+
           
           <li>
             <a href="#/users/<%= currentUserId%>/likes">Favorites</a>
           </li>
-         <!--  <li>
-            <a href="#/songs/new">Upload</a>
-          </li> -->
+
           <li>
             <a href="#/users/<%=Songstorm.currentUser.id%>">Home</a>
           </li>

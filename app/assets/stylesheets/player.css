@@ -1,4 +1,6 @@
 #global-player {
+	color: #fff;
+	background: #000;
 	position: fixed;
 	bottom: 0;	
 	right: 0;
@@ -6,4 +8,14 @@
 
 .stopped {
 	display: none;
+}
+
+.current-song {
+	float: left;
+	margin-right: 15px;
+	font-size: 26px;
+}
+
+.player-btns {
+	float: left;
 }
