@@ -25,14 +25,12 @@
 
 .lndg-h1 {
 	max-width: 630px;
-	/*background: #000;*/
 	
 	font-size: 43px;
 }
 
 .lndg-h2 {
 	max-width: 330px;
-	/*background: violet;*/
 
 	font-size: 20px;
 }
@@ -128,7 +126,6 @@ Sample Song
 }
 
 .img-item {
-	/*background-image: url("../images/img1.jpg");*/
 	background-size: 100% 100%;
 
 	display: inline-block;
@@ -319,4 +316,4 @@ Sample Song
 	font-size: 40px;
 	text-align: center;
 	margin: 0 auto 15px auto;
-}*/
+}
