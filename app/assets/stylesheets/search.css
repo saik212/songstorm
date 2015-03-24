@@ -1,46 +1,3 @@
-/*.search {
-	width: 100%;
-	margin: auto;
-}
-
-#search-wrapper {
-	padding: 5px 5px 5px 20px;	
-	margin: auto;
-	width: 50%;
-}
-
-.results-header {
-
-}
-
-.explore-wrapper {
-	width: 80%;
-	margin: auto;
-}
-
-#explore-left {
-	float: left;
-}
-
-#explore-right {
-	float: right;
-	padding: 0;
-	width: 400px;
-}
-
-.explore > h1 {
-	margin-bottom: 10px;
-}
-
-#explore-users {
-	height: 300px;
-	overflow: auto;
-	padding: 10px 5px 0 5px;
-}
-
-
-*/
-
 #search-content-lt {
 	width: 675px;
 }
@@ -108,3 +65,6 @@
 	border-bottom: 0;
 }
 
+#play-all {
+	margin-left: 20px;
+}

@@ -9,7 +9,8 @@ Songstorm.Views.Search = Backbone.View.extend({
 	events: {
 		"click #search-btn": "search",
 		"click .next-page": "nextPage",
-		"click .fa-play": "playSong"
+		"click .fa-play": "playSong",
+		"click #play-all": "playAll"
 	},
 
 	template: JST["shared/search"],
@@ -87,6 +88,18 @@ Songstorm.Views.Search = Backbone.View.extend({
     Songstorm.playQueue.push(Songstorm.songs.getOrFetch(songId));
     Songstorm.globalPlayer.track = 0;
     Songstorm.globalPlayer.playQueue();
+  },
+
+  playAll: function (event) {
+  event.preventDefault();
+  console.log("Trying to play queue");
+  Songstorm.playQueue = [];
+  Songstorm.songs.forEach(function (song) {
+    Songstorm.playQueue.push(song);
+  });
+
+  Songstorm.globalPlayer.track = 0;
+  Songstorm.globalPlayer.playQueue();
   },
 
 });
