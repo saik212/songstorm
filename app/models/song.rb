@@ -1,5 +1,5 @@
 class Song < ActiveRecord::Base
-  validates :title, :audio, presence: true
+  validates :title, presence: true
   include PgSearch
 
   pg_search_scope :search_by_all, against: [:title, :artist, :album]
@@ -13,7 +13,8 @@ class Song < ActiveRecord::Base
   has_many :likers, through: :likes, source: :user
 
 
-  has_attached_file :audio
+  has_attached_file :audio,
+    default_url: "default1.mp3"
 
   validates_attachment_content_type :audio,
   :content_type => [

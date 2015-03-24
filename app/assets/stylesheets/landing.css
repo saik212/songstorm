@@ -7,7 +7,14 @@
 	height: 560px;
 }
 
+.landing-wrapper {
+	margin-top: -2px;
+}
+
+
 /*Landing image styles*/
+
+
 #welcome {
 	padding: 155px 0 0 0;
 }
@@ -36,13 +43,11 @@
 }
 
 .lndg-explore-btn-wrapper {
-	/*background: #fff;*/
 	width: 300px;
 	padding: 40px 0;
 }
 
 .site-btn {
-	/*background: #6889BD;*/
 	transition: 0.35s;
 	background-image: linear-gradient(#6889BD, #385B91);
 
@@ -59,7 +64,6 @@
 
 .site-btn:hover {
 	transition: 0.3s;
-	/*text-shadow: none;*/
 	text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
 }
 

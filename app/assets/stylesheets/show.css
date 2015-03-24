@@ -1,9 +1,15 @@
+.faves-header {
+	text-align: center;
+	font-size: 34px;
+}
+
 .show-banner {
 	width: 100%;
 	height: 375px;
 
 	box-sizing: border-box;
 	padding: 40px;
+	margin-top: -2px;
 }
 
 .show-banner > img {

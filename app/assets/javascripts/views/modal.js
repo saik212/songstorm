@@ -42,6 +42,7 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 			event.preventDefault();
 		}
 
+		$(".loading-bar").empty();
 		$(".modal-wrapper").fadeOut(150);
 		$(".modal-wrapper").toggleClass("closed", function() {  $(".form-wrapper").empty();  });
 	},
@@ -114,6 +115,8 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 			}
 
 		});
+
+		
 	},
 
 
@@ -121,6 +124,7 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 	postSuccess: function (options) {
 		var that = this;
 
+		$(".loading-bar").empty();
 		this.showNotice(options.notice);
 
 		if (!this.editing) {
@@ -159,6 +163,7 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 
   showErrors: function (errors) {
 	errors = errors.responseJSON || errors;
+	$(".loading-bar").empty();
 
 	errors.forEach(function (error) {
 		var message = $("<h1>").text(error).addClass("notice notice-error");
@@ -257,6 +262,8 @@ Songstorm.Views.Modal = Backbone.View.extend ({
 		var $form = $(".modal-form");
 		var formData = $form.serializeJSON().user;
 
+		that.addSpinner("Signing in...");
+
 		Songstorm.currentUser.signIn({
 			username: formData.username,
 			password: formData.password,
@@ -316,6 +323,8 @@ showSignUp: function () {
   			}
 
   		});
+
+  		that.addSpinner("Creating profile...");
 
   	} else {
   		$(".form-wrapper").append($("<h1>").text("Passwords don't match").addClass("notice notice-error"));
@@ -383,6 +392,7 @@ showSignUp: function () {
 		var that = this;
 
 		this.removeNotices();
+		this.addSpinner("Uploading song...");
 
 		this.postModel({
 			notice: "Upload successful!",
@@ -434,7 +444,7 @@ showSignUp: function () {
 		event.preventDefault();
 		var that = this;
 
-
+		this.addSpinner("Creating playlist...");
 		this.removeNotices();
 
 		this.postModel({
@@ -553,37 +563,40 @@ showSignUp: function () {
 			success: function () {
 				Songstorm.currentUser.fetch({
 					success: function () {
-						that.hideModal();
 						that.guestSongs(newUser);
 					}
 				});
 				Songstorm.users.add(newUser);
 			}
 		});
+
+		this.addSpinner("Loading songs...");
 	},
 
 	guestSongs: function (guest) {
 		var that = this;
-		var song_urls = ["https://s3.amazonaws.com/songstorm-pics/seeds/songs/guest1.mp3",
-							  "https://s3.amazonaws.com/songstorm-pics/seeds/songs/guest2.mp3"];
+		var song_urls = ["https://s3.amazonaws.com/songstorm-pics/seeds/songs/guest1.mp3", 
+											"https://s3.amazonaws.com/songstorm-pics/seeds/songs/sg05.mp3"];
 
 			var song1 = new Songstorm.Models.Song;
 			song1.set({title: "Frozen Ray", artist: "Takayuki Ishikawa", album: "Unknown", audio: song_urls[0]});
+			// song1.set({title: "Finale", artist: "Madeon", album: "The City", audio: song_urls[1]});
 			song1.save({}, {
 				success: function () {
 					guest.songs().add(song1)
 					Songstorm.songs.add(song1);
-					var song2 = new Songstorm.Models.Song;
-					song2.set({title: "Tricksy Clock", artist: "Yoko Shinomura", album: "KH1", audio: song_urls[1]});
-					song2.save({}, {
-						success: function () {
-							guest.songs().add(song2)
-							Songstorm.songs.add(song2);
-							that.guestPlaylists(guest);
-						}
-					});
+					// var song2 = new Songstorm.Models.Song;
+					// song2.set({title: "Finale", artist: "Madeon", album: "The City", audio: song_urls[1]});
+					// song2.save({}, {
+					// 	success: function () {
+					// 		guest.songs().add(song2)
+					// 		Songstorm.songs.add(song2);
+					// 	}
+					// });
+					that.guestPlaylists(guest);
 				}
 			});
+
 	},
 
 	guestPlaylists: function (guest) {
@@ -598,15 +611,28 @@ showSignUp: function () {
 					var playlistSong = new Songstorm.Models.PlaylistSong;
 					playlistSong.save({song_id: i, playlist_id: playlist.id}, {
 						success: function () {
+							that.hideModal();
 							Songstorm.playlistSongs.add(playlistSong);
 						}
 					})
 				}
 			}
 		});
-	}
+	},
 
 
+// __________
+// __________
+// __________ Loading Bars
+// __________
+// __________
+
+	addSpinner: function (message) {
+		var container = $(".loading-bar");
+
+		container.append("<i class='fa fa-cog fa-spin'></i>");
+		container.append("<div class='loading-notice'>"+message+"</div>");
+	},
 
 
 

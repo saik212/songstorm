@@ -18,9 +18,7 @@ Songstorm.Views.MusicPlayer = Backbone.View.extend({
 
 	playQueue: function () {
 		var that = this;
-		// var track = 1;
 		$(".stopped").removeClass("stopped");
-		// var player = $("#global-player audio");
 		this.$player.attr('src', Songstorm.playQueue[this.track].escape('audio_url'));
 		$(".current-song").text(Songstorm.playQueue[this.track].escape('title'));
 		this.$player[0].play();
