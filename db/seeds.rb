@@ -89,13 +89,13 @@ end
 def random_title
   firsts = [
     "Wool", "Sorrid", "Chasmic", "Blue", "Crazed",
-    "Jorgen", "Idol", "Stormy", "Arctic", "Jovial",
+    "Whispering", "Idol", "Stormy", "Arctic", "Jovial",
     "Isotrope", "Bones'", "Mother", "Songstrel", "Grail" 
   ]
 
   lasts = [
     "Strings", "Colony", "Stampers", "Kastral", "Peak",
-    "Piper", "Jest", "Daze", "Morty", "Ironhold",
+    "Piper", "Jest", "Daze", "Stream", "Ironhold",
     "Island", "Mountain", "Plains", "Swamp", "Forest"
   ]
 
