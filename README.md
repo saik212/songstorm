@@ -11,7 +11,7 @@ Songstorm is a simple music-player application that allows you to upload, manage
 - Implements dynamic modals leveraging jQuery and Backbone views to allow for smooth transitioning and responsiveness to user state.
 
 ###Technologies Used:
-- Ruby on Rails for a back-end JSON API
-- Backbone.js for a smooth, organized front-end
-- Amazon S3 for cloud storage of users' songs/images
-- Web Audio API for a maintainable, global music-player
+- **Ruby on Rails** for a back-end JSON API
+- **Backbone.js** for a smooth, organized front-end
+- **Amazon S3** for cloud storage of users' songs/images
+- **Web Audio API** for a maintainable, global music-player
